@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Vuforia;
-public class ImageScanner : MonoBehaviour
+
+namespace PappaSquad.AR
 {
+    public class ImageScanner : MonoBehaviour
+    {
+        [SerializeField]
+        private ImageTargetBehaviour imageTarget;
 
-    [SerializeField]
-    private ImageTargetBehaviour imageTarget;
+        public UnityEvent OnImageTracked;
 
-    public UnityEvent OnImageTracked;
-
-    private void Awake() {
-        StartCoroutine(WaitForImageTracked());
-    }
-
-    private IEnumerator WaitForImageTracked(){
-        while(imageTarget.CurrentStatus != TrackableBehaviour.Status.TRACKED){
-            yield return null;
+        private void Awake() {
+            StartCoroutine(WaitForImageTracked());
         }
-        
-        OnImageTracked.Invoke();
-    }
 
-
+        private IEnumerator WaitForImageTracked(){
+            while(imageTarget.CurrentStatus != TrackableBehaviour.Status.TRACKED){
+                yield return null;
+            }
+            
+            OnImageTracked.Invoke();
+        }
+    }   
 }
