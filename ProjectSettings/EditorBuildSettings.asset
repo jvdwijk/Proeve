@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Marker Scan.unity
+    guid: ffa6de0ab18b8ee43933346aed735e45
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: dd8f6f7982d5787479b1e83790fba531
   m_configObjects: {}
