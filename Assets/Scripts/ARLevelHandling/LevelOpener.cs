@@ -43,8 +43,4 @@ public class LevelOpener : MonoBehaviour, ITrackableEventHandler
         return newStatus == TrackableBehaviour.Status.TRACKED && !hasAlreadyTracked;
     }
 
-    private void Reset() {
-        trackableBehavior = GetComponent<TrackableBehaviour>();
-    }
-
 }
