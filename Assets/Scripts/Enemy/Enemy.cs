@@ -23,6 +23,7 @@ namespace Peppasquad.Enemy
         {
             this.health = health;
             this.attackDPS = attackDPS;
+            this.target = target;
         }
 
         public void Damage(int amount)
