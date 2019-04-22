@@ -3,31 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatsHandler<T> : MonoBehaviour 
-where T : System.Enum 
-{
-    private Dictionary<T, Stat<T>> stats;
+namespace PeppaSquad.Stats {
 
-    public event Action<Stat<T>> StatCreated;
+    public class StatsHandler<StatName> : StatsHandler<StatName, Stat<StatName>>
+        where StatName : System.Enum { }
 
-    public Stat<T> GetStat(T statType){
-        if (!stats.ContainsKey(statType))
-            CreateStat(statType);
+    public class StatsHandler<StatName, StatType> : MonoBehaviour
+    where StatName : System.Enum
+    where StatType : Stat<StatName> {
 
-        return stats[statType];
-    }
+        private Dictionary<StatName, Stat<StatName>> stats;
 
-    public void SetStatValue(T statType, float statValue){
-        var stat = GetStat(statType);
-        stat.Value = statValue;
-    }
+        public event Action<Stat<StatName>> StatCreated;
 
-    private void CreateStat(T statType){
-        if (stats.ContainsKey(statType))
-            return;
+        public Stat<StatName> GetOrCreateStat(StatName statType) {
+            if (!stats.ContainsKey(statType))
+                CreateStat(statType);
 
-        var newStat = new Stat<T>(statType);
-        stats.Add(statType, newStat);
-        StatCreated?.Invoke(newStat);
+            return stats[statType];
+        }
+
+        public Stat<StatName> GetStat(StatName statType) {
+            if (!stats.ContainsKey(statType))
+                return null;
+
+            return stats[statType];
+        }
+
+        public void SetStatValue(StatName statType, float statValue) {
+            var stat = GetStat(statType);
+            stat.Value = statValue;
+        }
+
+        private void CreateStat(StatName statType) {
+            if (stats.ContainsKey(statType))
+                return;
+
+            var newStat = new Stat<StatName>(statType);
+            stats.Add(statType, newStat);
+            StatCreated?.Invoke(newStat);
+        }
     }
 }

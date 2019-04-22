@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PappaSquad.Utils
-{
-    public class BoolPlayerPrefs : PlayerPrefs
-    {
+namespace PeppaSquad.Utils {
+    public class BoolPlayerPrefs : PlayerPrefs {
         private const string boolPrefix = "__bool__";
 
         /// <summary>
@@ -13,7 +11,7 @@ namespace PappaSquad.Utils
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public static void SetBool(string key, bool value){
+        public static void SetBool(string key, bool value) {
             var intValue = value ? 1 : 0;
             PlayerPrefs.SetInt($"{boolPrefix}{key}", intValue);
         }
@@ -23,7 +21,7 @@ namespace PappaSquad.Utils
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static bool GetBool(string key){
+        public static bool GetBool(string key) {
             var intValue = GetInt(key);
             return intValue > 0;
         }

@@ -1,5 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerStatsHandler : StatsHandler<PlayerStatType> {}
+﻿namespace PeppaSquad.Stats.PlayerStats {
+    public class PlayerStatsHandler : StatsHandler<PlayerStatType> { }
+}
