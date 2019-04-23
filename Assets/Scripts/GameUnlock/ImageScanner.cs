@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using Vuforia;
 
-namespace PappaSquad.AR
-{
-    public class ImageScanner : MonoBehaviour
-    {
+namespace PeppaSquad.AR {
+    public class ImageScanner : MonoBehaviour {
         [SerializeField]
         private ImageTargetBehaviour imageTarget;
 
@@ -17,12 +15,12 @@ namespace PappaSquad.AR
             StartCoroutine(WaitForImageTracked());
         }
 
-        private IEnumerator WaitForImageTracked(){
-            while(imageTarget.CurrentStatus != TrackableBehaviour.Status.TRACKED){
+        private IEnumerator WaitForImageTracked() {
+            while (imageTarget.CurrentStatus != TrackableBehaviour.Status.TRACKED) {
                 yield return null;
             }
-            
+
             OnImageTracked.Invoke();
         }
-    }   
+    }
 }
