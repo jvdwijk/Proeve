@@ -6,88 +6,97 @@ using UnityEngine;
 using PeppaSquad.Stats;
 using PeppaSquad.Stats.PlayerStats;
 
-public class PlayerDataSaver : MonoBehaviour, IDataSaver {
+namespace PeppaSquad.DataSaving {
+    public class PlayerDataSaver : MonoBehaviour, IDataSaver {
 
-    [SerializeField]
-    private PlayerStatsHandler playerStats;
+        [SerializeField]
+        private PlayerStatsHandler playerStats;
 
-    [SerializeField]
-    private string appdataSubDirectory = @"\GameSaves";
+        [SerializeField]
+        private string appdataSubDirectory = @"\GameSaves";
 
-    [SerializeField]
-    private string fileName = "data.dat";
+        [SerializeField]
+        private string fileName = "data.dat";
 
-    private ObjectSaver saver;
-    private bool isDirty = false;
+        private ObjectSaver saver;
+        private bool isDirty = false;
 
-    public bool IsDirty => IsDirty;
+        public bool IsDirty => IsDirty;
 
-    public event Action OnSetDirty;
+        public event Action OnSetDirty;
 
-    private void Awake() {
-        saver = new ObjectSaver(GetPath());
-        HandleSetDirty();
-        Load();
-    }
-
-    public void Save() {
-        var stats = new Dictionary<PlayerStatType, float>();
-        var playerStatTypes = Enum.GetValues(typeof(PlayerStatType));
-        foreach (PlayerStatType statType in playerStatTypes) {
-            var stat = playerStats.GetStat(statType);
-
-            if (stat == null)
-                continue;
-
-            stats.Add(stat.StatType, stat.Value);
+        private void Awake() {
+            saver = new ObjectSaver(GetPath());
+            HandleSetDirty();
+            Load();
         }
-        saver.SaveObject(fileName, stats);
-    }
 
-    public bool Load() {
-        Dictionary<PlayerStatType, float> stats;
-        LoadResult result = saver.LoadObject(fileName, out stats);
+        /// <summary>
+        /// Saves player data.
+        /// </summary>
+        public void Save() {
+            var stats = new Dictionary<PlayerStatType, float>();
+            var playerStatTypes = Enum.GetValues(typeof(PlayerStatType));
+            foreach (PlayerStatType statType in playerStatTypes) {
+                var stat = playerStats.GetStat(statType);
 
-        if (result != LoadResult.Succes)
-            return false;
+                if (stat == null)
+                    continue;
 
-        foreach (var savedStat in stats) {
-            var stat = playerStats.GetOrCreateStat(savedStat.Key);
-            stat.Value = savedStat.Value;
+                stats.Add(stat.StatType, stat.Value);
+            }
+            saver.SaveObject(fileName, stats);
         }
-        return true;
 
-    }
+        /// <summary>
+        /// Load player data.
+        /// </summary>
+        /// <returns>If loading the player data succeeded</returns>
+        public bool Load() {
+            Dictionary<PlayerStatType, float> stats;
+            LoadResult result = saver.LoadObject(fileName, out stats);
 
-    private void OnApplicationQuit() {
-        if (isDirty)
-            Save();
-    }
+            if (result != LoadResult.Succes)
+                return false;
 
-    private string GetPath() {
-        return Path.Combine(Application.persistentDataPath, appdataSubDirectory);
-    }
+            foreach (var savedStat in stats) {
+                var stat = playerStats.GetOrCreateStat(savedStat.Key);
+                stat.Value = savedStat.Value;
+            }
+            return true;
 
-    private void HandleSetDirty() {
-        var playerStatTypes = Enum.GetValues(typeof(PlayerStatType));
-        foreach (PlayerStatType statType in playerStatTypes) {
-            var stat = playerStats.GetStat(statType);
-
-            if (stat == null)
-                continue;
-
-            stat.StatChanged += (changedStat) => {
-                if (isDirty)
-                    return;
-
-                isDirty = true;
-                OnSetDirty?.Invoke();
-            };
         }
-        playerStats.StatCreated += AddStat;
-    }
 
-    private void AddStat(Stat<PlayerStatType> newStat) {
-        newStat.StatChanged += (changedStat) => isDirty = true;
+        private void OnApplicationQuit() {
+            if (isDirty)
+                Save();
+        }
+
+        private string GetPath() {
+            return Path.Combine(Application.persistentDataPath, appdataSubDirectory);
+        }
+
+        private void HandleSetDirty() {
+            var playerStatTypes = Enum.GetValues(typeof(PlayerStatType));
+            foreach (PlayerStatType statType in playerStatTypes) {
+                var stat = playerStats.GetStat(statType);
+
+                if (stat == null)
+                    continue;
+
+                stat.StatChanged += (changedStat) => {
+                    if (isDirty)
+                        return;
+
+                    isDirty = true;
+                    OnSetDirty?.Invoke();
+                };
+            }
+            playerStats.StatCreated += AddStat;
+        }
+
+        private void AddStat(Stat<PlayerStatType> newStat) {
+            newStat.StatChanged += (changedStat) => isDirty = true;
+        }
     }
 }

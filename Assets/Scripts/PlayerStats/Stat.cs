@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace PeppaSquad.Stats {
+
     public class Stat<T> where T : Enum {
         private float value;
         private T statType;

@@ -14,33 +14,50 @@ namespace PeppaSquad.Stats {
 
         private Dictionary<StatName, Stat<StatName>> stats = new Dictionary<StatName, Stat<StatName>>();
 
+        /// <summary>
+        /// Called when a new stat is created.
+        /// </summary>
         public event Action<Stat<StatName>> StatCreated;
 
-        public Stat<StatName> GetOrCreateStat(StatName statType) {
-            if (!stats.ContainsKey(statType))
-                CreateStat(statType);
+        /// <summary>
+        /// Creates stat if it does not exist. Returns stat with the given name.
+        /// </summary>
+        /// <param name="statName">Name of the stat</param>
+        /// <returns>Stat associated with given stat name</returns>
+        public Stat<StatName> GetOrCreateStat(StatName statName) {
+            if (!stats.ContainsKey(statName))
+                CreateStat(statName);
 
-            return stats[statType];
+            return stats[statName];
         }
 
-        public Stat<StatName> GetStat(StatName statType) {
-            if (!stats.ContainsKey(statType))
+        /// <summary>
+        /// Returns stat with a given name.
+        /// </summary>
+        /// <param name="statName">Name of the stat.</param>
+        /// <returns>stat</returns>
+        public Stat<StatName> GetStat(StatName statName) {
+            if (!stats.ContainsKey(statName))
                 return null;
 
-            return stats[statType];
+            return stats[statName];
         }
 
-        public void SetStatValue(StatName statType, float statValue) {
-            var stat = GetStat(statType);
+        public void SetStatValue(StatName statName, float statValue) {
+            var stat = GetStat(statName);
             stat.Value = statValue;
         }
 
-        private void CreateStat(StatName statType) {
-            if (stats.ContainsKey(statType))
+        /// <summary>
+        /// Creates a new stat.
+        /// </summary>
+        /// <param name="statName"></param>
+        public void CreateStat(StatName statName) {
+            if (stats.ContainsKey(statName))
                 return;
 
-            var newStat = new Stat<StatName>(statType);
-            stats.Add(statType, newStat);
+            var newStat = new Stat<StatName>(statName);
+            stats.Add(statName, newStat);
             StatCreated?.Invoke(newStat);
         }
     }

@@ -3,11 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDataSaver {
-    bool IsDirty { get; }
+namespace PeppaSquad.DataSaving {
 
-    event Action OnSetDirty;
+    /// <summary>
+    /// Object which can save data.
+    /// </summary>
+    public interface IDataSaver {
+        bool IsDirty { get; }
 
-    void Save();
-    bool Load();
+        event Action OnSetDirty;
+
+        void Save();
+        bool Load();
+    }
 }
