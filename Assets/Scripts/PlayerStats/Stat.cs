@@ -22,7 +22,7 @@ namespace PeppaSquad.Stats {
 
         public void SetValue(float value) {
             this.value = value;
-            StatChanged.Invoke(this);
+            StatChanged?.Invoke(this);
         }
 
     }

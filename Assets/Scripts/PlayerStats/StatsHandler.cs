@@ -12,7 +12,7 @@ namespace PeppaSquad.Stats {
     where StatName : System.Enum
     where StatType : Stat<StatName> {
 
-        private Dictionary<StatName, Stat<StatName>> stats;
+        private Dictionary<StatName, Stat<StatName>> stats = new Dictionary<StatName, Stat<StatName>>();
 
         public event Action<Stat<StatName>> StatCreated;
 
