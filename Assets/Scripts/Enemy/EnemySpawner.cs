@@ -7,16 +7,18 @@ namespace PeppaSquad.Enemy
 {
     public class EnemySpawner : MonoBehaviour
     {
+        [SerializeField]
         private Enemy[] enemyPrefabs;
-
+        [SerializeField]
         private Enemy[] bossPrefabs;
-
-        private float spawnRadius = 5;
-
+        [SerializeField]
         private HealthGUI healthGUI;
+        
+        private float spawnRadius = 5;
 
         public event Action<Enemy> OnEnemySpawned;
 
+        [ContextMenu("SpawnEnemy")]
         public void SpawnEnemy(){
             Enemy newEnemy = SpawnEntity(enemyPrefabs);
             InitEntity(newEnemy);
@@ -28,7 +30,7 @@ namespace PeppaSquad.Enemy
         }
 
         private Enemy SpawnEntity(Enemy[] prefabs){
-            var enemyNumber = UnityEngine.Random.Range(0, prefabs.Length - 1);
+            var enemyNumber = UnityEngine.Random.Range(0, prefabs.Length);
             return Instantiate(prefabs[enemyNumber]);
         }
 
