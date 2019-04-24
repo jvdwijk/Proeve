@@ -3,7 +3,7 @@ using UnityEngine;
 
 using PeppaSquad.UI;
 
-namespace PeppaSquad.Enemy
+namespace PeppaSquad.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {

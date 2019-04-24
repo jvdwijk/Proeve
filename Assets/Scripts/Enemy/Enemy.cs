@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PeppaSquad.Enemy
+namespace PeppaSquad.Enemies
 {
     public class Enemy : MonoBehaviour, IDamagable
     {
