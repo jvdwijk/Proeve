@@ -27,10 +27,6 @@ namespace PeppaSquad.Utils {
             StartTimer();
         }
 
-        public void Kapot() {
-            StartTimer();
-        }
-
         public Coroutine StartTimer() {
             if (isRunning)
                 return countdownRoutine;
