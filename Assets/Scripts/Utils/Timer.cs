@@ -16,28 +16,38 @@ namespace PeppaSquad.Utils {
 
         public event Action TimerStarted;
         public event Action<float> TimerUpdated;
+        public event Action TimerStopped;
+        public event Action TimerReset;
         public UnityEvent TimerEnded;
 
         private Coroutine countdownRoutine;
+        private bool isRunning;
 
         private void Awake() {
             StartTimer();
         }
 
-        public Coroutine StartTimer() {
-            if (countdownRoutine != null)
-                return null;
+        public void Kapot() {
+            StartTimer();
+        }
 
+        public Coroutine StartTimer() {
+            if (isRunning)
+                return countdownRoutine;
+
+            isRunning = true;
             CurrentTime = startTime;
             countdownRoutine = StartCoroutine(CountDown());
             return countdownRoutine;
         }
 
         public void StopTimer() {
-            if (countdownRoutine == null)
+            if (!isRunning)
                 return;
 
+            isRunning = false;
             StopCoroutine(countdownRoutine);
+            TimerStopped?.Invoke();
         }
 
         public void SetStartTime(float startTime) {
@@ -46,6 +56,7 @@ namespace PeppaSquad.Utils {
 
         public void ResetTimer() {
             CurrentTime = startTime;
+            TimerReset?.Invoke();
         }
 
         public void AddTime(float amount) {
@@ -60,6 +71,7 @@ namespace PeppaSquad.Utils {
                 AddTime(-countdownAmount);
             }
             CurrentTime = 0;
+            isRunning = false;
             TimerEnded?.Invoke();
         }
 
