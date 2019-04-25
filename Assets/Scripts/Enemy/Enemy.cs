@@ -13,6 +13,8 @@ namespace PeppaSquad.Enemies
 
         private Coroutine attackRoutine;
 
+        public int Health{ get{ return health; }}
+
         public IDamagable Target => target;
 
         public event Action OnAttack;

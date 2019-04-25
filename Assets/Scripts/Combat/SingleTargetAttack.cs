@@ -2,7 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleTargetAttack : BaseAttack
+namespace PeppaSquad.Combat
 {
-    
+    public class SingleTargetAttack : BaseAttack
+    {
+        private IDamagable target;
+
+        public void Attack(){
+            Attack(target);
+        }
+    }
 }

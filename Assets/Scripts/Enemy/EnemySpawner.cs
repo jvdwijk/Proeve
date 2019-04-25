@@ -19,14 +19,16 @@ namespace PeppaSquad.Enemies
         public event Action<Enemy> OnEnemySpawned;
 
         [ContextMenu("SpawnEnemy")]
-        public void SpawnEnemy(){
+        public Enemy SpawnEnemy(){
             Enemy newEnemy = SpawnEntity(enemyPrefabs);
             InitEntity(newEnemy);
+            return newEnemy;
         }
 
-        public void SpawnBoss(){
+        public Enemy SpawnBoss(){
             Enemy newEnemy = SpawnEntity(bossPrefabs);
             InitEntity(newEnemy);
+            return newEnemy;
         }
 
         private Enemy SpawnEntity(Enemy[] prefabs){
