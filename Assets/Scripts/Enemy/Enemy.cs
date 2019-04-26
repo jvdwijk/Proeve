@@ -3,27 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PeppaSquad.Enemy
+namespace PeppaSquad.Enemies
 {
     public class Enemy : MonoBehaviour, IDamagable
     {
         private int health;
-        private int attackDPS;
-        private IDamagable target;
 
-        private Coroutine attackRoutine;
+        public int Health{ get{ return health; }}
 
-        public IDamagable Target => target;
-
-        public event Action OnAttack;
         public event Action<int> OnHealthChanged;
         public event Action OnDeath;
 
-        public void Init(int health = 100, int attackDPS = 10, IDamagable target = null)
+        public void Init(int health = 100)
         {
             this.health = health;
-            this.attackDPS = attackDPS;
-            this.target = target;
         }
 
         public void Damage(int amount)
@@ -37,33 +30,10 @@ namespace PeppaSquad.Enemy
             OnHealthChanged?.Invoke(health);
         }
 
-        public void StartAttack()
-        {
-            attackRoutine = StartCoroutine(AttackRoutine());
-        }
-
         private void Die()
         {
-            StopCoroutine(attackRoutine);
-
             OnDeath?.Invoke();
             Destroy(gameObject);
-        }
-
-        private float RandomizeTime()
-        {
-            float time = UnityEngine.Random.Range(0.5f, 3f);
-            return time;
-        }
-
-        private IEnumerator AttackRoutine()
-        {
-            while (target != null)
-            {
-                target.Damage(attackDPS);
-                yield return new WaitForSeconds(RandomizeTime());
-            }
-            yield return null;
         }
     }
 }

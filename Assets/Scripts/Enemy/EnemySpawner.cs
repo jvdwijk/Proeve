@@ -3,7 +3,7 @@ using UnityEngine;
 
 using PeppaSquad.UI;
 
-namespace PeppaSquad.Enemy
+namespace PeppaSquad.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {
@@ -18,15 +18,16 @@ namespace PeppaSquad.Enemy
 
         public event Action<Enemy> OnEnemySpawned;
 
-        [ContextMenu("SpawnEnemy")]
-        public void SpawnEnemy(){
+        public Enemy SpawnEnemy(){
             Enemy newEnemy = SpawnEntity(enemyPrefabs);
             InitEntity(newEnemy);
+            return newEnemy;
         }
 
-        public void SpawnBoss(){
+        public Enemy SpawnBoss(){
             Enemy newEnemy = SpawnEntity(bossPrefabs);
             InitEntity(newEnemy);
+            return newEnemy;
         }
 
         private Enemy SpawnEntity(Enemy[] prefabs){
@@ -36,8 +37,7 @@ namespace PeppaSquad.Enemy
 
         private void InitEntity(Enemy enemy){
             
-            enemy.OnHealthChanged += healthGUI.ChangeHealth;
-            enemy.StartAttack();
+            enemy.OnHealthChanged += healthGUI.ChangeHealth;  
             OnEnemySpawned?.Invoke(enemy);
         }
     }
