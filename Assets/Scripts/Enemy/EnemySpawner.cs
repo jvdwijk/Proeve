@@ -18,7 +18,6 @@ namespace PeppaSquad.Enemies
 
         public event Action<Enemy> OnEnemySpawned;
 
-        [ContextMenu("SpawnEnemy")]
         public Enemy SpawnEnemy(){
             Enemy newEnemy = SpawnEntity(enemyPrefabs);
             InitEntity(newEnemy);
@@ -38,8 +37,7 @@ namespace PeppaSquad.Enemies
 
         private void InitEntity(Enemy enemy){
             
-            enemy.OnHealthChanged += healthGUI.ChangeHealth;
-            enemy.StartAttack();
+            //enemy.OnHealthChanged += healthGUI.ChangeHealth;
             OnEnemySpawned?.Invoke(enemy);
         }
     }
