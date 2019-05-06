@@ -38,7 +38,6 @@ namespace PeppaSquad.Enemies
             currentEnemy.Init();
             currentEnemy.OnDeath += SpawnEnemy;
 
-            playerCombat.CurrentEnemy?.Damage(currentEnemy.Health);
             playerCombat.CurrentEnemy = currentEnemy;
         }
     }    
