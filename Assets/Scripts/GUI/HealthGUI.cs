@@ -10,7 +10,7 @@ namespace PeppaSquad.UI
         private Image healthBar;
 
         public void ChangeHealth(int health){
-            throw new System.NotImplementedException();
+            //Todo Implement
         }
     }
 }
