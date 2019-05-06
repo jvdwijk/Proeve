@@ -11,5 +11,9 @@ namespace PeppaSquad.Combat
         public void Attack(){
             Attack(target);
         }
+
+        public void SetTarget(IDamagable newTarget){
+            target = newTarget;
+        }
     }
 }

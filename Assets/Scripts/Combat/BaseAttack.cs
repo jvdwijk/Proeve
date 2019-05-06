@@ -7,11 +7,12 @@ namespace PeppaSquad.Combat
 {
     public class BaseAttack : MonoBehaviour
     {
-        protected int attackDamage = 0;
+        protected int attackDamage = 1;
         public event Action OnAttack;
 
         public void Attack(IDamagable target){
-            target?.Damage(attackDamage);
+            if(target == null) return;
+            target.Damage(attackDamage);
             OnAttack?.Invoke();
         }
 

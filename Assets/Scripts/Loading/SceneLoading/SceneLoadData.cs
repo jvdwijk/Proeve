@@ -7,6 +7,8 @@ namespace PeppaSquad.SceneLoading
 {
     public class SceneLoadData : LoadData
     {
+        private const float loadPoint = 0.9f;
+
         public bool ChangeSceneOnReady
         {
             get { return operation.allowSceneActivation; }
@@ -22,11 +24,11 @@ namespace PeppaSquad.SceneLoading
         }
 
         protected override float GetProgress() {
-            return operation.progress / 0.9f;
+            return operation.progress / loadPoint;
         }
 
         protected override bool IsReadyCheck() {
-            return operation.progress == 0.9f;
+            return operation.progress == loadPoint;
         }
     }
 }

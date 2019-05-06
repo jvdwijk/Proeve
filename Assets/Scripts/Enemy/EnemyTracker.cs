@@ -19,7 +19,7 @@ namespace PeppaSquad.Enemies
 
         private Enemy currentEnemy;
 
-        private event Action OnBossDefeat;
+        public event Action OnBossDefeat;
 
         public void Awake(){ //TODO Change to StartSpawning() when GameManager is made.
             SpawnEnemy();
@@ -38,7 +38,6 @@ namespace PeppaSquad.Enemies
             currentEnemy.Init();
             currentEnemy.OnDeath += SpawnEnemy;
 
-            playerCombat.CurrentEnemy?.Damage(currentEnemy.Health);
             playerCombat.CurrentEnemy = currentEnemy;
         }
     }    
