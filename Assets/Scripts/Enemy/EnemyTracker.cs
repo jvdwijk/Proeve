@@ -1,14 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using System;
-
 using PeppaSquad.Combat;
+using UnityEngine;
 
-namespace PeppaSquad.Enemies
-{
-    public class EnemyTracker : MonoBehaviour
-    {
+namespace PeppaSquad.Enemies {
+    public class EnemyTracker : MonoBehaviour {
         [SerializeField]
         private EnemySpawner enemySpawner;
 
@@ -21,24 +18,24 @@ namespace PeppaSquad.Enemies
 
         public event Action OnBossDefeat;
 
-        public void Awake(){ //TODO Change to StartSpawning() when GameManager is made.
-            SpawnEnemy();
+        public void StartSpawning () {
+            SpawnEnemy ();
         }
 
-        public void TriggerReset(){
+        public void TriggerReset () {
             enemyLevel = 0;
-            currentEnemy.Damage(currentEnemy.Health);
+            if (currentEnemy != null) Destroy (currentEnemy);
             currentEnemy = null;
         }
 
-        private void SpawnEnemy(){
+        private void SpawnEnemy () {
             //TODO System for choosing enemy or boss
 
-            currentEnemy = enemySpawner.SpawnEnemy();
-            currentEnemy.Init();
+            currentEnemy = enemySpawner.SpawnEnemy ();
+            currentEnemy.Init ();
             currentEnemy.OnDeath += SpawnEnemy;
 
             playerCombat.CurrentEnemy = currentEnemy;
         }
-    }    
+    }
 }
