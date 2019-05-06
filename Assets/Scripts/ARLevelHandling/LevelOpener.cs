@@ -4,10 +4,11 @@ using UnityEngine;
 using Vuforia;
 using Vuforia.UnityCompiled;
 
-public class LevelOpener : MonoBehaviour, ITrackableEventHandler
-{
+public class LevelOpener : MonoBehaviour, ITrackableEventHandler {
 
     private bool hasAlreadyTracked = false;
+
+    private bool gameStarted = false;
 
     [SerializeField]
     private TrackableBehaviour trackableBehavior;
@@ -19,28 +20,32 @@ public class LevelOpener : MonoBehaviour, ITrackableEventHandler
         trackableBehavior?.RegisterTrackableEventHandler(this);
     }
 
-    public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
-    {
+    public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus) {
+        if (!gameStarted)
+            return;
+
         transform.localScale = Vector3.one;
-        if (TrackedFirstTime(previousStatus, newStatus))
-        {
+        if (TrackedFirstTime(previousStatus, newStatus)) {
             hasAlreadyTracked = true;
             level.SetActive(true);
         }
 
-        if (LostTracking(previousStatus, newStatus))
-        {
+        if (LostTracking(previousStatus, newStatus)) {
             transform.localScale = Vector3.zero;
         }
     }
 
-    private bool LostTracking(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus){
-        return  newStatus == TrackableBehaviour.Status.NO_POSE && previousStatus == TrackableBehaviour.Status.EXTENDED_TRACKED ||
-                newStatus == TrackableBehaviour.Status.NO_POSE && previousStatus == TrackableBehaviour.Status.TRACKED;
+    private bool LostTracking(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus) {
+        return newStatus == TrackableBehaviour.Status.NO_POSE && previousStatus == TrackableBehaviour.Status.EXTENDED_TRACKED ||
+            newStatus == TrackableBehaviour.Status.NO_POSE && previousStatus == TrackableBehaviour.Status.TRACKED;
     }
 
-    private bool TrackedFirstTime(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus){
+    private bool TrackedFirstTime(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus) {
         return newStatus == TrackableBehaviour.Status.TRACKED && !hasAlreadyTracked;
+    }
+
+    public void SetGameStarted() {
+        gameStarted = true;
     }
 
 }

@@ -1,16 +1,13 @@
 ﻿using System;
 using UnityEngine;
-
 using PeppaSquad.Enemies;
 using PeppaSquad.Stats.PlayerStats;
 
-namespace PeppaSquad.Combat
-{
-    public class PlayerCombat : MonoBehaviour
-    {
+namespace PeppaSquad.Combat {
+    public class PlayerCombat : MonoBehaviour {
         private Enemy currentEnemy;
-        public Enemy CurrentEnemy{ get{ return currentEnemy; } set{ currentEnemy = value; OnTargetChange?.Invoke(value); }}
-        
+        public Enemy CurrentEnemy { get { return currentEnemy; } set { currentEnemy = value; OnTargetChange?.Invoke(value); } }
+
         [SerializeField]
         private PlayerStatsHandler stats;
 
@@ -19,12 +16,12 @@ namespace PeppaSquad.Combat
 
         public event Action<IDamagable> OnTargetChange;
 
-        private void Awake(){
-            foreach (var attack in attacks)
-            {
+        private void Awake() {
+            foreach (var attack in attacks) {
                 attack.SetAttackDamage(5);
+                attack.SetTarget(currentEnemy);
                 OnTargetChange += attack.SetTarget;
             }
         }
-    }    
+    }
 }
