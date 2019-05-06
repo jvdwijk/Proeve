@@ -35,6 +35,7 @@ namespace PeppaSquad.UI {
                 timerBar.fillAmount = Mathf.Lerp(timerBar.fillAmount, current, lerpSpeed * Time.deltaTime);
                 yield return null;
             }
+            timerBar.fillAmount = timer.CurrentTime / timer.StartTime;
             timer.TimerUpdated += UpdateTimer;
         }
     }

@@ -9,13 +9,14 @@ namespace PeppaSquad.Combat
     public class PlayerCombat : MonoBehaviour
     {
         private Enemy currentEnemy;
-        public Enemy CurrentEnemy{ get{ return currentEnemy; } set{ currentEnemy = value; OnTargetChange?.Invoke(value); }}
         
         [SerializeField]
         private PlayerStatsHandler stats;
 
         [SerializeField]
         private SingleTargetAttack[] attacks;
+        
+        public Enemy CurrentEnemy{ get{ return currentEnemy; } set{ currentEnemy = value; OnTargetChange?.Invoke(value); }}
 
         public event Action<IDamagable> OnTargetChange;
 
