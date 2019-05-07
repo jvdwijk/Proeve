@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
@@ -8,21 +9,19 @@ public class LevelOpener : MonoBehaviour, ITrackableEventHandler {
 
     private bool hasAlreadyTracked = false;
 
-    private bool gameStarted = false;
-
     [SerializeField]
     private TrackableBehaviour trackableBehavior;
 
     [SerializeField]
     private GameObject level;
 
+    (string first, string second) t;
+
     private void Awake() {
         trackableBehavior?.RegisterTrackableEventHandler(this);
     }
 
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus) {
-        if (!gameStarted)
-            return;
 
         transform.localScale = Vector3.one;
         if (TrackedFirstTime(previousStatus, newStatus)) {
@@ -42,10 +41,6 @@ public class LevelOpener : MonoBehaviour, ITrackableEventHandler {
 
     private bool TrackedFirstTime(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus) {
         return newStatus == TrackableBehaviour.Status.TRACKED && !hasAlreadyTracked;
-    }
-
-    public void SetGameStarted() {
-        gameStarted = true;
     }
 
 }
