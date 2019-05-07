@@ -7,10 +7,23 @@ namespace PeppaSquad.UI
 {
     public class HealthGUI : MonoBehaviour
     {
+        [SerializeField]
         private Image healthBar;
 
+        private int maxHealth = 100;
+
         public void ChangeHealth(int health){
-            //Todo Implement
+            healthBar.fillAmount = (float) health / maxHealth;
+        }
+
+        public void SetMaxHealth(int health){
+            maxHealth = health;
+        }
+
+        private IEnumerator HealthUpdate(){
+
+
+            yield return null;
         }
     }
 }

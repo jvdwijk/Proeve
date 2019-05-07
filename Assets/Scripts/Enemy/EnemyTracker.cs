@@ -31,8 +31,7 @@ namespace PeppaSquad.Enemies {
         private void SpawnEnemy () {
             //TODO System for choosing enemy or boss
 
-            currentEnemy = enemySpawner.SpawnEnemy ();
-            currentEnemy.Init ();
+            currentEnemy = enemySpawner.SpawnEnemy();
             currentEnemy.OnDeath += SpawnEnemy;
 
             playerCombat.CurrentEnemy = currentEnemy;
