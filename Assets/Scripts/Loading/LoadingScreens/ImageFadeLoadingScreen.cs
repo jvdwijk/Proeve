@@ -53,7 +53,6 @@ namespace PeppaSquad.Loading.LoadingScreens
             var step = diff / scaledFadeTime;
             while (absoluteDiff > 0)
             {
-                print(absoluteDiff);
                 var timeScaledStep = step * Time.deltaTime;
                 absoluteDiff -= Mathf.Abs(timeScaledStep);
                 SetImageAlpha(image.color.a + timeScaledStep);

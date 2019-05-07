@@ -20,15 +20,15 @@ namespace PeppaSquad.Enemies {
 
         private Enemy currentEnemy;
 
-        private event Action OnBossDefeat;
+        public event Action OnBossDefeat;
 
-        public void Awake() { //TODO Change to StartSpawning() when GameManager is made.
+        public void StartSpawning() {
             SpawnEnemy();
         }
 
         public void TriggerReset() {
             enemyLevel = 0;
-            currentEnemy.Damage(currentEnemy.Health);
+            if (currentEnemy != null) Destroy(currentEnemy);
             currentEnemy = null;
         }
 
