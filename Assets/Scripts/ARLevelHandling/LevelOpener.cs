@@ -15,8 +15,6 @@ public class LevelOpener : MonoBehaviour, ITrackableEventHandler {
     [SerializeField]
     private GameObject level;
 
-    (string first, string second) t;
-
     private void Awake() {
         trackableBehavior?.RegisterTrackableEventHandler(this);
     }
