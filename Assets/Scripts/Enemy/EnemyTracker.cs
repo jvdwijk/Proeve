@@ -16,6 +16,9 @@ namespace PeppaSquad.Enemies {
         [SerializeField]
         private Timer timer;
 
+        [SerializeField]
+        private EnemyHealthCalculator healthCalculator;
+
         private int enemyLevel;
 
         private Enemy currentEnemy;
@@ -33,15 +36,18 @@ namespace PeppaSquad.Enemies {
         }
 
         private void SpawnEnemy() {
+
             //TODO System for choosing enemy or boss
 
             currentEnemy = enemySpawner.SpawnEnemy();
-            currentEnemy.Init();
+            int health = healthCalculator.GetHealth(enemyLevel);
+            currentEnemy.Init(health);
             currentEnemy.OnDeath += SpawnEnemy;
 
             timer.ResetTimer();
 
             playerCombat.CurrentEnemy = currentEnemy;
+            enemyLevel++;
         }
     }
 }
