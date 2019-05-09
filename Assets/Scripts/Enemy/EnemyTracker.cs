@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PeppaSquad.Combat;
+using PeppaSquad.Score;
 using PeppaSquad.Utils;
 
 namespace PeppaSquad.Enemies {
@@ -48,6 +49,7 @@ namespace PeppaSquad.Enemies {
 
             playerCombat.CurrentEnemy = currentEnemy;
             enemyLevel++;
+            ScoreHandlerSingleton.Instance?.SetScore(enemyLevel);
         }
     }
 }
