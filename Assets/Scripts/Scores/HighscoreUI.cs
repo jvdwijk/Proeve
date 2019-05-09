@@ -5,19 +5,16 @@ using PeppaSquad.Score;
 using TMPro;
 
 namespace PeppaSquad.UI {
-    public class ScoreUI : MonoBehaviour {
+    public class HighscoreUI : MonoBehaviour {
         [SerializeField]
         private TextMeshProUGUI scoreText;
 
         [SerializeField]
-        private ScoreHandler scoreHandler;
+        private HighScoreHandler scoreHandler;
 
         private void Start() {
-            if (scoreHandler == null)
-                scoreHandler = ScoreHandlerSingleton.Instance;
-
-            SetScore(scoreHandler.CurrentScore);
-            scoreHandler.ScoreChaned += SetScore;
+            SetScore(scoreHandler.CurrentHighscore);
+            scoreHandler.HighscoreChaged += SetScore;
         }
 
         public void SetScore(int score) {
