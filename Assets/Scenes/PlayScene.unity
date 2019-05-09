@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446fa9e2b881e0b44a9ca4421242c68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 20
+  startTime: 10
   TimerEnded:
     m_PersistentCalls:
       m_Calls:
@@ -1750,6 +1750,11 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 1017758675}
+    - target: {fileID: 627055076369574570, guid: 18ccc87e9994e634b9e753d05e15e3fb,
+        type: 3}
+      propertyPath: healthCalculator.power
+      value: 1.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ccc87e9994e634b9e753d05e15e3fb, type: 3}
 --- !u!1001 &1113240094
