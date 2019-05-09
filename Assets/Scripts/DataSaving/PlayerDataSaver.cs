@@ -72,6 +72,11 @@ namespace PeppaSquad.DataSaving {
                 Save();
         }
 
+        private void OnDestroy() {
+            if (isDirty)
+                Save();
+        }
+
         private string GetPath() {
             return Path.Combine(Application.persistentDataPath, appdataSubDirectory);
         }
