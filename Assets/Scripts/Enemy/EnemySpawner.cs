@@ -35,11 +35,11 @@ namespace PeppaSquad.Enemies {
             return Instantiate(prefabs[enemyNumber]);
         }
 
-        private void InitEntity(Enemy enemy) {
-
+        private void InitEntity(Enemy enemy){
             enemy.transform.transform.parent = spawnPosition;
             enemy.transform.localPosition = Vector3.zero;
             enemy.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            
             enemy.OnHealthChanged += healthGUI.ChangeHealth;
             OnEnemySpawned?.Invoke(enemy);
         }
