@@ -38,11 +38,6 @@ namespace PeppaSquad.Enemies
         private void InitEntity(Enemy enemy){
             enemy.OnHealthChanged += healthGUI.ChangeHealth;
             OnEnemySpawned?.Invoke(enemy);
-            enemy.Init();
-            
-            healthGUI.SetMaxHealth(enemy.Health);
-            healthGUI.ChangeHealth(enemy.Health);
-
         }
     }
 }

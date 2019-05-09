@@ -2,15 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using PeppaSquad.Combat;
+using PeppaSquad.UI;
 using UnityEngine;
 
 namespace PeppaSquad.Enemies {
     public class EnemyTracker : MonoBehaviour {
         [SerializeField]
         private EnemySpawner enemySpawner;
-
         [SerializeField]
         private PlayerCombat playerCombat;
+        [SerializeField]
+        private HealthGUI healthGUI;
 
         private int enemyLevel;
 
@@ -35,6 +37,9 @@ namespace PeppaSquad.Enemies {
             currentEnemy.OnDeath += SpawnEnemy;
 
             playerCombat.CurrentEnemy = currentEnemy;
+
+            healthGUI.SetMaxHealth(currentEnemy.Health);
+            healthGUI.ChangeHealth(currentEnemy.Health);
         }
     }
 }
