@@ -295,6 +295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91473871d59e234195e53f1e775c9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 562154933}
+  speed: 1.1
 --- !u!114 &562154933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,11 +317,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: da2bcbfb5129979468795de61a0d0acb, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1090,8 +1092,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 568722138}
-        m_MethodName: Attack
+      - m_Target: {fileID: 397805485}
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

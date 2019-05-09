@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using PeppaSquad.Combat;
 using PeppaSquad.Utils;
+using PeppaSquad.UI;
 
 namespace PeppaSquad.Enemies {
     public class EnemyTracker : MonoBehaviour {
         [SerializeField]
         private EnemySpawner enemySpawner;
-
         [SerializeField]
         private PlayerCombat playerCombat;
+        [SerializeField]
+        private HealthGUI healthGUI;
 
         [SerializeField]
         private Timer timer;
@@ -42,11 +44,15 @@ namespace PeppaSquad.Enemies {
             currentEnemy = enemySpawner.SpawnEnemy();
             int health = healthCalculator.GetHealth(enemyLevel);
             currentEnemy.Init(health);
+            healthGUI.SetMaxHealth(currentEnemy.Health);
+            healthGUI.ChangeHealth(currentEnemy.Health);
+
             currentEnemy.OnDeath += SpawnEnemy;
 
             timer.ResetTimer();
 
             playerCombat.CurrentEnemy = currentEnemy;
+
             enemyLevel++;
         }
     }
