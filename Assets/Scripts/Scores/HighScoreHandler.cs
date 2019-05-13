@@ -17,7 +17,7 @@ namespace PeppaSquad.Score {
 
         public int CurrentHighscore { get; private set; } = 0;
 
-        public event Action<int> HighscoreChaged;
+        public event Action<int> HighscoreChanged;
 
         private void Start() {
 
@@ -25,7 +25,7 @@ namespace PeppaSquad.Score {
             SetHighScore((int) highscoreStat.Value);
 
             CheckScore();
-            scoreHandler.ScoreChaned += (score) => CheckScore();
+            scoreHandler.HighscoreChanged += (score) => CheckScore();
         }
 
         public void CheckScore() {
@@ -38,7 +38,7 @@ namespace PeppaSquad.Score {
         private void SetHighScore(int score) {
             CurrentHighscore = score;
             highscoreStat.SetValue(score);
-            HighscoreChaged?.Invoke(score);
+            HighscoreChanged?.Invoke(score);
         }
 
     }

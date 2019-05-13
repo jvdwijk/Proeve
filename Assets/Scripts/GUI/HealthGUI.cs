@@ -27,7 +27,7 @@ namespace PeppaSquad.UI {
         }
 
         private IEnumerator HealthUpdate() {
-            while (healthBar.fillAmount != currentGoal) {
+            while ( (healthBar.fillAmount - currentGoal) < 0.05) {
                 healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, currentGoal, Time.deltaTime * speed);
                 yield return null;
             }

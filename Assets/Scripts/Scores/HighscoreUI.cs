@@ -14,7 +14,7 @@ namespace PeppaSquad.UI {
 
         private void Start() {
             SetScore(scoreHandler.CurrentHighscore);
-            scoreHandler.HighscoreChaged += SetScore;
+            scoreHandler.HighscoreChanged += SetScore;
         }
 
         public void SetScore(int score) {
