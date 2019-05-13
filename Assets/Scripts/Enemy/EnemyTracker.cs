@@ -43,7 +43,7 @@ namespace PeppaSquad.Enemies {
             //TODO System for choosing enemy or boss
 
             currentEnemy = enemySpawner.SpawnEnemy();
-            int health = healthCalculator.GetHealth(enemyLevel);
+            int health = healthCalculator.CalculateHealth(enemyLevel);
             currentEnemy.Init(health);
             healthGUI.SetMaxHealth(currentEnemy.Health);
             healthGUI.ChangeHealth(currentEnemy.Health);

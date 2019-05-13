@@ -10,7 +10,7 @@ namespace PeppaSquad.Score {
 
         public int CurrentScore => score;
 
-        public event Action<int> ScoreChaned;
+        public event Action<int> HighscoreChanged;
         public event Action ScoreReset;
 
         public void AddToScore(int addition) {
@@ -27,7 +27,7 @@ namespace PeppaSquad.Score {
                 return;
 
             this.score = score;
-            ScoreChaned?.Invoke(score);
+            HighscoreChanged?.Invoke(score);
         }
 
     }

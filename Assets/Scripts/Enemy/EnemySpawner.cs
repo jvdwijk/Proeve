@@ -14,8 +14,6 @@ namespace PeppaSquad.Enemies {
         [SerializeField]
         private Transform spawnPosition;
 
-        private float spawnRadius = 5;
-
         public event Action<Enemy> OnEnemySpawned;
 
         public Enemy SpawnEnemy() {
@@ -36,9 +34,9 @@ namespace PeppaSquad.Enemies {
         }
 
         private void InitEntity(Enemy enemy) {
-            enemy.transform.transform.parent = spawnPosition;
+            enemy.transform.parent = spawnPosition;
             enemy.transform.localPosition = Vector3.zero;
-            enemy.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            enemy.transform.localRotation = Quaternion.identity;
 
             enemy.OnHealthChanged += healthGUI.ChangeHealth;
             OnEnemySpawned?.Invoke(enemy);

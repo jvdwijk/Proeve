@@ -17,7 +17,7 @@ namespace PeppaSquad.UI {
                 scoreHandler = ScoreHandlerSingleton.Instance;
 
             SetScore(scoreHandler.CurrentScore);
-            scoreHandler.ScoreChaned += SetScore;
+            scoreHandler.HighscoreChanged += SetScore;
         }
 
         public void SetScore(int score) {

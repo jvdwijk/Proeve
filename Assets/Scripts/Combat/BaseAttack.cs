@@ -10,7 +10,7 @@ namespace PeppaSquad.Combat
         protected int attackDamage = 1;
         public event Action OnAttack;
 
-        public void Attack(IDamagable target){
+        public virtual void Attack(IDamagable target){
             if(target == null) return;
             target.Damage(attackDamage);
             OnAttack?.Invoke();
