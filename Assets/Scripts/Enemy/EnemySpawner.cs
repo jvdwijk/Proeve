@@ -36,7 +36,7 @@ namespace PeppaSquad.Enemies {
         }
 
         private void InitEntity(Enemy enemy) {
-            enemy.transform.transform.parent = spawnPosition;
+            enemy.transform.parent = spawnPosition;
             enemy.transform.localPosition = Vector3.zero;
             enemy.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
