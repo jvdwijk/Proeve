@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PeppaSquad.UI{
-    public class HealthGUI : MonoBehaviour{
+namespace PeppaSquad.UI {
+    public class HealthGUI : MonoBehaviour {
         [SerializeField]
         private Image healthBar;
 
@@ -16,18 +16,18 @@ namespace PeppaSquad.UI{
         private float currentGoal;
         private Coroutine healthCoroutine;
 
-        public void ChangeHealth(int health){
+        public void ChangeHealth(int health) {
             currentGoal = (float) health / maxHealth;
-            if(healthCoroutine == null) healthCoroutine = StartCoroutine(HealthUpdate());
+            if (healthCoroutine == null) healthCoroutine = StartCoroutine(HealthUpdate());
         }
 
-        public void SetMaxHealth(int health){
+        public void SetMaxHealth(int health) {
             maxHealth = health;
             healthBar.fillAmount = currentGoal;
         }
 
-        private IEnumerator HealthUpdate(){
-            while (healthBar.fillAmount != currentGoal){
+        private IEnumerator HealthUpdate() {
+            while (healthBar.fillAmount != currentGoal) {
                 healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, currentGoal, Time.deltaTime * speed);
                 yield return null;
             }
