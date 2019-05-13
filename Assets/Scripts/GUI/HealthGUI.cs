@@ -23,6 +23,7 @@ namespace PeppaSquad.UI {
 
         public void SetMaxHealth(int health) {
             maxHealth = health;
+            healthBar.fillAmount = currentGoal;
         }
 
         private IEnumerator HealthUpdate() {
