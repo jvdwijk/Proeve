@@ -1,19 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-
 using PeppaSquad.Combat;
+using PeppaSquad.Score;
+using PeppaSquad.Utils;
+using PeppaSquad.UI;
 
-namespace PeppaSquad.Enemies
-{
-    public class EnemyTracker : MonoBehaviour
-    {
+namespace PeppaSquad.Enemies {
+    public class EnemyTracker : MonoBehaviour {
         [SerializeField]
         private EnemySpawner enemySpawner;
-
         [SerializeField]
         private PlayerCombat playerCombat;
+        [SerializeField]
+        private HealthGUI healthGUI;
+
+        [SerializeField]
+        private Timer timer;
+
+        [SerializeField]
+        private EnemyHealthCalculator healthCalculator;
 
         private int enemyLevel;
 
@@ -21,24 +28,34 @@ namespace PeppaSquad.Enemies
 
         public event Action OnBossDefeat;
 
-        public void Awake(){ //TODO Change to StartSpawning() when GameManager is made.
+        public void StartSpawning() {
             SpawnEnemy();
         }
 
-        public void TriggerReset(){
+        public void TriggerReset() {
             enemyLevel = 0;
-            currentEnemy.Damage(currentEnemy.Health);
+            if (currentEnemy != null) Destroy(currentEnemy);
             currentEnemy = null;
         }
 
-        private void SpawnEnemy(){
+        private void SpawnEnemy() {
+
             //TODO System for choosing enemy or boss
 
             currentEnemy = enemySpawner.SpawnEnemy();
-            currentEnemy.Init();
+            int health = healthCalculator.CalculateHealth(enemyLevel);
+            currentEnemy.Init(health);
+            healthGUI.SetMaxHealth(currentEnemy.Health);
+            healthGUI.ChangeHealth(currentEnemy.Health);
+
             currentEnemy.OnDeath += SpawnEnemy;
 
+            timer.ResetTimer();
+
             playerCombat.CurrentEnemy = currentEnemy;
+
+            enemyLevel++;
+            ScoreHandlerSingleton.Instance?.SetScore(enemyLevel);
         }
-    }    
+    }
 }
