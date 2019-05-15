@@ -21,7 +21,6 @@ namespace PeppaSquad.UI {
 
         public void ChangeHealth(int health) {
             currentGoal = (float) health / maxHealth;
-            print(currentGoal);
             if (healthCoroutine == null) healthCoroutine = StartCoroutine(HealthUpdate());
         }
 
