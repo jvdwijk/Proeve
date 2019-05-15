@@ -18,6 +18,7 @@ namespace PeppaSquad.UI {
 
         public void ChangeHealth(int health) {
             currentGoal = (float) health / maxHealth;
+            print(currentGoal);
             if (healthCoroutine == null) healthCoroutine = StartCoroutine(HealthUpdate());
         }
 
@@ -27,11 +28,12 @@ namespace PeppaSquad.UI {
         }
 
         private IEnumerator HealthUpdate() {
-            while ( (healthBar.fillAmount - currentGoal) < 0.05) {
+            while ((healthBar.fillAmount - currentGoal) > 0.05) {
                 healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, currentGoal, Time.deltaTime * speed);
                 yield return null;
             }
             healthBar.fillAmount = currentGoal;
+            healthCoroutine = null;
         }
     }
 }
