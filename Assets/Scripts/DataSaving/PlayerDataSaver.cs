@@ -21,7 +21,7 @@ namespace PeppaSquad.DataSaving {
         private ObjectSaver saver;
         private bool isDirty = false;
 
-        public bool IsDirty => IsDirty;
+        public bool IsDirty => isDirty;
 
         public event Action OnSetDirty;
 
@@ -68,6 +68,11 @@ namespace PeppaSquad.DataSaving {
         }
 
         private void OnApplicationQuit() {
+            if (isDirty)
+                Save();
+        }
+
+        private void OnDestroy() {
             if (isDirty)
                 Save();
         }

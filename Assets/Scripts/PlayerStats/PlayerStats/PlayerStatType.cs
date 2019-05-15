@@ -3,5 +3,6 @@
         Damage,
         Time,
         BoosterSpawnRate,
+        Highscore,
     }
 }
