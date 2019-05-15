@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-namespace PeppaSquad.Settings
+namespace PeppaSquad.GUI
 {
     
 public class VolumeHandler : MonoBehaviour
