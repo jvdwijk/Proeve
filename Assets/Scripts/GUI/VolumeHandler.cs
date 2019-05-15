@@ -9,27 +9,30 @@ namespace PeppaSquad.Settings
     
 public class VolumeHandler : MonoBehaviour
 {
-public AudioMixer MusicMixer;
-public Slider MusicSlider;
-public Slider SfxSlider;
-public Toggle MuteToggle;
+[SerializeField] private AudioMixer musicMixer;
+[SerializeField] private Slider musicSlider;
+[SerializeField] private Slider SfxSlider;
+[SerializeField] private Toggle muteToggle;
+private const string musicVol = "MusicVol";
+private const string sfxVol = "SfxVol";
+private const string masterVol = "MasterVol";
 
 public void SetLevelMusic(){
     
-    MusicMixer.SetFloat("MusicVol", Mathf.Log10(MusicSlider.value)*20);
+    musicMixer.SetFloat(musicVol, Mathf.Log10(musicSlider.value)*20);
 }
 public void SetLevelSFX(){
     
-    MusicMixer.SetFloat("SfxVol", Mathf.Log10(SfxSlider.value)*20);
+    musicMixer.SetFloat(sfxVol, Mathf.Log10(SfxSlider.value)*20);
 }
 public void ToggleMute(){
-    if(!MuteToggle.isOn)
+    if(!muteToggle.isOn)
     {
-    MusicMixer.SetFloat("MasterVol",  Mathf.Log10(0.0001f)*20);
+    musicMixer.SetFloat(masterVol,  Mathf.Log10(0.0001f)*20);
     }
     else
     {
-    MusicMixer.ClearFloat("MasterVol");
+    musicMixer.ClearFloat(masterVol);
     }
 }
 
