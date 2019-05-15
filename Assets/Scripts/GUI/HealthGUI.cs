@@ -11,6 +11,9 @@ namespace PeppaSquad.UI {
         [SerializeField]
         private float speed = 1;
 
+        [SerializeField]
+        private float lerpPrecision = 0.001f;
+
         private int maxHealth = 100;
 
         private float currentGoal;
@@ -28,7 +31,7 @@ namespace PeppaSquad.UI {
         }
 
         private IEnumerator HealthUpdate() {
-            while ((healthBar.fillAmount - currentGoal) > 0.05) {
+            while ((healthBar.fillAmount - currentGoal) > lerpPrecision) {
                 healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, currentGoal, Time.deltaTime * speed);
                 yield return null;
             }
