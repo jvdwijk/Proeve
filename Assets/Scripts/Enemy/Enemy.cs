@@ -9,7 +9,7 @@ namespace PeppaSquad.Enemies
     {
         private int health;
 
-        public int Health{ get{ return health; }}
+        public int Health { get { return health; } }
 
         public event Action<int> OnHealthChanged;
         public event Action OnDeath;
