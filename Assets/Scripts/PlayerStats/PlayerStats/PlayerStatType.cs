@@ -4,5 +4,6 @@
         Time,
         BoosterSpawnRate,
         Highscore,
+        Currency,
     }
 }
