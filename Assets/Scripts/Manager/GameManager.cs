@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using PeppaSquad.Enemies;
 using PeppaSquad.Pickups;
 using PeppaSquad.Utils;
-using UnityEngine;
 
 namespace PeppaSquad.GameFlow {
     public class GameManager : MonoBehaviour {
@@ -17,19 +17,26 @@ namespace PeppaSquad.GameFlow {
         [SerializeField]
         private Timer timer;
 
-        public void StartGame () {
-            enemyTracker.StartSpawning ();
-            timer?.StartTimer ();
-            pickupHandler?.StartSpawningPickups ();
+        [SerializeField]
+        private GameObject pauseUI;
+
+        private float timeScaleOnPause;
+
+        public void StartGame() {
+            enemyTracker.StartSpawning();
+            timer?.StartTimer();
+            pickupHandler?.StartSpawningPickups();
         }
 
-        public void ResetGame () {
-            throw new System.NotImplementedException ();
+        public void ResetGame() {
+            throw new System.NotImplementedException();
         }
 
-        public void PauseGame () {
-            timer.Paused = true;
-
+        public void PauseGame(bool pause) {
+            timer.Paused = pause;
+            timeScaleOnPause = pause ? Time.timeScale : timeScaleOnPause;
+            Time.timeScale = pause ? 0 : timeScaleOnPause;
+            pauseUI.SetActive(pause);
             //Todo Pause Combat
         }
     }
