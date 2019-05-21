@@ -11,7 +11,7 @@ namespace PeppaSquad.Currency
 {
     public class PlayerCurrency : MonoBehaviour
     {
-        private int currency;
+        [SerializeField]private int currency;
         public int Currency => currency;
         [SerializeField] private PlayerStatsHandler playerStatsHandler;
         [SerializeField] private EnemyTracker enemyTracker;

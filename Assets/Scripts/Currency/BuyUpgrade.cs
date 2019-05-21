@@ -23,7 +23,7 @@ namespace PeppaSquad.Currency
 
         private void UpdateText()
         {
-            upgradeCostText.text = upgradeCost.ToString();
+            upgradeCostText.text = Mathf.Abs(upgradeCost).ToString();
             currentLevelText.text = currentLevel.ToString();
         }
 
