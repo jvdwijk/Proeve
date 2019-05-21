@@ -8,16 +8,7 @@ namespace PeppaSquad.Currency
     {
         public void SwitchActive(GameObject target)
         {
-            if (target.activeSelf)
-            {
-                target.SetActive(false);
-                print("activate");
-            }
-            else if (!target.activeSelf)
-            {
-                target.SetActive(true);
-                print("sadtivate");
-            }
+            target.SetActive(!target.activeSelf);
         }
     }
 }
