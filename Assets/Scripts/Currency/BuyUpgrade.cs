@@ -31,15 +31,10 @@ namespace PeppaSquad.Currency
         {
             if (playerCurrency.Currency >= upgradeCost)
             {
-                playerCurrency.SubtractCurrency(upgradeCost);
+                playerCurrency.UpdateCurrency(upgradeCost);
                 currentLevel += 1;
-                upgradeCost = (currentLevel * 7 + (currentLevel / 3 * 10) + 5);
+                upgradeCost = -(currentLevel * 7 + (currentLevel / 3 * 10) + 5);
                 UpdateText();
-            }
-            else
-            {
-                print("Not enough gold!");
-                //Possibly play negative feedback sound and display something on screen?
             }
         }
 
