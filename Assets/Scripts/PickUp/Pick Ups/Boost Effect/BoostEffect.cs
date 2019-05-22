@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BoostEffect : MonoBehaviour {
+namespace PeppaSquad.Pickups.Effects {
+    public abstract class BoostEffect : MonoBehaviour {
 
-    public abstract void Boost();
+        public abstract void Boost();
 
+    }
 }

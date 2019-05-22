@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PickupInput : MonoBehaviour {
+namespace PeppaSquad.Pickups {
+    public class PickupInput : MonoBehaviour {
 
-    public event Action OnClicked;
+        public event Action OnClicked;
 
-    private void OnMouseDown() {
-        OnClicked?.Invoke();
+        private void OnMouseDown() {
+            OnClicked?.Invoke();
+        }
+
     }
-
 }
