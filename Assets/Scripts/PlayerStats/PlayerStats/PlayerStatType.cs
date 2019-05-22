@@ -5,5 +5,10 @@
         BoosterSpawnRate,
         Highscore,
         Currency,
+        Strength,
+        Combo,
+        Timer,
+        Speed,
+        BoostRespawn,
     }
 }

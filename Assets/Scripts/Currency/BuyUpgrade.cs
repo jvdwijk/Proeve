@@ -13,6 +13,7 @@ namespace PeppaSquad.Currency
         [SerializeField] private TMP_Text upgradeCostText;
         private int upgradeCost;
         private int currentLevel;
+        public int Currentlevel => currentLevel;
 
         private void Start()
         {
