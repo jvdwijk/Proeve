@@ -27,6 +27,9 @@ namespace PeppaSquad.Pickups {
         }
 
         public void StartPickupWave() {
+            if (CanPickUp)
+                return;
+
             input.OnClicked += OnPickedUp;
             CanPickUp = true;
 
@@ -34,6 +37,9 @@ namespace PeppaSquad.Pickups {
         }
 
         public void StopPickupWave() {
+            if (!CanPickUp)
+                return;
+
             input.OnClicked -= OnPickedUp;
             CanPickUp = false;
 
