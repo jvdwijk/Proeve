@@ -691,6 +691,7 @@ MonoBehaviour:
   boostEffect: {fileID: 0}
   effectSpawner: {fileID: 4844875597472370149}
   input: {fileID: 8630858962717896858}
+  animator: {fileID: 9123508168561945585}
 --- !u!114 &8630858962717896858
 MonoBehaviour:
   m_ObjectHideFlags: 0

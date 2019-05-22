@@ -15,32 +15,36 @@ namespace PeppaSquad.Pickups {
         [SerializeField]
         private PickupInput input;
 
+        [SerializeField]
+        private Animator animator;
+
+        private const string WaveAnimationKey = "IsWaving";
+
         public bool CanPickUp { get; private set; }
 
         private void Awake() {
-            StartPickupCheer();
             boostEffect = effectSpawner.SpawnRandomBoost();
         }
 
-        public void StartPickupCheer() {
+        public void StartPickupWave() {
             input.OnClicked += OnPickedUp;
             CanPickUp = true;
 
-            //TODO start cheer animations
+            animator.SetBool(WaveAnimationKey, true);
         }
 
-        public void StopPickupCheer() {
+        public void StopPickupWave() {
             input.OnClicked -= OnPickedUp;
             CanPickUp = false;
 
-            //TODO stop cheer animations
+            animator.SetBool(WaveAnimationKey, false);
         }
 
         private void OnPickedUp() {
             input.OnClicked -= OnPickedUp;
             boostEffect.Boost();
 
-            //TODO reset animations and deactivate gameobject.
+            StopPickupWave();
         }
     }
 }
