@@ -1,15 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PickupInput : MonoBehaviour {
 
-    [SerializeField]
-    private UnityEvent OnPickedUp;
+    public event Action OnClicked;
 
     private void OnMouseDown() {
-        OnPickedUp.Invoke();
+        OnClicked?.Invoke();
     }
 
 }

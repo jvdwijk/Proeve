@@ -630,8 +630,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9123508168554742807}
   - component: {fileID: 9123508168561945585}
+  - component: {fileID: 8472685776645733820}
   - component: {fileID: 8630858962717896858}
-  - component: {fileID: 5508710181141499299}
+  - component: {fileID: 4844875597472370149}
   - component: {fileID: 8632441723460341669}
   m_Layer: 0
   m_Name: mm
@@ -675,6 +676,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8472685776645733820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123508168554649655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80226bc5077c0e34ca8a0719a099ecfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostEffect: {fileID: 0}
+  effectSpawner: {fileID: 4844875597472370149}
+  input: {fileID: 8630858962717896858}
 --- !u!114 &8630858962717896858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,23 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fef93ddd049914ba9980e2ad963c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPickedUp:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5508710181141499299}
-        m_MethodName: DestroyThisObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &5508710181141499299
+--- !u!114 &4844875597472370149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -712,9 +712,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 9123508168554649655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f14a2e46101dcc5459c772998c08fea6, type: 3}
+  m_Script: {fileID: 11500000, guid: 2258a7406420b314bbaa65fb346a1e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boosts:
+  - {fileID: 7118190301920476177, guid: 30851ae805d4e1c4bbfd57ad78f271ba, type: 3}
+  - {fileID: 8127955551134605133, guid: 4314049918187e74aba2494997289297, type: 3}
+  - {fileID: 4541935477912987331, guid: 23f20d6442198fe4d8aa962b058c461f, type: 3}
 --- !u!65 &8632441723460341669
 BoxCollider:
   m_ObjectHideFlags: 0
