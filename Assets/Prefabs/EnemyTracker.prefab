@@ -45,12 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 65329630019782117, guid: 67eb18fcc6b955247b4513f8840a1a21, type: 3}
-  - {fileID: 523475881392795407, guid: 13bd8cfaf3f623e4186d4c9d6708a22c, type: 3}
+  - {fileID: 1879388230, guid: 20a0d0cc35e5919488cfe24ff1d187fe, type: 3}
   bossPrefabs:
-  - {fileID: 65329630019782117, guid: 67eb18fcc6b955247b4513f8840a1a21, type: 3}
-  - {fileID: 523475881392795407, guid: 13bd8cfaf3f623e4186d4c9d6708a22c, type: 3}
+  - {fileID: 2759453101441887367, guid: ff3afdf572aeb6f49ae426dafd35315f, type: 3}
   healthGUI: {fileID: 0}
+  spawnPosition: {fileID: 0}
 --- !u!114 &627055076369574570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,3 +64,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 627055076369574568}
   playerCombat: {fileID: 0}
+  healthGUI: {fileID: 0}
+  timer: {fileID: 0}
+  healthCalculator:
+    startHealth: 10
+    power: 1.3
