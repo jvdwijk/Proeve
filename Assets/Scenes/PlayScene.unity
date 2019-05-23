@@ -1129,12 +1129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4e3bbabcc76b346aa2cae8c1bf315e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupWaveCooldown:
-    min: 15
-    max: 15
-  waveTime:
-    min: 10
-    max: 10
+  pickupWaveCooldownRange:
+    min: 3
+    max: 3
+  waveTimeRange:
+    min: 3
+    max: 3
   pickups:
   - {fileID: 1951285387}
   - {fileID: 618275048}
@@ -1297,7 +1297,7 @@ PrefabInstance:
     - target: {fileID: 9123508168554742807, guid: 1b858520a5bc9ad4c85a5ef7e4456ac8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9123508168554742807, guid: 1b858520a5bc9ad4c85a5ef7e4456ac8,
         type: 3}
@@ -2908,7 +2908,7 @@ PrefabInstance:
     - target: {fileID: 9123508168554742807, guid: 1b858520a5bc9ad4c85a5ef7e4456ac8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9123508168554742807, guid: 1b858520a5bc9ad4c85a5ef7e4456ac8,
         type: 3}
@@ -5170,7 +5170,7 @@ PrefabInstance:
     - target: {fileID: 9123508168554742807, guid: 1b858520a5bc9ad4c85a5ef7e4456ac8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9123508168554742807, guid: 1b858520a5bc9ad4c85a5ef7e4456ac8,
         type: 3}
@@ -6144,7 +6144,7 @@ PrefabInstance:
     - target: {fileID: 9123508168554742807, guid: 1b858520a5bc9ad4c85a5ef7e4456ac8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9123508168554742807, guid: 1b858520a5bc9ad4c85a5ef7e4456ac8,
         type: 3}
@@ -6719,7 +6719,7 @@ PrefabInstance:
     - target: {fileID: 9123508168554742807, guid: 1b858520a5bc9ad4c85a5ef7e4456ac8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9123508168554742807, guid: 1b858520a5bc9ad4c85a5ef7e4456ac8,
         type: 3}
@@ -8071,11 +8071,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1199117100}
   - {fileID: 1444570037}
   - {fileID: 1576414808}
-  - {fileID: 777011806}
-  - {fileID: 1199117100}
   - {fileID: 277953351}
+  - {fileID: 777011806}
   - {fileID: 963466070}
   - {fileID: 1886132340}
   m_Father: {fileID: 885708062}
