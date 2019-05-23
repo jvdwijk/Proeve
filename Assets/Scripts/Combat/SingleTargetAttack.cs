@@ -11,7 +11,6 @@ namespace PeppaSquad.Combat {
 
         public override void Attack(IDamagable target) {
             SetAttackDamage(damageCalculator.CalculateDamage());
-            print(attackDamage);
             base.Attack(target);
         }
 

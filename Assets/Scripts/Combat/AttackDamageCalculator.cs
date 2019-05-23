@@ -19,6 +19,7 @@ public class AttackDamageCalculator : MonoBehaviour {
         var playerDamageLevel = playerStats.GetOrCreateStat(PlayerStatType.Damage);
         var damageBoostLevel = boostStats.GetOrCreateStat(BoostType.Damage);
 
+        //TODO Make and test better damage calculation
         int attackDamage = baseDamage + Mathf.RoundToInt(3.5f * playerDamageLevel.Value) + Mathf.RoundToInt(2 * damageBoostLevel.Value);
 
         return attackDamage;
