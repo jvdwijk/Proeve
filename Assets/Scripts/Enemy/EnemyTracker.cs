@@ -7,8 +7,10 @@ using PeppaSquad.Score;
 using PeppaSquad.Utils;
 using PeppaSquad.UI;
 
-namespace PeppaSquad.Enemies {
-    public class EnemyTracker : MonoBehaviour {
+namespace PeppaSquad.Enemies
+{
+    public class EnemyTracker : MonoBehaviour
+    {
         [SerializeField]
         private EnemySpawner enemySpawner;
         [SerializeField]
@@ -24,21 +26,28 @@ namespace PeppaSquad.Enemies {
 
         private int enemyLevel;
 
+
         private Enemy currentEnemy;
 
+        public int EnemyLevel => enemyLevel;
+
+        public event Action OnEnemyDefeat;
         public event Action OnBossDefeat;
 
-        public void StartSpawning() {
+        public void StartSpawning()
+        {
             SpawnEnemy();
         }
 
-        public void TriggerReset() {
+        public void TriggerReset()
+        {
             enemyLevel = 0;
             if (currentEnemy != null) Destroy(currentEnemy);
             currentEnemy = null;
         }
 
-        private void SpawnEnemy() {
+        private void SpawnEnemy()
+        {
 
             //TODO System for choosing enemy or boss
 
@@ -48,7 +57,9 @@ namespace PeppaSquad.Enemies {
             healthGUI.SetMaxHealth(currentEnemy.Health);
             healthGUI.ChangeHealth(currentEnemy.Health);
 
+            currentEnemy.OnDeath += OnEnemyDefeat;
             currentEnemy.OnDeath += SpawnEnemy;
+
 
             timer.ResetTimer();
 
