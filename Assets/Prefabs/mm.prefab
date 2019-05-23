@@ -630,6 +630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9123508168554742807}
   - component: {fileID: 9123508168561945585}
+  - component: {fileID: 3398801098953830946}
   - component: {fileID: 8472685776645733820}
   - component: {fileID: 8630858962717896858}
   - component: {fileID: 4844875597472370149}
@@ -676,6 +677,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3398801098953830946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123508168554649655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c671bc4d834731541aa12e93f497e280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 9123508168561945585}
+  cheerTime: 2
+  cheerCooldownRange:
+    min: 5
+    max: 15
 --- !u!114 &8472685776645733820
 MonoBehaviour:
   m_ObjectHideFlags: 0
