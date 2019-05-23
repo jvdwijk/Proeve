@@ -16,8 +16,7 @@ namespace PeppaSquad.Pickups.Effects {
         }
 
         public override void Boost() {
-            var stat = stats.GetOrCreateStat(statType);
-            stat.Value++;
+            stats.BoostStat(statType);
         }
     }
 }
