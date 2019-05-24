@@ -9,7 +9,6 @@ namespace PeppaSquad.Currency
 {
     public class BuyUpgrade : MonoBehaviour
     {
-
         [SerializeField] private PlayerStatType stat;
         [SerializeField] private PlayerStatsHandler playerStatsHandler;
         [SerializeField] private PlayerCurrency playerCurrency;

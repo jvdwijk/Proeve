@@ -23,7 +23,6 @@ namespace PeppaSquad.Combat {
 
         private void Awake() {
             foreach (var attack in attacks) {
-               // attack.SetAttackDamage(baseAttack *( StrengthLevel* 12));
                 attack.SetTarget(currentEnemy);
                 OnTargetChange += attack.SetTarget;
             }

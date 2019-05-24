@@ -13,6 +13,8 @@ namespace PeppaSquad.Utils {
         [SerializeField] private PlayerStatsHandler playerStatsHandler;
         private Stat<PlayerStatType> stat;
         private float timerValue;
+        [SerializeField] private float timerBaseValue = 10;
+        [SerializeField] private float timerMultiplicationValue= 1.2f;
 
         private void Awake(){
             stat = playerStatsHandler.GetOrCreateStat(PlayerStatType.Timer);
@@ -22,7 +24,7 @@ namespace PeppaSquad.Utils {
 
         public void TimerValueCalculator(){
 
-            timerValue = 10 + (stat.Value * 1.2f);
+            timerValue = timerBaseValue + (stat.Value * timerMultiplicationValue);
             timer.SetStartTime(timerValue);
         }
 

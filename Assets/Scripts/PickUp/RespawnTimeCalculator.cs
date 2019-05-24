@@ -10,6 +10,9 @@ namespace PeppaSquad.Pickups
     {
         [SerializeField] private PlayerStatsHandler playerStatsHandler;
         [SerializeField] private PickupsHandler pickUpsHandler;
+        [SerializeField] private int respawnBaseValue;
+        [SerializeField] private float respawnMultiplicationValue;
+        [SerializeField] private int respawnDivisibleValue; 
         private float delay;
         private Stat<PlayerStatType> stat;
 
@@ -22,7 +25,7 @@ namespace PeppaSquad.Pickups
         }
 
         private void RespawnCalculator(){
-           delay = 3 + (10 / (stat.Value * 1.5f));
+           delay = respawnBaseValue + (respawnDivisibleValue / (stat.Value * respawnMultiplicationValue));
            pickUpsHandler.SetDelayValue(delay);
         }
     }
