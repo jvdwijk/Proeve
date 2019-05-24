@@ -2,6 +2,7 @@
 using UnityEngine;
 using PeppaSquad.Enemies;
 using PeppaSquad.Stats.PlayerStats;
+using PeppaSquad.Currency;
 
 namespace PeppaSquad.Combat {
     public class PlayerCombat : MonoBehaviour {
@@ -22,7 +23,6 @@ namespace PeppaSquad.Combat {
 
         private void Awake() {
             foreach (var attack in attacks) {
-                attack.SetAttackDamage(baseAttack);
                 attack.SetTarget(currentEnemy);
                 OnTargetChange += attack.SetTarget;
             }
