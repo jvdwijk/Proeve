@@ -1,9 +1,11 @@
 ﻿namespace PeppaSquad.Stats.PlayerStats {
     public enum PlayerStatType {
         Damage,
-        Time,
-        BoosterSpawnRate,
         Highscore,
         Currency,
+        Combo,
+        Timer,
+        Speed,
+        BoostRespawn,
     }
 }
