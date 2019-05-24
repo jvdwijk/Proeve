@@ -9,6 +9,8 @@ namespace PeppaSquad.Stats {
         private float value;
         private T statType;
 
+        private bool typeSet = false;
+
         public event Action<Stat<T>> StatChanged;
 
         public T StatType => statType;
@@ -17,7 +19,7 @@ namespace PeppaSquad.Stats {
             set { SetValue(value); }
         }
 
-        public Stat(T statType) {
+        public void SetType(T statType) {
             this.statType = statType;
         }
 
