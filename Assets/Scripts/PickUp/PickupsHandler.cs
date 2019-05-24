@@ -54,5 +54,16 @@ namespace PeppaSquad.Pickups {
             pickups = new List<PickupController>(FindObjectsOfType<PickupController>());
         }
 
+        public void SetDelayValue(float receiveDelay){
+            SetDelayValue(new NumberRange(receiveDelay, receiveDelay));
+        }
+
+        public void SetDelayValue(NumberRange receiveDelay){
+            if(receiveDelay == null)
+                return;
+
+            pickupWaveCooldownRange = receiveDelay;   
+        }
+
     }
 }

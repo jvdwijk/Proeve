@@ -9,7 +9,7 @@ namespace PeppaSquad.Currency
 {
     public class BuyUpgrade : MonoBehaviour
     {
-       
+
         [SerializeField] private PlayerStatType stat;
         [SerializeField] private PlayerStatsHandler playerStatsHandler;
         [SerializeField] private PlayerCurrency playerCurrency;
@@ -34,15 +34,15 @@ namespace PeppaSquad.Currency
 
         public void Upgrade()
         {
-            if (playerCurrency.Currency >= upgradeCost)
-            {
-                playerCurrency.UpdateCurrency(upgradeCost);
-                currentLevel += 1;
-                var currentStat = playerStatsHandler.GetOrCreateStat(stat);
-                currentStat.Value = currentLevel;
-                upgradeCost = -(currentLevel * 7 + (currentLevel / 3 * 10) + 5);
-                UpdateText();
-            }
+            if (playerCurrency.Currency < Mathf.Abs(upgradeCost)) 
+                return;
+
+            playerCurrency.UpdateCurrency(upgradeCost);
+            currentLevel += 1;
+            var currentStat = playerStatsHandler.GetOrCreateStat(stat);
+            currentStat.Value = currentLevel;
+            upgradeCost = -(currentLevel * 7 + (currentLevel / 3 * 10) + 5);
+            UpdateText();
         }
 
     }
