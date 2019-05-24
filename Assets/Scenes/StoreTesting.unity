@@ -804,6 +804,56 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1476964096429152523, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: stat
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476964096429152523, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerStatsHandler
+      value: 
+      objectReference: {fileID: 2069523099}
+    - target: {fileID: 1476964097282821945, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: stat
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476964097282821945, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerStatsHandler
+      value: 
+      objectReference: {fileID: 2069523099}
+    - target: {fileID: 1476964097002917247, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: stat
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476964097002917247, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerStatsHandler
+      value: 
+      objectReference: {fileID: 2069523099}
+    - target: {fileID: 1476964097068811622, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerStatsHandler
+      value: 
+      objectReference: {fileID: 2069523099}
+    - target: {fileID: 3797523213936248384, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: stat
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3797523213936248384, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerCurrency
+      value: 
+      objectReference: {fileID: 557304859}
+    - target: {fileID: 3797523213936248384, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerStatsHandler
+      value: 
+      objectReference: {fileID: 2069523099}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f486f9a76537144e9313fb938f2c655, type: 3}
 --- !u!114 &557304852 stripped
@@ -877,6 +927,11 @@ MonoBehaviour:
   timerUpgrade: {fileID: 557304854}
   comboUpgrade: {fileID: 557304852}
   respawnUpgrade: {fileID: 0}
+  strengthLevel: 0
+  speedLevel: 0
+  timerLevel: 0
+  comboLevel: 0
+  respawnLevel: 0
 --- !u!114 &557304858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -894,6 +949,23 @@ MonoBehaviour:
   timerUpgrade: {fileID: 0}
   comboUpgrade: {fileID: 0}
   respawnUpgrade: {fileID: 0}
+  strengthLevel: 0
+  speedLevel: 0
+  timerLevel: 0
+  comboLevel: 0
+  respawnLevel: 0
+--- !u!114 &557304859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1476964095814091678, guid: 9f486f9a76537144e9313fb938f2c655,
+    type: 3}
+  m_PrefabInstance: {fileID: 557304851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557304853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7128a8b6f8923348808d6166f5f78c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &562154930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd24ac1d514ad884dad8a2b3d08c06ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currUpgradeLevels: {fileID: 557304857}
   stats: {fileID: 2069523099}
   attacks:
   - {fileID: 568722138}

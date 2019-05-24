@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using PeppaSquad.Stats.PlayerStats;
 
 namespace PeppaSquad.Currency
 {
     public class BuyUpgrade : MonoBehaviour
     {
+       
+        [SerializeField] private PlayerStatType stat;
+        [SerializeField] private PlayerStatsHandler playerStatsHandler;
         [SerializeField] private PlayerCurrency playerCurrency;
         [SerializeField] private TMP_Text currentLevelText;
         [SerializeField] private TMP_Text upgradeCostText;
@@ -34,6 +38,8 @@ namespace PeppaSquad.Currency
             {
                 playerCurrency.UpdateCurrency(upgradeCost);
                 currentLevel += 1;
+                var currentStat = playerStatsHandler.GetOrCreateStat(stat);
+                currentStat.Value = currentLevel;
                 upgradeCost = -(currentLevel * 7 + (currentLevel / 3 * 10) + 5);
                 UpdateText();
             }

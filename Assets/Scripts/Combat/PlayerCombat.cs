@@ -6,8 +6,6 @@ using PeppaSquad.Currency;
 
 namespace PeppaSquad.Combat {
     public class PlayerCombat : MonoBehaviour {
-
-        [SerializeField] private CurrentUpgradeLevels currUpgradeLevels;
         private Enemy currentEnemy;
 
         [SerializeField]
@@ -25,7 +23,7 @@ namespace PeppaSquad.Combat {
 
         private void Awake() {
             foreach (var attack in attacks) {
-                attack.SetAttackDamage(baseAttack * (currUpgradeLevels.StrengthLevel * 12));
+               // attack.SetAttackDamage(baseAttack *( StrengthLevel* 12));
                 attack.SetTarget(currentEnemy);
                 OnTargetChange += attack.SetTarget;
             }
