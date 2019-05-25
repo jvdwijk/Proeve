@@ -37,7 +37,6 @@ namespace PeppaSquad.Enemies
         public override void TriggerReset()
         {
             enemyLevel = 0;
-            print(currentEnemy);
             if (currentEnemy != null) Destroy(currentEnemy.gameObject);
             currentEnemy = null;
 
