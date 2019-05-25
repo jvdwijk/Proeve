@@ -9,7 +9,7 @@ using PeppaSquad.UI;
 
 namespace PeppaSquad.Enemies
 {
-    public class EnemyTracker : MonoBehaviour
+    public class EnemyTracker : Resetter
     {
         [SerializeField]
         private EnemySpawner enemySpawner;
@@ -33,17 +33,19 @@ namespace PeppaSquad.Enemies
 
         public event Action OnEnemyDefeat;
         public event Action OnBossDefeat;
+        
+        public override void TriggerReset()
+        {
+            enemyLevel = 0;
+            if (currentEnemy != null) Destroy(currentEnemy.gameObject);
+            currentEnemy = null;
+
+            base.TriggerReset();
+        }
 
         public void StartSpawning()
         {
             SpawnEnemy();
-        }
-
-        public void TriggerReset()
-        {
-            enemyLevel = 0;
-            if (currentEnemy != null) Destroy(currentEnemy);
-            currentEnemy = null;
         }
 
         private void SpawnEnemy()
