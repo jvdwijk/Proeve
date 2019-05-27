@@ -7,7 +7,7 @@ namespace PeppaSquad.Combat {
         private IDamagable target;
 
         [SerializeField]
-        private AttackDamageCalculator damageCalculator;
+        protected AttackDamageCalculator damageCalculator;
 
         public override void Attack(IDamagable target) {
             SetAttackDamage(damageCalculator.CalculateDamage());

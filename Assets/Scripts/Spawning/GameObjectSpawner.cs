@@ -24,11 +24,14 @@ namespace PeppaSquad.Spawning {
         public event Action<GameObject> ObjectSpawned;
 
         [ContextMenu("Spawn")]
-        public virtual void Spawn() {
+        public virtual void Spawn(Func<GameObject, GameObject> objectModifier = null) {
             var instance = Instantiate(prefab);
             if (parent != null)
                 instance.transform.SetParent(parent.transform);
             SetTransform(instance.transform);
+
+            if (objectModifier != null)
+                instance = objectModifier.Invoke(instance);
 
             ObjectSpawned?.Invoke(instance);
         }
