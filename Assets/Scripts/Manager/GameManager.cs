@@ -20,6 +20,9 @@ namespace PeppaSquad.GameFlow {
         [SerializeField]
         private GameObject pauseUI;
 
+        [SerializeField]
+        private Resetter[] resettables;
+
         private float timeScaleOnPause;
 
         public void StartGame() {
@@ -29,7 +32,10 @@ namespace PeppaSquad.GameFlow {
         }
 
         public void ResetGame() {
-            throw new System.NotImplementedException();
+            foreach (Resetter resettable in resettables)
+            {
+                resettable.TriggerReset();
+            }
         }
 
         public void PauseGame(bool pause) {
