@@ -10,21 +10,23 @@ namespace PeppaSquad.Stats {
 
     public class StatsHandler<StatName, StatType> : MonoBehaviour
     where StatName : System.Enum
-    where StatType : Stat<StatName> {
+    where StatType : Stat<StatName>, new() {
 
-        private Dictionary<StatName, Stat<StatName>> stats = new Dictionary<StatName, Stat<StatName>>();
+        private Dictionary<StatName, StatType> stats = new Dictionary<StatName, StatType>();
 
         /// <summary>
         /// Called when a new stat is created.
         /// </summary>
-        public event Action<Stat<StatName>> StatCreated;
+        public event Action<StatType> StatCreated;
+
+        public delegate void EditStat(ref StatType stat);
 
         /// <summary>
         /// Creates stat if it does not exist. Returns stat with the given name.
         /// </summary>
         /// <param name="statName">Name of the stat</param>
         /// <returns>Stat associated with given stat name</returns>
-        public Stat<StatName> GetOrCreateStat(StatName statName) {
+        public StatType GetOrCreateStat(StatName statName) {
             if (!stats.ContainsKey(statName))
                 CreateStat(statName);
 
@@ -36,7 +38,7 @@ namespace PeppaSquad.Stats {
         /// </summary>
         /// <param name="statName">Name of the stat.</param>
         /// <returns>stat</returns>
-        public Stat<StatName> GetStat(StatName statName) {
+        public StatType GetStat(StatName statName) {
             if (!stats.ContainsKey(statName))
                 return null;
 
@@ -56,9 +58,17 @@ namespace PeppaSquad.Stats {
             if (stats.ContainsKey(statName))
                 return;
 
-            var newStat = new Stat<StatName>(statName);
+            StatType newStat = new StatType();
+            newStat.SetType(statName);
             stats.Add(statName, newStat);
             StatCreated?.Invoke(newStat);
+        }
+
+        public void ForEachStat(EditStat call) {
+            foreach (var statKeyValue in stats) {
+                StatType stat = statKeyValue.Value;
+                call?.Invoke(ref stat);
+            }
         }
     }
 }
