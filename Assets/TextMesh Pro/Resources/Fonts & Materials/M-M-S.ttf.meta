@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 316bdcf1d68eaed47b6ee386b45476ba
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Aachen Medium
+  fontNames:
+  - Aachen Medium
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b7a3fe5ccef1ccd4588b01ea612b9cbd, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
