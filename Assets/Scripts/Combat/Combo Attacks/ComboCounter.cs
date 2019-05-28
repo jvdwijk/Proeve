@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ComboCounter {
+public class ComboCounter : MonoBehaviour {
 
-    private int currentCombo;
-    private int highestCombo;
+    [SerializeField]
+    private int maxCombo = 0;
+
+    private int currentCombo = 0;
+    private int highestCombo = 0;
 
     public int CurrentCombo => currentCombo;
     public int HighestCombo => highestCombo;
@@ -15,6 +18,8 @@ public class ComboCounter {
     public event Action<ComboCounter> HighestComboChanged;
 
     public void Increase() {
+        if (maxCombo > 0 && currentCombo >= maxCombo)
+            return;
         currentCombo++;
         if (currentCombo > highestCombo) {
             highestCombo = currentCombo;

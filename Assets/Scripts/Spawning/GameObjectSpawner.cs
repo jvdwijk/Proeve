@@ -46,5 +46,21 @@ namespace PeppaSquad.Spawning {
             if (scaleCalculator != null)
                 obj.localScale = scaleCalculator.CalculateScale(obj);
         }
+
+        public void SetPositionCalculator(PositionCalculator calc) {
+            positionCalculator = calc;
+        }
+
+        public void SetRotationCalculator(RotationCalculator calc) {
+            rotationCalculator = calc;
+        }
+
+        public void SetScaleCalculator(ScaleCalculator calc) {
+            scaleCalculator = calc;
+        }
+
+        public void SetParent(GameObject parent) {
+            this.parent = parent;
+        }
     }
 }
