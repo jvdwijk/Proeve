@@ -36,7 +36,7 @@ namespace PeppaSquad.Enemies
         
         public override void TriggerReset()
         {
-            enemyLevel = 0;
+            enemyLevel = 1;
             if (currentEnemy != null) Destroy(currentEnemy.gameObject);
             currentEnemy = null;
 
@@ -51,9 +51,8 @@ namespace PeppaSquad.Enemies
         private void SpawnEnemy()
         {
 
-            //TODO System for choosing enemy or boss
-
-            currentEnemy = enemySpawner.SpawnEnemy();
+            currentEnemy = enemyLevel % 5 == 0 ? enemySpawner.SpawnEnemy() : enemySpawner.SpawnBoss();
+            
             int health = healthCalculator.CalculateHealth(enemyLevel);
             currentEnemy.Init(health);
             healthGUI.SetMaxHealth(currentEnemy.Health);
