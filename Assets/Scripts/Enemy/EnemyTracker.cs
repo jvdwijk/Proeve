@@ -24,8 +24,7 @@ namespace PeppaSquad.Enemies
         [SerializeField]
         private EnemyHealthCalculator healthCalculator;
 
-        private int enemyLevel;
-
+        private int enemyLevel = 1;
 
         private Enemy currentEnemy;
 
