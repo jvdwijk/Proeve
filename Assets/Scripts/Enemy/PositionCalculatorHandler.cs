@@ -6,26 +6,28 @@ using PeppaSquad.Enemies;
 using PeppaSquad.Spawning;
 using PeppaSquad.Spawning.TransformCalculators.Base;
 
-public class PositionCalculatorHandler : MonoBehaviour {
+namespace PeppaSquad.Combat {
+    public class PositionCalculatorHandler : MonoBehaviour {
 
-    [SerializeField]
-    private EnemySpawner spawner;
+        [SerializeField]
+        private EnemySpawner spawner;
 
-    [SerializeField]
-    private GameObjectSpawner objectSpawner;
+        [SerializeField]
+        private GameObjectSpawner objectSpawner;
 
-    [SerializeField]
-    private PositionCalculator defaultCalculator;
+        [SerializeField]
+        private PositionCalculator defaultCalculator;
 
-    private void Awake() {
-        spawner.OnEnemySpawned += SetPositionCalc;
+        private void Awake() {
+            spawner.OnEnemySpawned += SetPositionCalc;
+        }
+
+        private void SetPositionCalc(Enemy enemy) {
+            var enemyCalc = enemy.GetComponent<PositionCalculator>();
+            if (enemyCalc == null)
+                enemyCalc = defaultCalculator;
+            objectSpawner.SetPositionCalculator(enemyCalc);
+        }
+
     }
-
-    private void SetPositionCalc(Enemy enemy) {
-        var enemyCalc = enemy.GetComponent<PositionCalculator>();
-        if (enemyCalc == null)
-            enemyCalc = defaultCalculator;
-        objectSpawner.SetPositionCalculator(enemyCalc);
-    }
-
 }
