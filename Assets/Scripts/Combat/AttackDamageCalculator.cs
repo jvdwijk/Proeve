@@ -16,7 +16,7 @@ namespace PeppaSquad.Combat {
         [SerializeField]
         private int baseDamage = 5;
 
-        public int CalculateDamage() {
+        public virtual int CalculateDamage() {
             var playerDamageLevel = playerStats.GetOrCreateStat(PlayerStatType.Damage);
             var damageBoostLevel = boostStats?.GetOrCreateStat(BoostType.Damage);
 

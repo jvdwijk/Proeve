@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PeppaSquad.Combat;
 using PeppaSquad.Enemies;
 using PeppaSquad.Pickups;
 using PeppaSquad.Utils;
@@ -21,6 +22,9 @@ namespace PeppaSquad.GameFlow {
         private GameObject pauseUI;
 
         [SerializeField]
+        private PowerAttack comboAttack;
+
+        [SerializeField]
         private Resetter[] resettables;
 
         private float timeScaleOnPause;
@@ -29,13 +33,14 @@ namespace PeppaSquad.GameFlow {
             enemyTracker.StartSpawning();
             timer?.StartTimer();
             pickupHandler?.StartSpawningPickups();
+            comboAttack.Start();
         }
 
         public void ResetGame() {
-            foreach (Resetter resettable in resettables)
-            {
+            foreach (Resetter resettable in resettables) {
                 resettable.TriggerReset();
             }
+            comboAttack.Stop();
         }
 
         public void PauseGame(bool pause) {

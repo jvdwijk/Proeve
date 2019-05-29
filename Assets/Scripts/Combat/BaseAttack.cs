@@ -1,22 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-namespace PeppaSquad.Combat
-{
-    public class BaseAttack : MonoBehaviour
-    {
+namespace PeppaSquad.Combat {
+    public class BaseAttack : MonoBehaviour {
         protected int attackDamage = 1;
         public event Action OnAttack;
 
-        public virtual void Attack(IDamagable target){
-            if(target == null) return;
-            target.Damage(attackDamage);
+        public virtual void Attack(IDamagable target) {
+            if (target == null) return;
+            target.Damage(CalculateAttackDamage());
             OnAttack?.Invoke();
         }
 
-        public void SetAttackDamage(int damage){
+        protected virtual int CalculateAttackDamage() {
+            return attackDamage;
+        }
+
+        public void SetAttackDamage(int damage) {
             attackDamage = damage;
         }
     }
