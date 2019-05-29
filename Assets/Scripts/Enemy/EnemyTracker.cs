@@ -51,7 +51,7 @@ namespace PeppaSquad.Enemies
         private void SpawnEnemy()
         {
 
-            currentEnemy = enemyLevel % 5 == 0 ? enemySpawner.SpawnEnemy() : enemySpawner.SpawnBoss();
+            currentEnemy = enemyLevel % 5 == 0 ? enemySpawner.SpawnBoss() : enemySpawner.SpawnEnemy();
             
             int health = healthCalculator.CalculateHealth(enemyLevel);
             currentEnemy.Init(health);
