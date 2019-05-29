@@ -23,10 +23,6 @@ namespace PeppaSquad.Utils {
         private Coroutine countdownRoutine;
         private bool isRunning;
 
-        private void Awake() { //Todo Remove with StartGame class
-            StartTimer();
-        }
-
         public Coroutine StartTimer() {
             if (isRunning)
                 return countdownRoutine;
