@@ -32,6 +32,9 @@ namespace PeppaSquad.GameFlow {
 
         private float timeScaleOnPause;
 
+        /// <summary>
+        /// Triggers all the scripts needed to start the game.
+        /// </summary>
         public void StartGame() {
             mapChanger.ChangeMap();
             enemyTracker.StartSpawning();
@@ -40,6 +43,9 @@ namespace PeppaSquad.GameFlow {
             comboAttack.Start();
         }
 
+        /// <summary>
+        /// Resets the given resettables to stop the game.
+        /// </summary>
         public void ResetGame() {
             foreach (Resetter resettable in resettables) {
                 resettable.TriggerReset();
@@ -47,6 +53,10 @@ namespace PeppaSquad.GameFlow {
             comboAttack.Stop();
         }
 
+        /// <summary>
+        /// stops the time to pause the game. 
+        /// </summary>
+        /// <param name="pause"></param>
         public void PauseGame(bool pause) {
             timer.Paused = pause;
             timeScaleOnPause = pause ? Time.timeScale : timeScaleOnPause;
