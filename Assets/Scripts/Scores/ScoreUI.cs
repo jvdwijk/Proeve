@@ -5,6 +5,10 @@ using PeppaSquad.Score;
 using TMPro;
 
 namespace PeppaSquad.UI {
+
+    /// <summary>
+    /// Sets the current score in the UI
+    /// </summary>
     public class ScoreUI : MonoBehaviour {
         [SerializeField]
         private TextMeshProUGUI scoreText;
@@ -20,6 +24,10 @@ namespace PeppaSquad.UI {
             scoreHandler.HighscoreChanged += SetScore;
         }
 
+        /// <summary>
+        /// Sets a given score in the score UI
+        /// </summary>
+        /// <param name="score">The score to best set in the UI</param>
         public void SetScore(int score) {
             scoreText.text = score.ToString();
         }

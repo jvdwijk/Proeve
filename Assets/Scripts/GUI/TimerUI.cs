@@ -23,11 +23,19 @@ namespace PeppaSquad.UI {
             timer.TimerReset += () => StartCoroutine(LerpToCurrent());
         }
 
+        /// <summary>
+        /// Updates the timer bar.
+        /// </summary>
+        /// <param name="newTime">Time to which the UI will be updated</param>
         public void UpdateTimer(float newTime) {
             var current = newTime / timer.StartTime;
             timerBar.fillAmount = current;
         }
 
+        /// <summary>
+        /// Lerps to the current time on the timer.
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator LerpToCurrent() {
             timer.TimerUpdated -= UpdateTimer;
             while (timerBar.fillAmount - (timer.CurrentTime / timer.StartTime) < 0.01f) {

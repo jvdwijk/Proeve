@@ -43,6 +43,10 @@ namespace PeppaSquad.GameFlow {
             comboAttack.Stop();
         }
 
+        /// <summary>
+        /// Pauses/unpauses the game
+        /// </summary>
+        /// <param name="pause">pause/unpause</param>
         public void PauseGame(bool pause) {
             timer.Paused = pause;
             timeScaleOnPause = pause ? Time.timeScale : timeScaleOnPause;
