@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using PeppaSquad.Combat;
 using PeppaSquad.Enemies;
 using PeppaSquad.Pickups;
 using PeppaSquad.Utils;
-using UnityEngine;
 
 namespace PeppaSquad.GameFlow {
     public class GameManager : MonoBehaviour {
@@ -17,20 +18,50 @@ namespace PeppaSquad.GameFlow {
         [SerializeField]
         private Timer timer;
 
-        public void StartGame () {
-            enemyTracker.StartSpawning ();
-            timer?.StartTimer ();
-            pickupHandler?.StartSpawningPickups ();
+        [SerializeField]
+        private GameObject pauseUI;
+
+        [SerializeField]
+        private PowerAttack comboAttack;
+
+        [SerializeField]
+        private Resetter[] resettables;
+        
+        [SerializeField]
+        private MapChanger mapChanger;
+
+        private float timeScaleOnPause;
+
+        /// <summary>
+        /// Triggers all the scripts needed to start the game.
+        /// </summary>
+        public void StartGame() {
+            mapChanger.ChangeMap();
+            enemyTracker.StartSpawning();
+            timer?.StartTimer();
+            pickupHandler?.StartSpawningPickups();
+            comboAttack.Start();
         }
 
-        public void ResetGame () {
-            throw new System.NotImplementedException ();
+        /// <summary>
+        /// Resets the given resettables to stop the game.
+        /// </summary>
+        public void ResetGame() {
+            foreach (Resetter resettable in resettables) {
+                resettable.TriggerReset();
+            }
+            comboAttack.Stop();
         }
 
-        public void PauseGame () {
-            timer.Paused = true;
-
-            //Todo Pause Combat
+        /// <summary>
+        /// stops the time to pause the game. 
+        /// </summary>
+        /// <param name="pause"></param>
+        public void PauseGame(bool pause) {
+            timer.Paused = pause;
+            timeScaleOnPause = pause ? Time.timeScale : timeScaleOnPause;
+            Time.timeScale = pause ? 0 : timeScaleOnPause;
+            pauseUI.SetActive(pause);
         }
     }
 }

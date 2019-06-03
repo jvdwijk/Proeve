@@ -7,8 +7,10 @@ using PeppaSquad.Score;
 using PeppaSquad.Utils;
 using PeppaSquad.UI;
 
-namespace PeppaSquad.Enemies {
-    public class EnemyTracker : MonoBehaviour {
+namespace PeppaSquad.Enemies
+{
+    public class EnemyTracker : Resetter
+    {
         [SerializeField]
         private EnemySpawner enemySpawner;
         [SerializeField]
@@ -22,33 +24,42 @@ namespace PeppaSquad.Enemies {
         [SerializeField]
         private EnemyHealthCalculator healthCalculator;
 
-        private int enemyLevel;
+        private int enemyLevel = 1;
 
         private Enemy currentEnemy;
 
-        public event Action OnBossDefeat;
+        public int EnemyLevel => enemyLevel;
 
-        public void StartSpawning() {
+        public event Action OnEnemyDefeat;
+        public event Action OnBossDefeat;
+        
+        public override void TriggerReset()
+        {
+            enemyLevel = 1;
+            if (currentEnemy != null) Destroy(currentEnemy.gameObject);
+            currentEnemy = null;
+
+            base.TriggerReset();
+        }
+
+        public void StartSpawning()
+        {
             SpawnEnemy();
         }
 
-        public void TriggerReset() {
-            enemyLevel = 0;
-            if (currentEnemy != null) Destroy(currentEnemy);
-            currentEnemy = null;
-        }
+        private void SpawnEnemy()
+        {
 
-        private void SpawnEnemy() {
-
-            //TODO System for choosing enemy or boss
-
-            currentEnemy = enemySpawner.SpawnEnemy();
+            currentEnemy = enemyLevel % 5 == 0 ? enemySpawner.SpawnBoss() : enemySpawner.SpawnEnemy();
+            
             int health = healthCalculator.CalculateHealth(enemyLevel);
             currentEnemy.Init(health);
             healthGUI.SetMaxHealth(currentEnemy.Health);
             healthGUI.ChangeHealth(currentEnemy.Health);
 
+            currentEnemy.OnDeath += OnEnemyDefeat;
             currentEnemy.OnDeath += SpawnEnemy;
+
 
             timer.ResetTimer();
 
