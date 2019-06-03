@@ -25,9 +25,9 @@ namespace PeppaSquad.Enemies {
         }
 
         public Enemy SpawnBoss() {
-            mapChanger.ChangeMap();
             Enemy newEnemy = SpawnEntity(bossPrefabs);
             InitEntity(newEnemy);
+            newEnemy.OnDeath += mapChanger.ChangeMap;
             return newEnemy;
         }
 
