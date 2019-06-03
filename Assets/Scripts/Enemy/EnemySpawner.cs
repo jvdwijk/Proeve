@@ -18,12 +18,20 @@ namespace PeppaSquad.Enemies {
 
         public event Action<Enemy> OnEnemySpawned;
 
+        /// <summary>
+        /// Spawn and Init a new enemy
+        /// </summary>
+        /// <returns>the newly made enemy</returns>
         public Enemy SpawnEnemy() {
             Enemy newEnemy = SpawnEntity(enemyPrefabs);
             InitEntity(newEnemy);
             return newEnemy;
         }
 
+        /// <summary>
+        /// Spawns boss
+        /// </summary>
+        /// <returns></returns>
         public Enemy SpawnBoss() {
             Enemy newEnemy = SpawnEntity(bossPrefabs);
             InitEntity(newEnemy);
@@ -31,11 +39,20 @@ namespace PeppaSquad.Enemies {
             return newEnemy;
         }
 
+        /// <summary>
+        /// Spawn random enemy from array
+        /// </summary>
+        /// <param name="prefabs"></param>
+        /// <returns></returns>
         private Enemy SpawnEntity(Enemy[] prefabs) {
             var enemyNumber = UnityEngine.Random.Range(0, prefabs.Length);
             return Instantiate(prefabs[enemyNumber]);
         }
 
+        /// <summary>
+        /// Sets position of enemy
+        /// </summary>
+        /// <param name="enemy"></param>
         private void InitEntity(Enemy enemy) {
             enemy.transform.parent = spawnPosition;
             enemy.transform.localPosition = Vector3.zero;

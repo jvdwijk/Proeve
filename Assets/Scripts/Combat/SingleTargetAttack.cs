@@ -13,10 +13,17 @@ namespace PeppaSquad.Combat {
             return damageCalculator.CalculateDamage();
         }
 
+        /// <summary>
+        /// attacks the target
+        /// </summary>
         public void Attack() {
             Attack(target);
         }
-
+        
+        /// <summary>
+        /// Changes the target
+        /// </summary>
+        /// <param name="newTarget"></param>
         public void SetTarget(IDamagable newTarget) {
             target = newTarget;
         }

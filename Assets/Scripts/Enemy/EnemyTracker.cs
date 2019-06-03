@@ -47,6 +47,9 @@ namespace PeppaSquad.Enemies
             SpawnEnemy();
         }
 
+        /// <summary>
+        /// Decides wether to spawn enemy or boss and inits it.
+        /// </summary>
         private void SpawnEnemy()
         {
 
