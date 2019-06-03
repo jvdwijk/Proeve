@@ -10,6 +10,8 @@ namespace PeppaSquad.Enemies {
         private Enemy[] bossPrefabs;
         [SerializeField]
         private HealthGUI healthGUI;
+        [SerializeField]
+        private MapChanger mapChanger;
 
         [SerializeField]
         private Transform spawnPosition;
@@ -23,6 +25,7 @@ namespace PeppaSquad.Enemies {
         }
 
         public Enemy SpawnBoss() {
+            mapChanger.ChangeMap();
             Enemy newEnemy = SpawnEntity(bossPrefabs);
             InitEntity(newEnemy);
             return newEnemy;

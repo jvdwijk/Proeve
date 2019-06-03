@@ -26,10 +26,14 @@ namespace PeppaSquad.GameFlow {
 
         [SerializeField]
         private Resetter[] resettables;
+        
+        [SerializeField]
+        private MapChanger mapChanger;
 
         private float timeScaleOnPause;
 
         public void StartGame() {
+            mapChanger.ChangeMap();
             enemyTracker.StartSpawning();
             timer?.StartTimer();
             pickupHandler?.StartSpawningPickups();
@@ -48,7 +52,6 @@ namespace PeppaSquad.GameFlow {
             timeScaleOnPause = pause ? Time.timeScale : timeScaleOnPause;
             Time.timeScale = pause ? 0 : timeScaleOnPause;
             pauseUI.SetActive(pause);
-            //Todo Pause Combat
         }
     }
 }
