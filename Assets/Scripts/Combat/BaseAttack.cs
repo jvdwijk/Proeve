@@ -14,6 +14,10 @@ namespace PeppaSquad.Combat {
             OnAttack?.Invoke();
         }
 
+        /// <summary>
+        /// Calculates the attack damage.
+        /// </summary>
+        /// <returns>attack damage</returns>
         protected virtual int CalculateAttackDamage() {
             return attackDamage;
         }

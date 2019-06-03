@@ -4,6 +4,9 @@ using UnityEngine;
 using PeppaSquad.Pickups.Stats;
 
 namespace PeppaSquad.Pickups.Effects {
+    /// <summary>
+    /// Boost type which enhances boost levels
+    /// </summary>
     public class StatEnhancingBoost : BoostEffect {
         [SerializeField]
         private BoostStatHandler stats;
@@ -15,6 +18,9 @@ namespace PeppaSquad.Pickups.Effects {
             stats = BoostStatHandler.Instance;
         }
 
+        /// <summary>
+        /// Boosts level
+        /// </summary>
         public override void Boost() {
             stats.BoostStat(statType);
         }

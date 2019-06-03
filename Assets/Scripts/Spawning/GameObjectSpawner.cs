@@ -5,6 +5,10 @@ using UnityEngine;
 using PeppaSquad.Spawning.TransformCalculators.Base;
 
 namespace PeppaSquad.Spawning {
+
+    /// <summary>
+    /// Spawns gameobject
+    /// </summary>
     public class GameObjectSpawner : MonoBehaviour {
 
         [Header("Transform")]
@@ -21,9 +25,15 @@ namespace PeppaSquad.Spawning {
         [SerializeField]
         private GameObject prefab;
 
+        /// <summary>
+        /// Called when a new object is spawned
+        /// </summary>
         public event Action<GameObject> ObjectSpawned;
 
-        [ContextMenu("Spawn")]
+        /// <summary>
+        /// Spawns a new gameobject
+        /// </summary>
+        /// <param name="objectModifier">Modifies the object before ObjectSpawned is called</param>
         public virtual void Spawn(Func<GameObject, GameObject> objectModifier = null) {
             var instance = Instantiate(prefab);
             if (parent != null)
@@ -36,6 +46,10 @@ namespace PeppaSquad.Spawning {
             ObjectSpawned?.Invoke(instance);
         }
 
+        /// <summary>
+        /// Sets the transform of the spawned object
+        /// </summary>
+        /// <param name="obj"></param>
         protected virtual void SetTransform(Transform obj) {
             if (positionCalculator != null)
                 obj.localPosition = positionCalculator.CalculatePosition(obj);
@@ -47,18 +61,31 @@ namespace PeppaSquad.Spawning {
                 obj.localScale = scaleCalculator.CalculateScale(obj);
         }
 
+        /// <summary>
+        /// Sets a new postition calculator
+        /// </summary>
+        /// <param name="calc">the new calculator</param>
         public void SetPositionCalculator(PositionCalculator calc) {
             positionCalculator = calc;
         }
-
+        /// <summary>
+        /// Sets a new rotation calculator
+        /// </summary>
+        /// <param name="calc">the new calculator</param>
         public void SetRotationCalculator(RotationCalculator calc) {
             rotationCalculator = calc;
         }
-
+        /// <summary>
+        /// Sets a new scale calculator
+        /// </summary>
+        /// <param name="calc">the new calculator</param>
         public void SetScaleCalculator(ScaleCalculator calc) {
             scaleCalculator = calc;
         }
-
+        /// <summary>
+        /// Sets a new default parent for the spawned object
+        /// </summary>
+        /// <param name="parent">the new parent object</param>
         public void SetParent(GameObject parent) {
             this.parent = parent;
         }

@@ -6,6 +6,9 @@ using PeppaSquad.Spawning;
 using PeppaSquad.Utils;
 
 namespace PeppaSquad.Combat {
+    /// <summary>
+    /// Handles Powerattacks
+    /// </summary>
     public class PowerAttack : SingleTargetAttack {
 
         [SerializeField]
@@ -22,21 +25,35 @@ namespace PeppaSquad.Combat {
 
         private Coroutine comboButtonSpawnRoutine;
 
+        /// <summary>
+        /// Executes a power attack.
+        /// </summary>
+        /// <param name="target">the target of the attack</param>
         public override void Attack(IDamagable target) {
             combo.Increase();
             base.Attack(target);
         }
 
+        /// <summary>
+        /// Calculates the damage of the power attack.
+        /// </summary>
+        /// <returns>power attack damage</returns>
         protected override int CalculateAttackDamage() {
             var damage = base.CalculateAttackDamage();
             damage += (int) (((float) damage / comboDamageBoost) * ((float) combo.CurrentCombo + StartDamageBoost));
             return damage;
         }
 
+        /// <summary>
+        /// Starts spawning power attack buttons
+        /// </summary>
         public void Start() {
             comboButtonSpawnRoutine = StartCoroutine(SpawnComboButtons());
         }
 
+        /// <summary>
+        /// Stops spawning power attack buttons.
+        /// </summary>
         public void Stop() {
             if (comboButtonSpawnRoutine == null)
                 return;
@@ -51,10 +68,18 @@ namespace PeppaSquad.Combat {
             }
         }
 
+        /// <summary>
+        /// Spawns a power attack button.
+        /// </summary>
         private void SpawnButton() {
             buttonSpawner.Spawn(AddAttackToButton);
         }
 
+        /// <summary>
+        /// adds the "Attack" method tho the onclick event.
+        /// </summary>
+        /// <param name="buttonGameobject"></param>
+        /// <returns></returns>
         private GameObject AddAttackToButton(GameObject buttonGameobject) {
             var button = buttonGameobject.GetComponentInChildren<Button>();
             button.onClick.AddListener(Attack);
@@ -65,12 +90,21 @@ namespace PeppaSquad.Combat {
             return buttonGameobject;
         }
 
+        /// <summary>
+        /// Coroutine which destroys a gameobject after a given amount of seconds.
+        /// </summary>
+        /// <param name="waitTime">delay before the object is destroyed</param>
+        /// <param name="obj">object to be destroyed</param>
+        /// <returns></returns>
         private IEnumerator DestroyGameobject(float waitTime, GameObject obj) {
             yield return new WaitForSeconds(waitTime);
             Destroy(obj);
             combo.ResetCombo();
         }
 
+        /// <summary>
+        /// Resets the combo
+        /// </summary>
         public void Reset() {
             combo.ResetCombo();
         }

@@ -5,6 +5,9 @@ using UnityEngine;
 using PeppaSquad.Pickups.Effects;
 
 namespace PeppaSquad.Pickups {
+    /// <summary>
+    /// Controlles the pickups (WWs)
+    /// </summary>
     public class PickupController : MonoBehaviour {
 
         [SerializeField]
@@ -25,13 +28,22 @@ namespace PeppaSquad.Pickups {
 
         public bool CanPickUp { get; private set; }
 
+        /// <summary>
+        /// Called when pickup becomes availible/unavailible for pickup
+        /// </summary>
         public event Action<PickupController, bool> OnCanPickUpChanged;
+        /// <summary>
+        /// Called when WW has been picked up
+        /// </summary>
         public event Action<PickupController> PickedUp;
 
         private void Awake() {
             boostEffect = effectSpawner.SpawnRandomBoost();
         }
 
+        /// <summary>
+        /// Makes the WW availible for pickup.
+        /// </summary>
         public void StartPickupWave() {
             if (CanPickUp)
                 return;
@@ -43,6 +55,9 @@ namespace PeppaSquad.Pickups {
             OnCanPickUpChanged?.Invoke(this, true);
         }
 
+        /// <summary>
+        /// Makes the WW unavailible for pickup.
+        /// </summary>
         public void StopPickupWave() {
             if (!CanPickUp)
                 return;
@@ -54,6 +69,11 @@ namespace PeppaSquad.Pickups {
             OnCanPickUpChanged?.Invoke(this, false);
         }
 
+        /// <summary>
+        /// Makes the WW unavailible for pickup after a given amount of seconds.
+        /// </summary>
+        /// <param name="seconds">Delay before stop</param>
+        /// <param name="stoppedWaving">Callback, called when ww stopped waving</param>
         public void StopPickupWaveAfter(float seconds, Action stoppedWaving = null) {
             if (!CanPickUp)
                 return;
@@ -61,6 +81,9 @@ namespace PeppaSquad.Pickups {
             pickupWaveTimer = StartCoroutine(StopPickupWaveTimer(seconds, stoppedWaving));
         }
 
+        /// <summary>
+        /// Called when WW has been pickud up by player
+        /// </summary>
         private void OnPickedUp() {
             input.OnClicked -= OnPickedUp;
             boostEffect.Boost();
@@ -70,6 +93,12 @@ namespace PeppaSquad.Pickups {
             PickedUp?.Invoke(this);
         }
 
+        /// <summary>
+        /// Makes the WW unavailible for pickup after a given amount of seconds.
+        /// </summary>
+        /// <param name="time">Delay before stop</param>
+        /// <param name="stoppedWaving">Callback, called when ww stopped waving</param>
+        /// <returns></returns>
         private IEnumerator StopPickupWaveTimer(float time, Action stoppedWaving) {
             yield return new WaitForSeconds(time);
             StopPickupWave();
