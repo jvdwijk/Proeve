@@ -12,6 +12,11 @@ namespace PeppaSquad.Enemies {
         [SerializeField]
         private float power = 1.3f;
 
+        /// <summary>
+        /// Calculates the health of the new enemy with its level
+        /// </summary>
+        /// <param name="enemyLevel"></param>
+        /// <returns></returns>
         public int CalculateHealth(int enemyLevel) {
             int health = 10;
             health += (int) Mathf.Pow((float) enemyLevel, power);

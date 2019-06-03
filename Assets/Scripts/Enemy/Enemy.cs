@@ -18,7 +18,11 @@ namespace PeppaSquad.Enemies
         {
             this.health = health;
         }
-
+        
+        /// <summary>
+        /// Damages the enemy, and checks if he still has health
+        /// </summary>
+        /// <param name="amount"></param>
         public void Damage(int amount)
         {
             health -= amount;
@@ -30,6 +34,9 @@ namespace PeppaSquad.Enemies
             OnHealthChanged?.Invoke(health);
         }
 
+        /// <summary>
+        /// Destroys the enemy
+        /// </summary>
         private void Die()
         {
             OnDeath?.Invoke();
