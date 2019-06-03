@@ -26,7 +26,7 @@ namespace PeppaSquad.GameFlow {
 
         [SerializeField]
         private Resetter[] resettables;
-        
+
         [SerializeField]
         private MapChanger mapChanger;
 

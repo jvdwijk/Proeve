@@ -18,6 +18,12 @@ namespace PeppaSquad.DataSaving {
             mainDirectoryPath = path;
         }
 
+        /// <summary>
+        /// Checks if a given file exists
+        /// </summary>
+        /// <param name="fileName">Name of the given file</param>
+        /// <param name="subdirectory">The subdirectory to check.</param>
+        /// <returns></returns>
         public bool FileExits(string fileName, string subdirectory = "") {
             string filePath = Path.Combine(mainDirectoryPath, subdirectory, fileName);
             return File.Exists(filePath);

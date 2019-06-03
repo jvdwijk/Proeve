@@ -4,6 +4,9 @@ using UnityEngine;
 using PeppaSquad.Utils;
 
 namespace PeppaSquad.Pickups.Animations {
+    /// <summary>
+    /// Handles the WW's cheer animations
+    /// </summary>
     public class PickupCheerAnimationHandler : MonoBehaviour {
 
         [SerializeField]
@@ -23,11 +26,18 @@ namespace PeppaSquad.Pickups.Animations {
             randomCheerRoutine = StartCoroutine(RandomCheering());
         }
 
+        /// <summary>
+        /// Starts the WW cheer animation
+        /// </summary>
         public void Cheer() {
             animator.SetBool(cheerAnimationKey, true);
             StartCoroutine(CheerCoroutine());
         }
 
+        /// <summary>
+        /// Makes the WW cheer after random amounts of time
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator RandomCheering() {
             while (true) {
                 yield return new WaitForSeconds(cheerCooldownRange.GetRandom());
@@ -35,6 +45,10 @@ namespace PeppaSquad.Pickups.Animations {
             }
         }
 
+        /// <summary>
+        /// Stops the cheereing animation after a certain amount of time.
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator CheerCoroutine() {
             yield return new WaitForSeconds(cheerTime);
             animator.SetBool(cheerAnimationKey, false);

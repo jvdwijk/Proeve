@@ -12,6 +12,9 @@ namespace PeppaSquad.GameFlow {
         [SerializeField]
         private string sceneName;
 
+        /// <summary>
+        /// Called on game unlock
+        /// </summary>
         public event Action OnUnlocked;
 
         private void Awake() {
@@ -22,16 +25,24 @@ namespace PeppaSquad.GameFlow {
                 OnUnlocked?.Invoke();
         }
 
+        /// <summary>
+        /// Unlocks the game
+        /// </summary>
         public void Unlock() {
             BoolPlayerPrefs.SetBool(gameUnlockKey, true);
             OnUnlocked?.Invoke();
         }
 
+        /// <summary>
+        /// Loads the next scene
+        /// </summary>
         private void LoadNextScene() {
-            //TODO loading screen
             SceneManager.LoadScene(sceneName);
         }
 
+        /// <summary>
+        /// Locks the game.
+        /// </summary>
         [ContextMenu("Reset Unlock")]
         private void ResetGameUnlock() {
             BoolPlayerPrefs.SetBool(gameUnlockKey, false);

@@ -20,6 +20,11 @@ namespace PeppaSquad.GameFlow {
             trackableBehavior?.RegisterTrackableEventHandler(this);
         }
 
+        /// <summary>
+        /// Handles a change in tracking state (called by an instance of trackablebehavior).
+        /// </summary>
+        /// <param name="previousStatus"></param>
+        /// <param name="newStatus"></param>
         public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus) {
 
             transform.localScale = Vector3.one;
@@ -33,11 +38,23 @@ namespace PeppaSquad.GameFlow {
             }
         }
 
+        /// <summary>
+        /// Checks if the TrackableBehaviour lost the marker. 
+        /// </summary>
+        /// <param name="previousStatus"></param>
+        /// <param name="newStatus"></param>
+        /// <returns></returns>
         private bool LostTracking(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus) {
             return newStatus == TrackableBehaviour.Status.NO_POSE && previousStatus == TrackableBehaviour.Status.EXTENDED_TRACKED ||
                 newStatus == TrackableBehaviour.Status.NO_POSE && previousStatus == TrackableBehaviour.Status.TRACKED;
         }
 
+        /// <summary>
+        /// checks if this this is the first time the TrackableBehaviour tracked the marker. 
+        /// </summary>
+        /// <param name="previousStatus"></param>
+        /// <param name="newStatus"></param>
+        /// <returns></returns>
         private bool TrackedFirstTime(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus) {
             return newStatus == TrackableBehaviour.Status.TRACKED && !hasAlreadyTracked;
         }
