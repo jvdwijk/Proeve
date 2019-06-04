@@ -4520,6 +4520,11 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 1017758675}
+    - target: {fileID: 7984368515853371568, guid: 1c7e61b30199cd147ac228839d9ee20c,
+        type: 3}
+      propertyPath: speed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9104502949864468428, guid: 1c7e61b30199cd147ac228839d9ee20c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1c7e61b30199cd147ac228839d9ee20c, type: 3}
