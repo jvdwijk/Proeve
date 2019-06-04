@@ -19,6 +19,8 @@ namespace PeppaSquad.Pickups {
         private List<PickupController> pickups;
         private List<PickupController> disabledPickups = new List<PickupController>();
 
+        private Coroutine spawnRoutine;
+
         /// <summary>
         /// Time range before next WW starts pickup-waving
         /// </summary>
@@ -33,7 +35,22 @@ namespace PeppaSquad.Pickups {
         /// </summary>
         /// <returns></returns>
         public void StartSpawningPickups() {
-            StartCoroutine(SpawnPickups());
+            spawnRoutine = StartCoroutine(SpawnPickups());
+        }
+
+        public void StopSpawningPickups() {
+            if (spawnRoutine != null)
+                StopCoroutine(spawnRoutine);
+
+            foreach (var pickup in pickups) {
+                pickup.StopPickupWave();
+                disabledPickups.Remove(pickup);
+                pickups.Add(pickup);
+            }
+        }
+
+        private void OnDisable() {
+            StopSpawningPickups();
         }
 
         /// <summary>
