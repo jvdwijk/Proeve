@@ -51,6 +51,7 @@ namespace PeppaSquad.GameFlow {
                 resettable.TriggerReset();
             }
             comboAttack.Stop();
+            timer.StopTimer();
         }
 
         /// <summary>
