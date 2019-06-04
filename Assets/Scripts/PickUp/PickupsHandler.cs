@@ -28,10 +28,6 @@ namespace PeppaSquad.Pickups {
         /// </summary>
         public NumberRange WaveTime => waveTimeRange;
 
-        private void Awake() {
-            StartSpawningPickups();
-        }
-
         /// <summary>
         /// Starts making WWs availible for pickup
         /// </summary>

@@ -13,7 +13,7 @@ namespace PeppaSquad.GameFlow {
         private EnemyTracker enemyTracker;
 
         [SerializeField]
-        private PickupSpawner pickupHandler;
+        private PickupsHandler pickupHandler;
 
         [SerializeField]
         private Timer timer;
