@@ -18,12 +18,18 @@ namespace PeppaSquad.Pickups
 
         public float Delay => delay;
 
+        /// <summary>
+        /// gets the respawn boost level from playerstattype
+        /// </summary>
         private void Awake(){
             stat = playerStatsHandler.GetOrCreateStat(PlayerStatType.BoostRespawn);
             RespawnCalculator();
             stat.StatChanged += (value) => RespawnCalculator();
         }
 
+        /// <summary>
+        /// Calculates the new respawn speed delay
+        /// </summary>
         private void RespawnCalculator(){
            delay = respawnBaseValue + (respawnDivisibleValue / (stat.Value * respawnMultiplicationValue));
            pickUpsHandler.SetDelayValue(delay);
