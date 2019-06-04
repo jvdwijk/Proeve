@@ -16,11 +16,14 @@ namespace PeppaSquad.Combat {
         [SerializeField]
         private int baseDamage = 5;
 
+        /// <summary>
+        /// Calculates the damage of an attack using the playerstats and the currently activated boosts.
+        /// </summary>
+        /// <returns>attack damage</returns>
         public virtual int CalculateDamage() {
             var playerDamageLevel = playerStats.GetOrCreateStat(PlayerStatType.Damage);
             var damageBoostLevel = boostStats?.GetOrCreateStat(BoostType.Damage);
 
-            //TODO Make and test better damage calculation
             int attackDamage = baseDamage + Mathf.RoundToInt(3.5f * playerDamageLevel.Value) + Mathf.RoundToInt(2 * damageBoostLevel.Value);
 
             return attackDamage;

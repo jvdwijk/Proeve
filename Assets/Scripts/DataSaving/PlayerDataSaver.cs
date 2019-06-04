@@ -81,6 +81,9 @@ namespace PeppaSquad.DataSaving {
             return Path.Combine(Application.persistentDataPath, appdataSubDirectory);
         }
 
+        /// <summary>
+        /// Handles the IsDirty proterty.
+        /// </summary>
         private void HandleSetDirty() {
             var playerStatTypes = Enum.GetValues(typeof(PlayerStatType));
             foreach (PlayerStatType statType in playerStatTypes) {

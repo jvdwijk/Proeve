@@ -5,6 +5,9 @@ using PeppaSquad.Score;
 using TMPro;
 
 namespace PeppaSquad.UI {
+    /// <summary>
+    /// Handles the highscore UI
+    /// </summary>
     public class HighscoreUI : MonoBehaviour {
         [SerializeField]
         private TextMeshProUGUI scoreText;
@@ -17,6 +20,10 @@ namespace PeppaSquad.UI {
             scoreHandler.HighscoreChanged += SetScore;
         }
 
+        /// <summary>
+        /// Sets the highscore UI
+        /// </summary>
+        /// <param name="score">the new score</param>
         public void SetScore(int score) {
             scoreText.text = score.ToString();
         }

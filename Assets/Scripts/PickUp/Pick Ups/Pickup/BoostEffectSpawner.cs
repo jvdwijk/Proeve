@@ -9,6 +9,10 @@ namespace PeppaSquad.Pickups {
         [SerializeField]
         private BoostEffect[] boosts;
 
+        /// <summary>
+        /// Spawns random boost effect
+        /// </summary>
+        /// <returns>The boost effect</returns>
         public BoostEffect SpawnRandomBoost() {
             int boostIndex = Random.Range(0, boosts.Length);
             BoostEffect prefab = boosts[boostIndex];
