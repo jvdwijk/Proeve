@@ -10,45 +10,48 @@ Snackvasion is een Endless Beat 'em up voor Android. Het is een Augmented Realit
 
 ## Om te beginnen
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Volg deze stappen om het spel te spelen.
 
 ### Vereisten
 
-What things you need to install the software and how to install them
 
 ```
-Give examples
+Android mobiel met camera
+```
+```
+De Marker voor het spel
+```
+```
+De APK
 ```
 
 ### Installeren
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
 
 ```
-Give the example
+Download de APK.
 ```
 
-And repeat
-
 ```
-until finished
+Bij settings, enable unknown sources / onbekende bronnen
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+```
+Installeer de APK
+```
+
 
 ## Teamleden
 Links van de teamleden van dit project.
 
 Development
-* **Joey van der Wijk** - *Lead Developer* - [Github](https://github.com/jvdwijk) [Portfolio](https://placeholder.com)
-* **Justin van Gemen** - *Developer* - [Github](https://github.com/JustinvanGemen) [Portfolio](https://placeholder.com)
-* **Coen Steuns** - *Developer* - [Github](https://github.com/CoenSteuns)[Portfolio](https://placeholder.com)
+* **Joey van der Wijk** - *Lead Developer* - [Github](https://github.com/jvdwijk) [Portfolio](http://jvdwijk.com/)
+* **Justin van Gemen** - *Developer* - [Github](https://github.com/JustinvanGemen) [Portfolio](http://justinvg.nl/)
+* **Coen Steuns** - *Developer* - [Github](https://github.com/CoenSteuns) [Portfolio](http://coensteuns.nl/)
 
 Art
-* **Nick Schrama** - *Lead Artist* - [Github](https://github.com/Nickschrama) [Portfolio](https://placeholder.com)
-* **Djanco Dewus** - *Artist* - [Github](https://github.com/djancool) [Portfolio](https://placeholder.com)
-* **Carlos Rus** - *Artist* - [Github](https://github.com/_____) [Portfolio](https://placeholder.com)
-* **Zakaria Marghich** - *Artist* - [Github](https://github.com/_____) [Portfolio](https://placeholder.com)
+* **Nick Schrama** - *Lead Artist* - [Github](https://github.com/Nickschrama)
+* **Djanco Dewus** - *Artist* - [Github](https://github.com/djancool) [Portfolio](http://www.djancodewus.com/)
+* **Carlos Rus** - *Artist* - [Portfolio](https://www.artstation.com/carlosrusart)
+* **Zakaria Marghich** - *Artist* - [Portfolio](https://www.artstation.com/zm_art)
 
