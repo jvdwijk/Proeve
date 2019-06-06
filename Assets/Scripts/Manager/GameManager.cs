@@ -13,7 +13,7 @@ namespace PeppaSquad.GameFlow {
         private EnemyTracker enemyTracker;
 
         [SerializeField]
-        private PickupSpawner pickupHandler;
+        private PickupsHandler pickupHandler;
 
         [SerializeField]
         private Timer timer;
@@ -26,7 +26,7 @@ namespace PeppaSquad.GameFlow {
 
         [SerializeField]
         private Resetter[] resettables;
-        
+
         [SerializeField]
         private MapChanger mapChanger;
 
@@ -51,6 +51,7 @@ namespace PeppaSquad.GameFlow {
                 resettable.TriggerReset();
             }
             comboAttack.Stop();
+            timer.StopTimer();
         }
 
         /// <summary>

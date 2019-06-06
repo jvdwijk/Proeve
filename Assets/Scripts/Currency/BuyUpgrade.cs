@@ -18,19 +18,29 @@ namespace PeppaSquad.Currency
         private int currentLevel;
         public int Currentlevel => currentLevel;
 
+        /// <summary>
+        /// This start makes sure that the stats taken from the playerprefs are shown visually.
+        /// </summary>
         private void Start()
         {
-            //After taking the saved stats, the values in the shop should update to stay consistent with that.
+            
+            currentLevel = (int)playerStatsHandler.GetOrCreateStat(stat).Value;
             UpdateText();
 
         }
 
+        /// <summary>
+        /// Updates the text in the shop
+        /// </summary>
         private void UpdateText()
         {
             upgradeCostText.text = Mathf.Abs(upgradeCost).ToString();
             currentLevelText.text = currentLevel.ToString();
         }
 
+        /// <summary>
+        /// Upgrades a stat when the player buys an upgrade in the store.
+        /// </summary>
         public void Upgrade()
         {
             if (playerCurrency.Currency < Mathf.Abs(upgradeCost)) 

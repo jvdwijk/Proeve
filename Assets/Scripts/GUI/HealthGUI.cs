@@ -19,16 +19,28 @@ namespace PeppaSquad.UI {
         private float currentGoal;
         private Coroutine healthCoroutine;
 
+        /// <summary>
+        /// Changes the health timer
+        /// </summary>
+        /// <param name="health"></param>
         public void ChangeHealth(int health) {
             currentGoal = (float) health / maxHealth;
             if (healthCoroutine == null) healthCoroutine = StartCoroutine(HealthUpdate());
         }
 
+        /// <summary>
+        /// Change the max health
+        /// </summary>
+        /// <param name="health">The new max health</param>
         public void SetMaxHealth(int health) {
             maxHealth = health;
             ChangeHealth(health);
         }
 
+        /// <summary>
+        /// Lerps the health bar
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator HealthUpdate() {
             while ((healthBar.fillAmount - currentGoal) > lerpPrecision) {
                 healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, currentGoal, Time.deltaTime * speed);

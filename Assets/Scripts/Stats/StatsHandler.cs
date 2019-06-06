@@ -4,10 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace PeppaSquad.Stats {
-
+    /// <summary>
+    /// Tracks a list of stats.
+    /// </summary>
+    /// <typeparam name="StatName">The list in the form of an enum</typeparam>
     public class StatsHandler<StatName> : StatsHandler<StatName, Stat<StatName>>
         where StatName : System.Enum { }
 
+    /// <summary>
+    /// Tracks a list of stats.
+    /// </summary>
+    /// <typeparam name="StatName">The list in the form of an enum</typeparam>
+    /// <typeparam name="StatType">A custom type of stat</typeparam>
     public class StatsHandler<StatName, StatType> : MonoBehaviour
     where StatName : System.Enum
     where StatType : Stat<StatName>, new() {
@@ -64,10 +72,14 @@ namespace PeppaSquad.Stats {
             StatCreated?.Invoke(newStat);
         }
 
-        public void ForEachStat(EditStat call) {
+        /// <summary>
+        /// Loops through all stats and references them to the modifier function
+        /// </summary>
+        /// <param name="modifier">the modifier function</param>
+        public void ForEachStat(EditStat modifier) {
             foreach (var statKeyValue in stats) {
                 StatType stat = statKeyValue.Value;
-                call?.Invoke(ref stat);
+                modifier?.Invoke(ref stat);
             }
         }
     }

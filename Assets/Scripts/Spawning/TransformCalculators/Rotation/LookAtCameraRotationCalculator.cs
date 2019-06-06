@@ -11,6 +11,11 @@ namespace PeppaSquad.Spawning.TransformCalculators.Rotation {
         [SerializeField]
         public Vector3 offset;
 
+        /// <summary>
+        /// Calculates the rotation for the given object to look at the camera
+        /// </summary>
+        /// <param name="obj">the given object</param>
+        /// <returns>the calculated rotation</returns>
         public override Quaternion CalculateRotation(Transform obj) {
             Camera usedCamera = camera != null ? camera : Camera.main;
             Vector3 relativePos = usedCamera.transform.position - obj.position;

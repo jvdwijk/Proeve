@@ -4,6 +4,9 @@ using UnityEngine;
 using PeppaSquad.Spawning.TransformCalculators.Base;
 
 namespace PeppaSquad.Spawning.TransformCalculators.Position {
+    /// <summary>
+    /// Calculates a position within a cuboid
+    /// </summary>
     public class CubePositionCalculator : PositionCalculator {
         [SerializeField]
         public Vector3 offset = Vector3.zero;
@@ -16,6 +19,11 @@ namespace PeppaSquad.Spawning.TransformCalculators.Position {
         [SerializeField]
         private bool gizmoDrawArea;
 
+        /// <summary>
+        /// Calculates a position within a cuboid
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>the calculated position</returns>
         public override Vector3 CalculatePosition(Transform obj) {
             Vector3 randomVector = GetRandomVectorInRange();
             randomVector += offset;
@@ -25,6 +33,10 @@ namespace PeppaSquad.Spawning.TransformCalculators.Position {
             return randomVector;
         }
 
+        /// <summary>
+        /// Calculates the actual position
+        /// </summary>
+        /// <returns>a position within a cuboid</returns>
         private Vector3 GetRandomVectorInRange() {
             var x = Random.Range(-size.x / 2, size.x / 2);
             var y = Random.Range(-size.y / 2, size.y / 2);

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace PeppaSquad.Utils {
+    /// <summary>
+    /// Tracks the combo.
+    /// </summary>
     public class ComboCounter : MonoBehaviour {
 
         [SerializeField]
@@ -15,9 +18,19 @@ namespace PeppaSquad.Utils {
         public int CurrentCombo => currentCombo;
         public int HighestCombo => highestCombo;
 
+        /// <summary>
+        /// Called when the current combo changed.
+        /// </summary>
         public event Action<ComboCounter> ComboChanged;
+
+        /// <summary>
+        /// Called when a new highscore has been set.
+        /// </summary>
         public event Action<ComboCounter> HighestComboChanged;
 
+        /// <summary>
+        /// Increases the combo by 1;
+        /// </summary>
         public void Increase() {
             if (maxCombo > 0 && currentCombo >= maxCombo)
                 return;
@@ -29,6 +42,9 @@ namespace PeppaSquad.Utils {
             ComboChanged?.Invoke(this);
         }
 
+        /// <summary>
+        /// Decreases the combo by 1;
+        /// </summary>
         public void Decrease() {
             if (currentCombo < 1)
                 return;
@@ -37,6 +53,9 @@ namespace PeppaSquad.Utils {
             ComboChanged?.Invoke(this);
         }
 
+        /// <summary>
+        /// Resets the combo to it's starting value (0).
+        /// </summary>
         public void ResetCombo() {
             if (currentCombo == 0)
                 return;
