@@ -37,6 +37,13 @@ namespace PeppaSquad.UI {
             ChangeHealth(health);
         }
 
+        private void OnDisable() {
+            if (healthCoroutine != null) {
+                StopCoroutine(healthCoroutine);
+                healthCoroutine = null;
+            }
+        }
+
         /// <summary>
         /// Lerps the health bar
         /// </summary>

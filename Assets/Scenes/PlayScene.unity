@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3608,6 +3608,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1879388230, guid: 20a0d0cc35e5919488cfe24ff1d187fe,
         type: 3}
+    - target: {fileID: 627055076369574568, guid: 18ccc87e9994e634b9e753d05e15e3fb,
+        type: 3}
+      propertyPath: mapChanger
+      value: 
+      objectReference: {fileID: 1017758678}
     - target: {fileID: 627055076369574570, guid: 18ccc87e9994e634b9e753d05e15e3fb,
         type: 3}
       propertyPath: playerCombat
@@ -5350,6 +5355,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2048289727}
     - target: {fileID: 1476964095814091678, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerStatsHandler
+      value: 
+      objectReference: {fileID: 347061471}
+    - target: {fileID: 1476964096429152523, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerStatsHandler
+      value: 
+      objectReference: {fileID: 347061471}
+    - target: {fileID: 1476964097002917247, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerStatsHandler
+      value: 
+      objectReference: {fileID: 347061471}
+    - target: {fileID: 1476964097068811622, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerStatsHandler
+      value: 
+      objectReference: {fileID: 347061471}
+    - target: {fileID: 1476964097282821945, guid: 9f486f9a76537144e9313fb938f2c655,
+        type: 3}
+      propertyPath: playerStatsHandler
+      value: 
+      objectReference: {fileID: 347061471}
+    - target: {fileID: 3797523213936248384, guid: 9f486f9a76537144e9313fb938f2c655,
         type: 3}
       propertyPath: playerStatsHandler
       value: 
