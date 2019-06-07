@@ -13,8 +13,8 @@ public class MapChanger : Resetter {
     /// </summary>
     public void ChangeMap() {
         var mapNumber = UnityEngine.Random.Range(0, maps.Length);
-        maps[mapNumber].SetActive(true);
         currentMap?.SetActive(false);
+        maps[mapNumber].SetActive(true);
         currentMap = maps[mapNumber];
         currentMap.GetComponentInChildren<PickupsHandler>().StartSpawningPickups();
     }
