@@ -22,6 +22,9 @@ namespace PeppaSquad.Pickups {
         [SerializeField]
         private Animator animator;
 
+         [SerializeField]
+        private ParticleSystem edibleParticleSystem;
+
         private Coroutine pickupWaveTimer;
 
         private const string WaveAnimationKey = "IsWaving";
@@ -50,6 +53,7 @@ namespace PeppaSquad.Pickups {
 
             input.OnClicked += OnPickedUp;
             CanPickUp = true;
+            edibleParticleSystem.gameObject.SetActive(true);
 
             animator.SetBool(WaveAnimationKey, true);
             OnCanPickUpChanged?.Invoke(this, true);
@@ -64,6 +68,7 @@ namespace PeppaSquad.Pickups {
 
             input.OnClicked -= OnPickedUp;
             CanPickUp = false;
+            edibleParticleSystem.gameObject.SetActive(false);
 
             animator.SetBool(WaveAnimationKey, false);
             OnCanPickUpChanged?.Invoke(this, false);
