@@ -53,6 +53,10 @@ namespace PeppaSquad.Pickups {
             StopSpawningPickups();
         }
 
+        private void OnEnable(){
+            
+        }
+
         /// <summary>
         /// Starts making WWs availible for pickup
         /// </summary>

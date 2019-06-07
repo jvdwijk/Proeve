@@ -8,6 +8,8 @@ public class MapChanger : Resetter {
     private GameObject[] maps;
     private GameObject currentMap;
 
+    private PickupsHandler pickupHandler;
+
     /// <summary>
     /// Randomizes what map the game uses.
     /// </summary>
@@ -16,7 +18,9 @@ public class MapChanger : Resetter {
         maps[mapNumber].SetActive(true);
         currentMap?.SetActive(false);
         currentMap = maps[mapNumber];
-        currentMap.GetComponentInChildren<PickupsHandler>().StartSpawningPickups();
+        pickupHandler = currentMap.GetComponentInChildren<PickupsHandler>();
+        
+        pickupHandler.StartSpawningPickups();
     }
 
     public override void TriggerReset() {
