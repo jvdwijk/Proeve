@@ -16,6 +16,7 @@ namespace PeppaSquad.Currency
         [SerializeField] private PlayerStatsHandler playerStatsHandler;
         [SerializeField] private EnemyTracker enemyTracker;
         [SerializeField] private TMP_Text currencyText;
+        [SerializeField] private TMP_Text currencyTextScene;
         private Stat<PlayerStatType> statCurrency;
 
         /// <summary>
@@ -37,6 +38,7 @@ namespace PeppaSquad.Currency
             currency += updateAmount;
             statCurrency.SetValue(currency);
             currencyText.text = currency.ToString();
+            currencyTextScene.text = currency.ToString();
         }
     }
 }
