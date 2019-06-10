@@ -30,16 +30,20 @@ namespace PeppaSquad.Enemies {
         /// <param name="amount"></param>
         public void Damage(int amount, HitDirection dir = HitDirection.Default) {
 
-            if (directionKeys.ContainsKey(dir)) {
+            if (health == 0)
+                return;
+
+            health -= amount;
+            health = Mathf.Clamp(health, 0, int.MaxValue);
+
+            if (directionKeys.ContainsKey(dir) && animator != null) {
                 var animationKey = directionKeys[dir];
 
                 animator.SetTrigger(animationKey);
             }
 
-            health -= amount;
             if (health <= 0) {
-                Die();
-                return;
+                StartDEath();
             }
             OnHealthChanged?.Invoke(health);
         }
@@ -47,23 +51,30 @@ namespace PeppaSquad.Enemies {
         /// <summary>
         /// Destroys the enemy
         /// </summary>
-        private void Die() {
+        private void StartDEath() {
             StartCoroutine(DieRoutine());
         }
 
+        private void Die() {
+            DestroyImmediate(this.gameObject);
+            OnDeath?.Invoke();
+        }
+
         private IEnumerator DieRoutine() {
+            if (animator == null) {
+                Die();
+                yield break;
+            }
+
             animator.SetTrigger(deathAnimationKey);
 
             while (!animator.GetCurrentAnimatorStateInfo(0).IsName("despawn")) {
                 yield return null;
             }
-
-            while (animator.GetCurrentAnimatorStateInfo(0).IsName("despawn") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime == 1) {
-                print(animator.GetCurrentAnimatorStateInfo(0).normalizedTime + "  " + animator.GetCurrentAnimatorStateInfo(0).IsName("despawn"));
+            while (animator.GetCurrentAnimatorStateInfo(0).IsName("despawn") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
                 yield return null;
             }
-            OnDeath?.Invoke();
-            Destroy(gameObject);
+            Die();
         }
     }
 }
