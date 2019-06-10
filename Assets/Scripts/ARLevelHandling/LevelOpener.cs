@@ -16,6 +16,9 @@ namespace PeppaSquad.GameFlow {
         [SerializeField]
         private GameObject level;
 
+        [SerializeField]
+        private GameManager gameManager;
+
         private void Awake() {
             trackableBehavior?.RegisterTrackableEventHandler(this);
         }
@@ -35,6 +38,12 @@ namespace PeppaSquad.GameFlow {
 
             if (LostTracking(previousStatus, newStatus)) {
                 transform.localScale = Vector3.zero;
+            }
+
+            if (newStatus == TrackableBehaviour.Status.TRACKED || newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED) {
+                gameManager.SetMarkerScanned(true);
+            } else {
+                gameManager.SetMarkerScanned(false);
             }
         }
 
