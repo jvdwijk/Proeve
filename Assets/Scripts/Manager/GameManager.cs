@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PeppaSquad.Combat;
@@ -19,7 +20,7 @@ namespace PeppaSquad.GameFlow {
         private Timer timer;
 
         [SerializeField]
-        private GameObject pauseUI;
+        private GameObject pauseUIMenu, pauseUIButton, pauseBlockUI, scanUI;
 
         [SerializeField]
         private PowerAttack comboAttack;
@@ -32,10 +33,32 @@ namespace PeppaSquad.GameFlow {
 
         private float timeScaleOnPause;
 
+        private bool markerScanned, gameRunning = false;
+
+        public void UserStartedGame() {
+            StartCoroutine(ScanForMarker(() => {
+                StartGame();
+            }));
+        }
+
+        public void SetMarkerScanned(bool markerScanned) {
+            this.markerScanned = markerScanned;
+
+            if (!markerScanned && gameRunning) {
+                PausesGame(true);
+                pauseUIButton.SetActive(false);
+                StartCoroutine(ScanForMarker(() => {
+                    PausesGame(false);
+                    pauseUIButton.SetActive(true);
+                }));
+            }
+        }
+
         /// <summary>
         /// Triggers all the scripts needed to start the game.
         /// </summary>
         public void StartGame() {
+            gameRunning = true;
             mapChanger.ChangeMap();
             enemyTracker.StartSpawning();
             timer?.StartTimer();
@@ -47,6 +70,8 @@ namespace PeppaSquad.GameFlow {
         /// Resets the given resettables to stop the game.
         /// </summary>
         public void ResetGame() {
+            gameRunning = false;
+            print("Resetin");
             foreach (Resetter resettable in resettables) {
                 resettable.TriggerReset();
             }
@@ -54,15 +79,29 @@ namespace PeppaSquad.GameFlow {
             timer.StopTimer();
         }
 
+        private void PausesGame(bool pause) {
+            timer.Paused = pause;
+            timeScaleOnPause = pause ? Time.timeScale : timeScaleOnPause;
+            Time.timeScale = pause ? 0 : timeScaleOnPause;
+            pauseBlockUI.SetActive(pause);
+        }
+
         /// <summary>
         /// stops the time to pause the game. 
         /// </summary>
         /// <param name="pause"></param>
-        public void PauseGame(bool pause) {
-            timer.Paused = pause;
-            timeScaleOnPause = pause ? Time.timeScale : timeScaleOnPause;
-            Time.timeScale = pause ? 0 : timeScaleOnPause;
-            pauseUI.SetActive(pause);
+        public void UserPauseGame(bool pause) {
+            PausesGame(pause);
+            pauseUIMenu.SetActive(pause);
+        }
+
+        private IEnumerator ScanForMarker(Action onmarkerScanned) {
+            scanUI.SetActive(true);
+            while (!markerScanned)
+                yield return null;
+
+            scanUI.SetActive(false);
+            onmarkerScanned?.Invoke();
         }
     }
 }
