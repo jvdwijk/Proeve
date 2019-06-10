@@ -17,10 +17,17 @@ namespace PeppaSquad.UI {
         private float lerpSpeed;
 
         private void Awake() {
-
             lerpSpeed = lerpSpeed <= 0 ? 1 : lerpSpeed;
-            timer.TimerUpdated += UpdateTimer;
             timer.TimerReset += () => StartCoroutine(LerpToCurrent());
+        }
+
+        private void OnEnable() {
+            timer.TimerUpdated += UpdateTimer;
+        }
+
+        private void OnDisable() {
+            timer.TimerUpdated -= UpdateTimer;
+            UpdateTimer(timer.CurrentTime);
         }
 
         /// <summary>

@@ -32,7 +32,6 @@ namespace PeppaSquad.Enemies {
         public event Action OnBossDefeat;
 
         public override void TriggerReset() {
-            print("tracker Reset");
             enemyLevel = 1;
             if (currentEnemy != null) Destroy(currentEnemy.gameObject);
             currentEnemy = null;
