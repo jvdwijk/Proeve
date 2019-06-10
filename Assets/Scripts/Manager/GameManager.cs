@@ -33,7 +33,8 @@ namespace PeppaSquad.GameFlow {
 
         private float timeScaleOnPause;
 
-        private bool markerScanned, gameRunning = false;
+        private bool gamePaused = false;
+        private bool markerScanned = false, menuOpen = false, gameRunning = false;
 
         public void UserStartedGame() {
             StartCoroutine(ScanForMarker(() => {
@@ -43,12 +44,17 @@ namespace PeppaSquad.GameFlow {
 
         public void SetMarkerScanned(bool markerScanned) {
             this.markerScanned = markerScanned;
+            TryStartGame();
+        }
 
+        public void TryStartGame() {
             if (!markerScanned && gameRunning) {
-                PausesGame(true);
+                PauseGame(true);
+                BlockCombat(true);
                 pauseUIButton.SetActive(false);
                 StartCoroutine(ScanForMarker(() => {
-                    PausesGame(false);
+                    PauseGame(false);
+                    BlockCombat(false);
                     pauseUIButton.SetActive(true);
                 }));
             }
@@ -71,7 +77,6 @@ namespace PeppaSquad.GameFlow {
         /// </summary>
         public void ResetGame() {
             gameRunning = false;
-            print("Resetin");
             foreach (Resetter resettable in resettables) {
                 resettable.TriggerReset();
             }
@@ -79,19 +84,37 @@ namespace PeppaSquad.GameFlow {
             timer.StopTimer();
         }
 
-        private void PausesGame(bool pause) {
+        public void PauseGame(bool pause) {
+
+            if (pause == gamePaused)
+                return;
+
+            if (pause == false && markerScanned == false ||
+                pause == false && menuOpen == true) {
+                return;
+            }
+
+            gamePaused = pause;
             timer.Paused = pause;
             timeScaleOnPause = pause ? Time.timeScale : timeScaleOnPause;
             Time.timeScale = pause ? 0 : timeScaleOnPause;
-            pauseBlockUI.SetActive(pause);
+        }
+
+        private void BlockCombat(bool block) {
+            pauseBlockUI.SetActive(block);
+        }
+
+        public void PauseGameWithUI(bool pause) {
+            menuOpen = pause;
+            PauseGame(pause);
         }
 
         /// <summary>
         /// stops the time to pause the game. 
         /// </summary>
         /// <param name="pause"></param>
-        public void UserPauseGame(bool pause) {
-            PausesGame(pause);
+        public void OpenPauseMenu(bool pause) {
+            PauseGameWithUI(pause);
             pauseUIMenu.SetActive(pause);
         }
 
