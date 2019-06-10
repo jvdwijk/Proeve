@@ -14,12 +14,13 @@ public class MapChanger : Resetter {
     /// Randomizes what map the game uses.
     /// </summary>
     public void ChangeMap() {
-        var mapNumber = UnityEngine.Random.Range(0, maps.Length);
+        int mapNumber = UnityEngine.Random.Range(0, maps.Length);
         maps[mapNumber].SetActive(true);
+
         currentMap?.SetActive(false);
         currentMap = maps[mapNumber];
+
         pickupHandler = currentMap.GetComponentInChildren<PickupsHandler>();
-        
         pickupHandler.StartSpawningPickups();
     }
 
