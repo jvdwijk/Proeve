@@ -14,11 +14,13 @@ namespace PeppaSquad.Enemies {
         };
 
         private string deathAnimationKey = "Died";
+        private string despawnAnimationstateName = "despawn";
 
         public int Health { get { return health; } }
 
         public event Action<int> OnHealthChanged;
         public event Action OnDeath;
+        public event Action OnDefeated;
 
         public void Init(int health = 100) {
             this.health = health;
@@ -43,7 +45,7 @@ namespace PeppaSquad.Enemies {
             }
 
             if (health <= 0) {
-                StartDEath();
+                StartDeath();
             }
             OnHealthChanged?.Invoke(health);
         }
@@ -51,7 +53,8 @@ namespace PeppaSquad.Enemies {
         /// <summary>
         /// Destroys the enemy
         /// </summary>
-        private void StartDEath() {
+        private void StartDeath() {
+            OnDefeated?.Invoke();
             StartCoroutine(DieRoutine());
         }
 
@@ -68,10 +71,10 @@ namespace PeppaSquad.Enemies {
 
             animator.SetTrigger(deathAnimationKey);
 
-            while (!animator.GetCurrentAnimatorStateInfo(0).IsName("despawn")) {
+            while (!animator.GetCurrentAnimatorStateInfo(0).IsName(despawnAnimationstateName)) {
                 yield return null;
             }
-            while (animator.GetCurrentAnimatorStateInfo(0).IsName("despawn") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
+            while (animator.GetCurrentAnimatorStateInfo(0).IsName(despawnAnimationstateName) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
                 yield return null;
             }
             Die();
