@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using PeppaSquad.Utils;
 
 namespace PeppaSquad.Pickups {
     public class PickupSpawner : Resetter {
+        
+        [SerializeField]
+        private NumberRange numberRandomizer;
 
         [SerializeField]
         private GameObject redWWPrefab, yellowWWPrefab, blueWWPrefab;
@@ -20,6 +25,7 @@ namespace PeppaSquad.Pickups {
         }
 
         public void SpawnPickups () {
+
             throw new System.NotImplementedException ();
         }
 
@@ -28,6 +34,12 @@ namespace PeppaSquad.Pickups {
             {
                 Destroy(position.GetChild(0).gameObject);
             }
+        }
+
+        private int GetRandomEmptySpot(){
+            int newNumber = (int)numberRandomizer.GetRandom();
+            if(spawnPositions[newNumber].childCount > 0) return -1;
+            return newNumber;
         }
     }
 }

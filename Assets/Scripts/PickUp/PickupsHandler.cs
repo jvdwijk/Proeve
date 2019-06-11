@@ -65,7 +65,7 @@ namespace PeppaSquad.Pickups {
             while (true) {
                 StartWaving();
 
-                float delay = PickupWaveCooldown.GetRandom();
+                float delay = pickupWaveCooldownRange.GetRandom();
                 yield return new WaitForSeconds(delay);
             }
         }
