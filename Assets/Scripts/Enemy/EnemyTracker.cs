@@ -22,7 +22,7 @@ namespace PeppaSquad.Enemies {
         [SerializeField]
         private EnemyHealthCalculator healthCalculator;
 
-        private int enemyLevel = 1;
+        private int enemyLevel = 0;
 
         private Enemy currentEnemy;
 
@@ -32,7 +32,7 @@ namespace PeppaSquad.Enemies {
         public event Action OnBossDefeat;
 
         public override void TriggerReset() {
-            enemyLevel = 1;
+            enemyLevel = 0;
             if (currentEnemy != null) Destroy(currentEnemy.gameObject);
             currentEnemy = null;
 
@@ -48,6 +48,7 @@ namespace PeppaSquad.Enemies {
         /// </summary>
         private void SpawnEnemy() {
 
+            enemyLevel++;
             currentEnemy = enemyLevel % 5 == 0 ? enemySpawner.SpawnBoss() : enemySpawner.SpawnEnemy();
 
             int health = healthCalculator.CalculateHealth(enemyLevel);
@@ -64,7 +65,6 @@ namespace PeppaSquad.Enemies {
 
             playerCombat.CurrentEnemy = currentEnemy;
 
-            enemyLevel++;
             ScoreHandlerSingleton.Instance?.SetScore(enemyLevel);
         }
     }

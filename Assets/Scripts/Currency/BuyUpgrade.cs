@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using PeppaSquad.Stats.PlayerStats;
+using TMPro;
 
-namespace PeppaSquad.Currency
-{
-    public class BuyUpgrade : MonoBehaviour
-    {
+namespace PeppaSquad.Currency {
+    public class BuyUpgrade : MonoBehaviour {
         [SerializeField] private PlayerStatType stat;
         [SerializeField] private PlayerStatsHandler playerStatsHandler;
         [SerializeField] private PlayerCurrency playerCurrency;
@@ -21,10 +19,10 @@ namespace PeppaSquad.Currency
         /// <summary>
         /// This start makes sure that the stats taken from the playerprefs are shown visually.
         /// </summary>
-        private void Start()
-        {
-            
-            currentLevel = (int)playerStatsHandler.GetOrCreateStat(stat).Value;
+        private void Start() {
+
+            currentLevel = (int) playerStatsHandler.GetOrCreateStat(stat).Value;
+            UpdateUpdrageCost();
             UpdateText();
 
         }
@@ -32,8 +30,7 @@ namespace PeppaSquad.Currency
         /// <summary>
         /// Updates the text in the shop
         /// </summary>
-        private void UpdateText()
-        {
+        private void UpdateText() {
             upgradeCostText.text = Mathf.Abs(upgradeCost).ToString();
             currentLevelText.text = currentLevel.ToString();
         }
@@ -41,17 +38,20 @@ namespace PeppaSquad.Currency
         /// <summary>
         /// Upgrades a stat when the player buys an upgrade in the store.
         /// </summary>
-        public void Upgrade()
-        {
-            if (playerCurrency.Currency < Mathf.Abs(upgradeCost)) 
+        public void Upgrade() {
+            if (playerCurrency.Currency < Mathf.Abs(upgradeCost))
                 return;
 
             playerCurrency.UpdateCurrency(upgradeCost);
             currentLevel += 1;
             var currentStat = playerStatsHandler.GetOrCreateStat(stat);
             currentStat.Value = currentLevel;
-            upgradeCost = -(currentLevel * 7 + (currentLevel / 3 * 10) + 5);
+            UpdateUpdrageCost();
             UpdateText();
+        }
+
+        private void UpdateUpdrageCost() {
+            upgradeCost = -(currentLevel * 7 + (currentLevel / 3 * 10) + 5);
         }
 
     }
