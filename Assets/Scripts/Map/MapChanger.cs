@@ -18,7 +18,9 @@ public class MapChanger : Resetter {
         maps[mapNumber].SetActive(true);
 
         pickupHandler?.RemovePickUps();
+
         currentMap?.SetActive(false);
+        maps[mapNumber].SetActive(true);
         currentMap = maps[mapNumber];
 
         pickupHandler = currentMap.GetComponentInChildren<PickupsHandler>();

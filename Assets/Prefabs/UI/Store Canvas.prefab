@@ -31,7 +31,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1476964095861693020}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -162,7 +162,7 @@ RectTransform:
   m_Children:
   - {fileID: 8276963938403321752}
   m_Father: {fileID: 1476964095861693020}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -236,7 +236,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1476964095861693020}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -751,53 +751,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &1476964095814091673
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1476964095814091679}
-  - component: {fileID: 1476964095814091678}
-  m_Layer: 0
-  m_Name: ScriptHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1476964095814091679
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476964095814091673}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -185.44138, y: 257.91974, z: -38.765568}
-  m_LocalScale: {x: 3.9587631, y: 3.9587631, z: 3.9587631}
-  m_Children: []
-  m_Father: {fileID: 1476964095861693020}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1476964095814091678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476964095814091673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7128a8b6f8923348808d6166f5f78c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currency: 0
-  playerStatsHandler: {fileID: 0}
-  enemyTracker: {fileID: 0}
-  currencyText: {fileID: 1476964096438958396}
 --- !u!1 &1476964095833131632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,7 +1409,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1476964095814091679}
   - {fileID: 6487650241155985586}
   - {fileID: 707062245}
   - {fileID: 3660169073332238851}
@@ -2954,7 +2906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 0
   playerStatsHandler: {fileID: 0}
-  playerCurrency: {fileID: 1476964095814091678}
+  playerCurrency: {fileID: 0}
   currentLevelText: {fileID: 1476964095857351218}
   upgradeCostText: {fileID: 1476964096478123301}
 --- !u!114 &4449364569121362687
@@ -4046,7 +3998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 0
   playerStatsHandler: {fileID: 0}
-  playerCurrency: {fileID: 1476964095814091678}
+  playerCurrency: {fileID: 0}
   currentLevelText: {fileID: 1476964096665366970}
   upgradeCostText: {fileID: 1476964095850517833}
 --- !u!114 &2950905267750139411
@@ -4131,7 +4083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 0
   playerStatsHandler: {fileID: 0}
-  playerCurrency: {fileID: 1476964095814091678}
+  playerCurrency: {fileID: 0}
   currentLevelText: {fileID: 1476964095467906938}
   upgradeCostText: {fileID: 1476964096105307741}
 --- !u!114 &7626983256044602213
@@ -4197,7 +4149,7 @@ RectTransform:
   - {fileID: 1476964096429152522}
   - {fileID: 4013502263696404895}
   m_Father: {fileID: 1476964095861693020}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4323,7 +4275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 0
   playerStatsHandler: {fileID: 0}
-  playerCurrency: {fileID: 1476964095814091678}
+  playerCurrency: {fileID: 0}
   currentLevelText: {fileID: 1476964095833131638}
   upgradeCostText: {fileID: 1476964096445494703}
 --- !u!114 &7493377010623826538
