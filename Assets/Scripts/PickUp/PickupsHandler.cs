@@ -11,6 +11,9 @@ namespace PeppaSquad.Pickups {
     public class PickupsHandler : MonoBehaviour {
 
         [SerializeField]
+        private PickupSpawner pickUpSpawner;
+
+        [SerializeField]
         private NumberRange pickupWaveCooldownRange;
         [SerializeField]
         private NumberRange waveTimeRange;
@@ -35,22 +38,12 @@ namespace PeppaSquad.Pickups {
         /// </summary>
         /// <returns></returns>
         public void StartSpawningPickups() {
-            spawnRoutine = StartCoroutine(SpawnPickups());
+            pickUpSpawner.SpawnPickups();
+            //spawnRoutine = StartCoroutine(SpawnPickups());
         }
 
-        public void StopSpawningPickups() {
-            if (spawnRoutine != null)
-                StopCoroutine(spawnRoutine);
-
-            foreach (var pickup in pickups) {
-                pickup.StopPickupWave();
-                disabledPickups.Remove(pickup);
-                pickups.Add(pickup);
-            }
-        }
-
-        private void OnDisable() {
-            StopSpawningPickups();
+        public void RemovePickUps(){
+            pickUpSpawner.DestroyPickUps();
         }
 
         private void OnEnable(){

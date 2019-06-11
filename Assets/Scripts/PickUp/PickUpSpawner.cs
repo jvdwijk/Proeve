@@ -5,7 +5,7 @@ using System;
 using PeppaSquad.Utils;
 
 namespace PeppaSquad.Pickups {
-    public class PickupSpawner : Resetter {
+    public class PickupSpawner : MonoBehaviour {
         
         [SerializeField]
         private NumberRange numberRandomizer;
@@ -19,13 +19,9 @@ namespace PeppaSquad.Pickups {
         [SerializeField]
         private int[] colorAmount;
 
-        public override void TriggerReset () {
-            DestroyPickUps();
-            numberRandomizer.SetRange(0, spawnPositions.Length);
-            base.TriggerReset();
-        }
-
         public void SpawnPickups () {
+            numberRandomizer.SetRange(0, spawnPositions.Length - 1);
+
             for (int size = 0; size < colorAmount.Length; size++)
             {
                 for (int pickUp = 0; pickUp < colorAmount[size]; pickUp++)
@@ -37,10 +33,11 @@ namespace PeppaSquad.Pickups {
 
         private void SetPickUp(GameObject prefab){
             bool wwSpawned = false;
-            while(wwSpawned){
+            while(!wwSpawned){
                 var newSpot = GetRandomEmptySpot();
                 if(newSpot == null) continue;
                 Instantiate(prefab, newSpot);
+                wwSpawned = true;
             }
         }
 

@@ -17,11 +17,12 @@ public class MapChanger : Resetter {
         int mapNumber = UnityEngine.Random.Range(0, maps.Length);
         maps[mapNumber].SetActive(true);
 
+        pickupHandler?.RemovePickUps();
         currentMap?.SetActive(false);
         currentMap = maps[mapNumber];
 
         pickupHandler = currentMap.GetComponentInChildren<PickupsHandler>();
-        pickupHandler.StartSpawningPickups();
+        pickupHandler?.StartSpawningPickups();
     }
 
     public override void TriggerReset() {
