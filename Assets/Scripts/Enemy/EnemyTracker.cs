@@ -58,8 +58,10 @@ namespace PeppaSquad.Enemies {
 
             currentEnemy.OnDeath += OnEnemyDefeat;
             currentEnemy.OnDeath += SpawnEnemy;
+            currentEnemy.OnDefeated += timer.StopTimer;
 
             timer.ResetTimer();
+            timer.StartTimer();
 
             playerCombat.CurrentEnemy = currentEnemy;
 

@@ -29,9 +29,9 @@ namespace PeppaSquad.Combat {
         /// Executes a power attack.
         /// </summary>
         /// <param name="target">the target of the attack</param>
-        public override void Attack(IDamagable target) {
+        public override void Attack(IDamagable target, HitDirection dir = 0) {
             combo.Increase();
-            base.Attack(target);
+            base.Attack(target, HitDirection.Front);
         }
 
         /// <summary>

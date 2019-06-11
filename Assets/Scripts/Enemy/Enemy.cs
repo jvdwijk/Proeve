@@ -3,33 +3,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PeppaSquad.Enemies
-{
-    public class Enemy : MonoBehaviour, IDamagable
-    {
+namespace PeppaSquad.Enemies {
+    public class Enemy : MonoBehaviour, IDamagable {
         private int health;
+
+        [SerializeField]
+        private Animator animator;
+
+        private Dictionary<HitDirection, string> directionKeys = new Dictionary<HitDirection, string>() { { HitDirection.Left, "LeftStrike" }, { HitDirection.Right, "RightStrike" }, { HitDirection.Front, "FrontStrike" }
+        };
+
+        private string deathAnimationKey = "Died";
+        private string despawnAnimationstateName = "despawn";
 
         public int Health { get { return health; } }
 
         public event Action<int> OnHealthChanged;
         public event Action OnDeath;
+        public event Action OnDefeated;
 
-        public void Init(int health = 100)
-        {
+        public void Init(int health = 100) {
             this.health = health;
         }
-        
+
         /// <summary>
         /// Damages the enemy, and checks if he still has health
         /// </summary>
         /// <param name="amount"></param>
-        public void Damage(int amount)
-        {
-            health -= amount;
-            if (health <= 0)
-            {
-                Die();
+        public void Damage(int amount, HitDirection dir = HitDirection.Default) {
+
+            if (health == 0)
                 return;
+
+            health -= amount;
+            health = Mathf.Clamp(health, 0, int.MaxValue);
+
+            if (directionKeys.ContainsKey(dir) && animator != null) {
+                var animationKey = directionKeys[dir];
+
+                animator.SetTrigger(animationKey);
+            }
+
+            if (health <= 0) {
+                StartDeath();
             }
             OnHealthChanged?.Invoke(health);
         }
@@ -37,10 +53,31 @@ namespace PeppaSquad.Enemies
         /// <summary>
         /// Destroys the enemy
         /// </summary>
-        private void Die()
-        {
+        private void StartDeath() {
+            OnDefeated?.Invoke();
+            StartCoroutine(DieRoutine());
+        }
+
+        private void Die() {
+            DestroyImmediate(this.gameObject);
             OnDeath?.Invoke();
-            Destroy(gameObject);
+        }
+
+        private IEnumerator DieRoutine() {
+            if (animator == null) {
+                Die();
+                yield break;
+            }
+
+            animator.SetTrigger(deathAnimationKey);
+
+            while (!animator.GetCurrentAnimatorStateInfo(0).IsName(despawnAnimationstateName)) {
+                yield return null;
+            }
+            while (animator.GetCurrentAnimatorStateInfo(0).IsName(despawnAnimationstateName) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
+                yield return null;
+            }
+            Die();
         }
     }
 }
