@@ -1590,6 +1590,16 @@ PrefabInstance:
       propertyPath: prefab
       value: 
       objectReference: {fileID: 2021795846}
+    - target: {fileID: 8030850894261130223, guid: 3e16dc92a136c5341aab0cdcec61be08,
+        type: 3}
+      propertyPath: StartDamageBoost
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8030850894261130223, guid: 3e16dc92a136c5341aab0cdcec61be08,
+        type: 3}
+      propertyPath: comboDamageBoost
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e16dc92a136c5341aab0cdcec61be08, type: 3}
 --- !u!1 &351968792
