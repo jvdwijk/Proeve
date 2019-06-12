@@ -11,6 +11,9 @@ namespace PeppaSquad.Pickups {
         private NumberRange numberRandomizer;
 
         [SerializeField]
+        private PickupsHandler PickupsHandler;
+
+        [SerializeField]
         private List<Transform> spawnPositions;
         private List<Transform> freeSpawnPositions = new List<Transform>();
 
@@ -39,11 +42,15 @@ namespace PeppaSquad.Pickups {
             while (!wwSpawned) {
                 var newSpot = GetRandomEmptySpot();
                 if (newSpot == null) continue;
+
                 PickupController pickup = pool.GetObject();
                 pickup.transform.SetParent(newSpot);
                 pickup.transform.localPosition = Vector3.zero;
                 pickup.transform.localRotation = Quaternion.identity;
+                
                 pickups.Add(pickup);
+                PickupsHandler.Pickups.Add(pickup);
+                
                 wwSpawned = true;
             }
         }
@@ -61,6 +68,7 @@ namespace PeppaSquad.Pickups {
                 pickup.PoolObject();
             }
             pickups.Clear();
+            PickupsHandler.Pickups.Clear();
         }
     }
 }

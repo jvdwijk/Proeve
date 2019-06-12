@@ -426,22 +426,7 @@ MonoBehaviour:
   waveTimeRange:
     min: 3
     max: 3
-  pickups:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  pickups: []
 --- !u!114 &647369625367287604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +442,7 @@ MonoBehaviour:
   numberRandomizer:
     min: 0
     max: 14
+  PickupsHandler: {fileID: 6930787673740766448}
   spawnPositions:
   - {fileID: 3778936173293280150}
   - {fileID: 1412048512563558051}
