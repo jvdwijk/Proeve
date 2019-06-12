@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class MainMenuState : GameState {
 
+
     [SerializeField]
     private GameObject mainMenuUI;
 
     public override GameStateType StateName => GameStateType.MainMenu;
 
+
     public override void EnterState() {
         mainMenuUI.SetActive(true);
+        musicAudioSource.clip = musicClip;
+        musicAudioSource.Play();
     }
 
     public override void LeaveState() {
@@ -25,4 +29,7 @@ public class MainMenuState : GameState {
         StateMachine.SetState(GameStateType.Store);
     }
 
+     public void OpenSettings() {
+        StateMachine.SetState(GameStateType.Store);
+    }
 }

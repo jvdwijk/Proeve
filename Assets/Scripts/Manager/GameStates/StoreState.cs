@@ -12,6 +12,8 @@ public class StoreState : PausedGameState {
     public override void EnterState() {
         base.EnterState();
         storeUI.SetActive(true);
+        musicAudioSource.clip = musicClip;
+        musicAudioSource.Play();
     }
 
     public override void LeaveState() {

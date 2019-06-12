@@ -12,6 +12,8 @@ public class PlayState : GameState {
     public override void EnterState() {
         gameUI.SetActive(true);
         manager.OnMarkerTrakedChanged += HandleTrackingState;
+        musicAudioSource.clip = musicClip;
+        musicAudioSource.Play();
 
         if (!manager.GameRunning)
             manager.StartGame();
