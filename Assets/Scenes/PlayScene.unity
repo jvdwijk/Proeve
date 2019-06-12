@@ -7478,6 +7478,36 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1881174383359308597, guid: 095dfd6eba244b044abe56a09833d9ab,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1378797111}
+    - target: {fileID: 1881174383359308597, guid: 095dfd6eba244b044abe56a09833d9ab,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetLevelSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222700941346125261, guid: 095dfd6eba244b044abe56a09833d9ab,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1378797111}
+    - target: {fileID: 7222700941346125261, guid: 095dfd6eba244b044abe56a09833d9ab,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleMute
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345640219025227878, guid: 095dfd6eba244b044abe56a09833d9ab,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1378797111}
+    - target: {fileID: 3345640219025227878, guid: 095dfd6eba244b044abe56a09833d9ab,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetLevelMusic
+      objectReference: {fileID: 0}
     - target: {fileID: 8693762375523954699, guid: 095dfd6eba244b044abe56a09833d9ab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7563,16 +7593,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Music Slider Settings
       objectReference: {fileID: 0}
-    - target: {fileID: 3345640219025227878, guid: 095dfd6eba244b044abe56a09833d9ab,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1378797111}
-    - target: {fileID: 3345640219025227878, guid: 095dfd6eba244b044abe56a09833d9ab,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLevelMusic
-      objectReference: {fileID: 0}
     - target: {fileID: 204065005320429629, guid: 095dfd6eba244b044abe56a09833d9ab,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -7642,26 +7662,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1881174383359308597, guid: 095dfd6eba244b044abe56a09833d9ab,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1378797111}
-    - target: {fileID: 1881174383359308597, guid: 095dfd6eba244b044abe56a09833d9ab,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLevelSFX
-      objectReference: {fileID: 0}
-    - target: {fileID: 7222700941346125261, guid: 095dfd6eba244b044abe56a09833d9ab,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1378797111}
-    - target: {fileID: 7222700941346125261, guid: 095dfd6eba244b044abe56a09833d9ab,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleMute
       objectReference: {fileID: 0}
     - target: {fileID: 208797159360698672, guid: 095dfd6eba244b044abe56a09833d9ab,
         type: 3}
@@ -11553,27 +11553,32 @@ PrefabInstance:
     - target: {fileID: 4752676485595886416, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4752676485595886416, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4752676485595886416, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4752676485595886416, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4752676485595886416, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752676485595886416, guid: 6dd0822cea70c0c41944695aa2456a16,
+        type: 3}
+      propertyPath: m_text
+      value: Boost Winkel
       objectReference: {fileID: 0}
     - target: {fileID: 4752676485372464103, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
@@ -11653,7 +11658,7 @@ PrefabInstance:
     - target: {fileID: 4752676485236931166, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4752676485236931166, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
@@ -11663,22 +11668,27 @@ PrefabInstance:
     - target: {fileID: 4752676485236931166, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4752676485236931166, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4752676485236931166, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752676485236931166, guid: 6dd0822cea70c0c41944695aa2456a16,
+        type: 3}
+      propertyPath: m_text
+      value: Afsluiten
       objectReference: {fileID: 0}
     - target: {fileID: 4752676486339701801, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4752676486339701801, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
@@ -11688,17 +11698,22 @@ PrefabInstance:
     - target: {fileID: 4752676486339701801, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4752676486339701801, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4752676486339701801, guid: 6dd0822cea70c0c41944695aa2456a16,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752676486339701801, guid: 6dd0822cea70c0c41944695aa2456a16,
+        type: 3}
+      propertyPath: m_text
+      value: Start
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dd0822cea70c0c41944695aa2456a16, type: 3}
@@ -12462,6 +12477,36 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5988271730695636594, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2039217680}
+    - target: {fileID: 5988271730695636594, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetLevelSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511561288720958055, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2039217680}
+    - target: {fileID: 7511561288720958055, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetLevelMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593282019166129085, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2039217680}
+    - target: {fileID: 3593282019166129085, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleMute
+      objectReference: {fileID: 0}
     - target: {fileID: 7958781028126483356, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12947,26 +12992,6 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3593282019166129085, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2039217680}
-    - target: {fileID: 3593282019166129085, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleMute
-      objectReference: {fileID: 0}
-    - target: {fileID: 7511561288720958055, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2039217680}
-    - target: {fileID: 7511561288720958055, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLevelMusic
-      objectReference: {fileID: 0}
     - target: {fileID: 34859383708498288, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -13026,16 +13051,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5988271730695636594, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2039217680}
-    - target: {fileID: 5988271730695636594, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLevelSFX
       objectReference: {fileID: 0}
     - target: {fileID: 586580574689824490, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
         type: 3}
