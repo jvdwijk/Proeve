@@ -10,7 +10,7 @@ namespace PeppaSquad.Enemies {
         private int startHealth = 20;
 
         [SerializeField]
-        private float power = 3f;
+        private float power = 6f;
 
         /// <summary>
         /// Calculates the health of the new enemy with its level
