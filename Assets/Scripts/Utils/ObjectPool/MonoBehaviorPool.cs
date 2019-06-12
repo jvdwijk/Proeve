@@ -3,34 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace PeppaSquad.Utils.ObjectPool {
-    public abstract class MonoBehaviourPool<MB> : ObjectPool<MB> where MB : MonoBehaviour {
+    public abstract class MonoBehaviourPool<MB> : ObjectPool<MB>
+        where MB : MonoBehaviour, IPoolableObject<MB> {
 
-        [SerializeField]
-        private MB objectPrefab;
+            [SerializeField]
+            private MB objectPrefab;
 
-        public override void PoolObject(MB obj) {
-            obj.gameObject.SetActive(false);
-            obj.transform.SetParent(transform);
-            obj.transform.position = Vector3.zero;
-            base.PoolObject(obj);
+            public override void PoolObject(MB obj) {
+                obj.gameObject.SetActive(false);
+                obj.transform.SetParent(transform);
+                obj.transform.position = Vector3.zero;
+                base.PoolObject(obj);
+            }
+
+            public override MB GetObject(bool spawnNew = true) {
+                MB obj = base.GetObject(spawnNew);
+                obj.gameObject.SetActive(true);
+                obj.transform.SetParent(null);
+                obj.transform.position = Vector3.zero;
+                return obj;
+            }
+
+            protected override MB CreateNew() {
+                MB obj = Instantiate(objectPrefab);
+                return obj;
+            }
+
+            protected override MB DefaultValue() {
+                return null;
+            }
+
         }
-
-        public override MB GetObject(bool spawnNew = true) {
-            MB obj = base.GetObject(spawnNew);
-            obj.gameObject.SetActive(true);
-            obj.transform.SetParent(null);
-            obj.transform.position = Vector3.zero;
-            return obj;
-        }
-
-        protected override MB CreateNew() {
-            MB obj = Instantiate(objectPrefab);
-            return obj;
-        }
-
-        protected override MB DefaultValue() {
-            return null;
-        }
-
-    }
 }

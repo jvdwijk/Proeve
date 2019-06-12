@@ -14,27 +14,33 @@ namespace PeppaSquad.Pickups {
         private Transform[] spawnPositions;
 
         [SerializeField]
-        private PickupObjectPool[] objectPool;
+        private PickupObjectPool[] objectPools;
 
         [SerializeField]
         private int[] colorAmount;
+
+        private List<PickupController> pickups = new List<PickupController>();
 
         public void SpawnPickups() {
             numberRandomizer.SetRange(0, spawnPositions.Length - 1);
 
             for (int size = 0; size < colorAmount.Length; size++) {
                 for (int pickUp = 0; pickUp < colorAmount[size]; pickUp++) {
-                    SetPickUp(objectPool[size]);
+                    SetPickUp(objectPools[size]);
                 }
             }
         }
 
-        private void SetPickUp(GameObject prefab) {
+        private void SetPickUp(PickupObjectPool pool) {
             bool wwSpawned = false;
             while (!wwSpawned) {
                 var newSpot = GetRandomEmptySpot();
                 if (newSpot == null) continue;
-                Instantiate(prefab, newSpot);
+                PickupController pickup = pool.GetObject();
+                pickup.transform.SetParent(newSpot);
+                pickup.transform.localPosition = Vector3.zero;
+                pickup.transform.localRotation = Quaternion.identity;
+                pickups.Add(pickup);
                 wwSpawned = true;
             }
         }
@@ -46,9 +52,11 @@ namespace PeppaSquad.Pickups {
         }
 
         public void DestroyPickUps() {
-            foreach (var position in spawnPositions) {
-                Destroy(position.GetChild(0).gameObject);
+            for (int i = 0; i < pickups.Count; i++) {
+                PickupController pickup = pickups[i];
+                pickup.PoolObject();
             }
+            pickups.Clear();
         }
     }
 }

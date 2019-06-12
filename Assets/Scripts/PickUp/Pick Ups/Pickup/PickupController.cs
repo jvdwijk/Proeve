@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PeppaSquad.Pickups.Effects;
+using PeppaSquad.Utils.ObjectPool;
 
 namespace PeppaSquad.Pickups {
     /// <summary>
     /// Controlles the pickups (WWs)
     /// </summary>
-    public class PickupController : MonoBehaviour {
+    public class PickupController : MonoBehaviour, IPoolableObject<PickupController> {
 
         [SerializeField]
         private BoostEffect boostEffect;
@@ -22,7 +23,7 @@ namespace PeppaSquad.Pickups {
         [SerializeField]
         private Animator animator;
 
-         [SerializeField]
+        [SerializeField]
         private ParticleSystem edibleParticleSystem;
 
         private Coroutine pickupWaveTimer;
@@ -30,6 +31,7 @@ namespace PeppaSquad.Pickups {
         private const string WaveAnimationKey = "IsWaving";
 
         public bool CanPickUp { get; private set; }
+        public ObjectPool<PickupController> ObjectPool { get; set; }
 
         /// <summary>
         /// Called when pickup becomes availible/unavailible for pickup
@@ -108,6 +110,10 @@ namespace PeppaSquad.Pickups {
             yield return new WaitForSeconds(time);
             StopPickupWave();
             stoppedWaving?.Invoke();
+        }
+
+        public void PoolObject() {
+            ObjectPool.PoolObject(this);
         }
     }
 }

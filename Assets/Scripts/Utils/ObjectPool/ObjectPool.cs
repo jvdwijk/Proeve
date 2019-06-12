@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace PeppaSquad.Utils.ObjectPool {
-    public abstract class ObjectPool<T> : MonoBehaviour {
+    public abstract class ObjectPool<T> : MonoBehaviour where T : IPoolableObject<T> {
 
         private List<T> pooledObjects = new List<T>();
 
@@ -26,8 +26,11 @@ namespace PeppaSquad.Utils.ObjectPool {
             if (pooledObjects.Count > 0) {
                 T obj = pooledObjects[0];
                 pooledObjects.RemoveAt(0);
+                obj.ObjectPool = this;
                 return obj;
             } else if (spawnNew) {
+                T obj = CreateNew();
+                obj.ObjectPool = this;
                 return CreateNew();
             }
             return DefaultValue();
