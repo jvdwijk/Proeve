@@ -11,7 +11,8 @@ namespace PeppaSquad.Pickups {
         private NumberRange numberRandomizer;
 
         [SerializeField]
-        private Transform[] spawnPositions;
+        private List<Transform> spawnPositions;
+        private List<Transform> freeSpawnPositions = new List<Transform>();
 
         [SerializeField]
         private PickupObjectPool[] objectPools;
@@ -22,10 +23,12 @@ namespace PeppaSquad.Pickups {
         private List<PickupController> pickups = new List<PickupController>();
 
         public void SpawnPickups() {
-            numberRandomizer.SetRange(0, spawnPositions.Length - 1);
+            freeSpawnPositions?.Clear();
+            freeSpawnPositions.AddRange(spawnPositions);
 
             for (int size = 0; size < colorAmount.Length; size++) {
                 for (int pickUp = 0; pickUp < colorAmount[size]; pickUp++) {
+                    numberRandomizer.SetRange(0, freeSpawnPositions.Count - 1);
                     SetPickUp(objectPools[size]);
                 }
             }
@@ -47,8 +50,9 @@ namespace PeppaSquad.Pickups {
 
         private Transform GetRandomEmptySpot() {
             int newNumber = (int) numberRandomizer.GetRandom();
-
-            return spawnPositions[newNumber].childCount == 0 ? spawnPositions[newNumber] : null;
+            Transform returnTransform = freeSpawnPositions[newNumber];
+            freeSpawnPositions.RemoveAt(newNumber);
+            return returnTransform;
         }
 
         public void DestroyPickUps() {
