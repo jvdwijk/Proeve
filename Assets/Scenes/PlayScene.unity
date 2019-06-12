@@ -3735,7 +3735,7 @@ MonoBehaviour:
   playerCurrency: {fileID: 713256609}
   enemyTracker: {fileID: 2048289727}
   moneyLevelMultiplier: 3
-  BoostProcentAmount: 3
+  BoostProcentAmount: 100
 --- !u!4 &713256611
 Transform:
   m_ObjectHideFlags: 0
@@ -12666,6 +12666,36 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5988271730695636594, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2039217680}
+    - target: {fileID: 5988271730695636594, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetLevelSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511561288720958055, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2039217680}
+    - target: {fileID: 7511561288720958055, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetLevelMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593282019166129085, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2039217680}
+    - target: {fileID: 3593282019166129085, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleMute
+      objectReference: {fileID: 0}
     - target: {fileID: 7958781028126483356, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13151,26 +13181,6 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3593282019166129085, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2039217680}
-    - target: {fileID: 3593282019166129085, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleMute
-      objectReference: {fileID: 0}
-    - target: {fileID: 7511561288720958055, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2039217680}
-    - target: {fileID: 7511561288720958055, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLevelMusic
-      objectReference: {fileID: 0}
     - target: {fileID: 34859383708498288, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -13230,16 +13240,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5988271730695636594, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2039217680}
-    - target: {fileID: 5988271730695636594, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLevelSFX
       objectReference: {fileID: 0}
     - target: {fileID: 586580574689824490, guid: d4c9ff04d9d22474dbfe16af14e23fc8,
         type: 3}
