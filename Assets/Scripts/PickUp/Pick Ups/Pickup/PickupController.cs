@@ -15,9 +15,6 @@ namespace PeppaSquad.Pickups {
         private BoostEffect boostEffect;
 
         [SerializeField]
-        private BoostEffectSpawner effectSpawner;
-
-        [SerializeField]
         private PickupInput input;
 
         [SerializeField]
@@ -30,6 +27,11 @@ namespace PeppaSquad.Pickups {
 
         private const string WaveAnimationKey = "IsWaving";
 
+        [SerializeField]
+        private BoostType boostStatType;
+
+        public BoostType BoostStatType { get{ return boostStatType;}}
+        
         public bool CanPickUp { get; private set; }
         public ObjectPool<PickupController> ObjectPool { get; set; }
 
@@ -42,10 +44,6 @@ namespace PeppaSquad.Pickups {
         /// </summary>
         public event Action<PickupController> PickedUp;
 
-        private void Awake() {
-            boostEffect = effectSpawner.SpawnRandomBoost();
-        }
-
         /// <summary>
         /// Makes the WW availible for pickup.
         /// </summary>
@@ -55,7 +53,7 @@ namespace PeppaSquad.Pickups {
 
             input.OnClicked += OnPickedUp;
             CanPickUp = true;
-            edibleParticleSystem.gameObject.SetActive(true);
+            edibleParticleSystem?.gameObject.SetActive(true);
 
             animator.SetBool(WaveAnimationKey, true);
             OnCanPickUpChanged?.Invoke(this, true);
@@ -70,7 +68,7 @@ namespace PeppaSquad.Pickups {
 
             input.OnClicked -= OnPickedUp;
             CanPickUp = false;
-            edibleParticleSystem.gameObject.SetActive(false);
+            edibleParticleSystem?.gameObject.SetActive(false);
 
             animator.SetBool(WaveAnimationKey, false);
             OnCanPickUpChanged?.Invoke(this, false);
