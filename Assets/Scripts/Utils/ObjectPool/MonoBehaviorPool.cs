@@ -11,16 +11,12 @@ namespace PeppaSquad.Utils.ObjectPool {
 
             public override void PoolObject(MB obj) {
                 obj.gameObject.SetActive(false);
-                obj.transform.SetParent(transform);
-                obj.transform.position = Vector3.zero;
                 base.PoolObject(obj);
             }
 
             public override MB GetObject(bool spawnNew = true) {
                 MB obj = base.GetObject(spawnNew);
                 obj.gameObject.SetActive(true);
-                obj.transform.SetParent(null);
-                obj.transform.position = Vector3.zero;
                 return obj;
             }
 
