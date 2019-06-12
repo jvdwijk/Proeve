@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MainMenuState : GameState {
 
+
     [SerializeField]
     private GameObject mainMenuUI;
 
@@ -11,6 +12,8 @@ public class MainMenuState : GameState {
 
     public override void EnterState() {
         mainMenuUI.SetActive(true);
+        musicAudioSource.clip = musicClip;
+        musicAudioSource.Play();
     }
 
     public override void LeaveState() {

@@ -7,5 +7,7 @@ public abstract class GameState : State<GameStateType> {
 
     [SerializeField]
     protected GameManager manager;
+    [SerializeField] protected AudioSource musicAudioSource;
+    [SerializeField] protected AudioClip musicClip;
 
 }
