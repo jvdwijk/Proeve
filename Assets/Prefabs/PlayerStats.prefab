@@ -57,5 +57,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 3409851976048328055}
-  appdataSubDirectory: \GameSaves
+  appdataSubDirectory: GameSaves
   fileName: data.dat
