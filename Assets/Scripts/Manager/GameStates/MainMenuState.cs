@@ -10,6 +10,7 @@ public class MainMenuState : GameState {
 
     public override GameStateType StateName => GameStateType.MainMenu;
 
+
     public override void EnterState() {
         mainMenuUI.SetActive(true);
         musicAudioSource.clip = musicClip;
@@ -28,4 +29,7 @@ public class MainMenuState : GameState {
         StateMachine.SetState(GameStateType.Store);
     }
 
+     public void OpenSettings() {
+        StateMachine.SetState(GameStateType.Store);
+    }
 }

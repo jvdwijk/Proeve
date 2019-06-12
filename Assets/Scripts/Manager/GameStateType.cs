@@ -4,5 +4,6 @@
     Playing,
     PauseMenu,
     GameOver,
-    Store
+    Store,
+    Settings
 }
