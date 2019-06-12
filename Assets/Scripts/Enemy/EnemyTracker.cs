@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using PeppaSquad.Combat;
 using PeppaSquad.Score;
-using PeppaSquad.Utils;
 using PeppaSquad.UI;
+using PeppaSquad.Utils;
 
-namespace PeppaSquad.Enemies
-{
-    public class EnemyTracker : Resetter
-    {
+namespace PeppaSquad.Enemies {
+    public class EnemyTracker : Resetter {
         [SerializeField]
         private EnemySpawner enemySpawner;
         [SerializeField]
@@ -24,7 +22,7 @@ namespace PeppaSquad.Enemies
         [SerializeField]
         private EnemyHealthCalculator healthCalculator;
 
-        private int enemyLevel = 1;
+        private int enemyLevel = 0;
 
         private Enemy currentEnemy;
 
@@ -32,29 +30,27 @@ namespace PeppaSquad.Enemies
 
         public event Action OnEnemyDefeat;
         public event Action OnBossDefeat;
-        
-        public override void TriggerReset()
-        {
-            enemyLevel = 1;
+
+        public override void TriggerReset() {
+            enemyLevel = 0;
             if (currentEnemy != null) Destroy(currentEnemy.gameObject);
             currentEnemy = null;
 
             base.TriggerReset();
         }
 
-        public void StartSpawning()
-        {
+        public void StartSpawning() {
             SpawnEnemy();
         }
 
         /// <summary>
         /// Decides wether to spawn enemy or boss and inits it.
         /// </summary>
-        private void SpawnEnemy()
-        {
+        private void SpawnEnemy() {
 
+            enemyLevel++;
             currentEnemy = enemyLevel % 5 == 0 ? enemySpawner.SpawnBoss() : enemySpawner.SpawnEnemy();
-            
+
             int health = healthCalculator.CalculateHealth(enemyLevel);
             currentEnemy.Init(health);
             healthGUI.SetMaxHealth(currentEnemy.Health);
@@ -62,13 +58,13 @@ namespace PeppaSquad.Enemies
 
             currentEnemy.OnDeath += OnEnemyDefeat;
             currentEnemy.OnDeath += SpawnEnemy;
-
+            currentEnemy.OnDefeated += timer.StopTimer;
 
             timer.ResetTimer();
+            timer.StartTimer();
 
             playerCombat.CurrentEnemy = currentEnemy;
 
-            enemyLevel++;
             ScoreHandlerSingleton.Instance?.SetScore(enemyLevel);
         }
     }
