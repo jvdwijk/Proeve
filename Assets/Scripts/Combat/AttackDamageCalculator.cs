@@ -24,7 +24,7 @@ namespace PeppaSquad.Combat {
             var playerDamageLevel = playerStats.GetOrCreateStat(PlayerStatType.Damage);
             var damageBoostLevel = boostStats?.GetOrCreateStat(BoostType.Damage);
 
-            int attackDamage = baseDamage + Mathf.RoundToInt(3.5f * playerDamageLevel.Value) + Mathf.RoundToInt(2 * damageBoostLevel.Value);
+            int attackDamage = baseDamage + Mathf.RoundToInt(2.5f * playerDamageLevel.Value) + Mathf.RoundToInt(3.5f * damageBoostLevel.Value);
 
             return attackDamage;
 

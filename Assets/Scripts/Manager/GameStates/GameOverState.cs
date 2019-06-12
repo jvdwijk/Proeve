@@ -11,6 +11,8 @@ public class GameOverState : GameState {
 
     public override void EnterState() {
         gameOverUI.SetActive(true);
+        musicAudioSource.clip = musicClip;
+        musicAudioSource.Play();
     }
 
     public override void LeaveState() {

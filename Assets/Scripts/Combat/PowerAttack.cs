@@ -19,9 +19,9 @@ namespace PeppaSquad.Combat {
         private Coroutine SpawnComboButtonsRoutine;
 
         [SerializeField]
-        private float buttonActiveTime = 2, buttonSpawnDelay = 8, comboDamageBoost = 10;
+        private float buttonActiveTime = 2, buttonSpawnDelay = 8, comboDamageBoost = 1.2f;
         [SerializeField]
-        private float StartDamageBoost = 5;
+        private float StartDamageBoost = 6;
 
         private Coroutine comboButtonSpawnRoutine;
 
@@ -40,14 +40,14 @@ namespace PeppaSquad.Combat {
         /// <returns>power attack damage</returns>
         protected override int CalculateAttackDamage() {
             var damage = base.CalculateAttackDamage();
-            damage += (int) (((float) damage / comboDamageBoost) * ((float) combo.CurrentCombo + StartDamageBoost));
+            damage += (int) ((float) damage * (StartDamageBoost + (combo.CurrentCombo * comboDamageBoost)));
             return damage;
         }
 
         /// <summary>
         /// Starts spawning power attack buttons
         /// </summary>
-        public void Start() {
+        public void StartSpawning() {
             comboButtonSpawnRoutine = StartCoroutine(SpawnComboButtons());
         }
 

@@ -68,7 +68,7 @@ namespace PeppaSquad.GameFlow {
             mapChanger.ChangeMap();
             enemyTracker.StartSpawning();
             timer?.StartTimer();
-            comboAttack.Start();
+            comboAttack.StartSpawning();
         }
 
         /// <summary>
