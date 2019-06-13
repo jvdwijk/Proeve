@@ -4,6 +4,9 @@ using UnityEngine;
 using PeppaSquad.Pickups;
 
 public class MapChanger : Resetter {
+    
+    [SerializeField]
+    private PickupUI pickupUI;
     [SerializeField]
     private GameObject[] maps;
     private GameObject currentMap;
@@ -25,6 +28,7 @@ public class MapChanger : Resetter {
 
         pickupHandler = currentMap.GetComponentInChildren<PickupsHandler>();
         pickupHandler?.StartSpawningPickups();
+        pickupUI.OnMapChange(pickupHandler);
     }
 
     public override void TriggerReset() {

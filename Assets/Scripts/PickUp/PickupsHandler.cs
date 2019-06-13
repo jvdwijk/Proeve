@@ -27,6 +27,8 @@ namespace PeppaSquad.Pickups {
         public Dictionary<BoostType, int> BoostTypeDict {get; private set;} = new Dictionary<BoostType, int>();
         public Dictionary<BoostType, int> ReadyBoostsDict {get; private set;} = new Dictionary<BoostType, int>();
 
+        public event Action OnDictChange;
+
         private Coroutine spawnRoutine;
 
         /// <summary>
@@ -102,6 +104,7 @@ namespace PeppaSquad.Pickups {
         private void ChangeDict(Dictionary<BoostType, int> dict, BoostType type, int amount = 1){
             if(dict.ContainsKey(type)) dict[type] += 1;
             else dict.Add(type, amount);
+            OnDictChange?.Invoke();
         }
 
         private void OnPickupUsed(PickupController pickup){
