@@ -15,7 +15,8 @@ namespace PeppaSquad.Pickups.Effects {
         private BoostType statType;
 
         private void Start() {
-            stats = BoostStatHandler.Instance;
+            if(!stats)
+                stats = BoostStatHandler.Instance;
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace PeppaSquad.DataSaving {
         private PlayerStatsHandler playerStats;
 
         [SerializeField]
-        private string appdataSubDirectory = @"\GameSaves";
+        private string appdataSubDirectory = "GameSaves";
 
         [SerializeField]
         private string fileName = "data.dat";

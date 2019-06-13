@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PeppaSquad.Pickups;
 using PeppaSquad.Utils;
+using System;
 
 namespace PeppaSquad.Pickups {
     /// <summary>
@@ -11,13 +12,22 @@ namespace PeppaSquad.Pickups {
     public class PickupsHandler : MonoBehaviour {
 
         [SerializeField]
+        private PickupSpawner pickUpSpawner;
+
+        [SerializeField]
         private NumberRange pickupWaveCooldownRange;
         [SerializeField]
         private NumberRange waveTimeRange;
 
         [SerializeField]
         private List<PickupController> pickups;
-        private List<PickupController> disabledPickups = new List<PickupController>();
+
+        public List<PickupController> Pickups {get{return pickups;}}
+
+        public Dictionary<BoostType, int> BoostTypeDict {get; private set;} = new Dictionary<BoostType, int>();
+        public Dictionary<BoostType, int> ReadyBoostsDict {get; private set;} = new Dictionary<BoostType, int>();
+
+        public event Action OnDictChange;
 
         private Coroutine spawnRoutine;
 
@@ -35,22 +45,14 @@ namespace PeppaSquad.Pickups {
         /// </summary>
         /// <returns></returns>
         public void StartSpawningPickups() {
+            pickUpSpawner.SpawnPickups();
+            CountTotalPickups();
+            ResetReadyPickupsDict();
             spawnRoutine = StartCoroutine(SpawnPickups());
         }
 
-        public void StopSpawningPickups() {
-            if (spawnRoutine != null)
-                StopCoroutine(spawnRoutine);
-
-            foreach (var pickup in pickups) {
-                pickup.StopPickupWave();
-                disabledPickups.Remove(pickup);
-                pickups.Add(pickup);
-            }
-        }
-
-        private void OnDisable() {
-            StopSpawningPickups();
+        public void RemovePickUps(){
+            pickUpSpawner.DestroyPickUps();
         }
 
         /// <summary>
@@ -61,7 +63,7 @@ namespace PeppaSquad.Pickups {
             while (true) {
                 StartWaving();
 
-                float delay = PickupWaveCooldown.GetRandom();
+                float delay = pickupWaveCooldownRange.GetRandom();
                 yield return new WaitForSeconds(delay);
             }
         }
@@ -70,20 +72,45 @@ namespace PeppaSquad.Pickups {
         /// Makes a random WWs availible for pickup
         /// </summary>
         private void StartWaving() {
-            int pickupIndex = Random.Range(0, pickups.Count);
+            int pickupIndex = UnityEngine.Random.Range(0, pickups.Count);
             var pickup = pickups[pickupIndex];
+            
+            if(ReadyBoostsDict[pickup.BoostStatType] > 2 || pickup.CanPickUp) return;
 
             pickup.StartPickupWave();
+            pickup.PickedUp += OnPickupUsed;
+            ChangeDict(ReadyBoostsDict, pickup.BoostStatType);
 
             pickups.Remove(pickup);
-            disabledPickups.Add(pickup);
+        }
 
-            float waveTime = waveTimeRange.GetRandom();
-            pickup.StopPickupWaveAfter(waveTime, () => {
-                pickups.Add(pickup);
-                disabledPickups.Remove(pickup);
+
+        private void CountTotalPickups(){
+            BoostTypeDict.Clear();
+            pickups.ForEach( (pickup)=>
+            {
+                ChangeDict(BoostTypeDict, pickup.BoostStatType);
             });
+        }
 
+        private void ResetReadyPickupsDict(){
+            ReadyBoostsDict.Clear();
+            foreach (BoostType type in Enum.GetValues(typeof(BoostType)))
+            {
+                ChangeDict(ReadyBoostsDict, type);
+            }
+        }
+
+        private void ChangeDict(Dictionary<BoostType, int> dict, BoostType type, int amount = 1){
+            if(dict.ContainsKey(type)) dict[type] += amount;
+            else dict.Add(type, amount);
+            OnDictChange?.Invoke();
+        }
+
+        private void OnPickupUsed(PickupController pickup){
+            ChangeDict(ReadyBoostsDict, pickup.BoostStatType, -1);
+            ChangeDict(BoostTypeDict, pickup.BoostStatType, -1);
+            pickup.PoolObject();
         }
 
         /// <summary>
@@ -103,7 +130,7 @@ namespace PeppaSquad.Pickups {
         }
 
         /// <summary>
-        /// Sets the pickup spawn delay 
+        /// /// Sets the pickup spawn delay 
         /// </summary>
         /// <param name="receiveDelay">Delay as number range</param>
         public void SetDelayValue(NumberRange receiveDelay) {

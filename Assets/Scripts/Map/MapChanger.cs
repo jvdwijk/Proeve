@@ -4,19 +4,31 @@ using UnityEngine;
 using PeppaSquad.Pickups;
 
 public class MapChanger : Resetter {
+    
+    [SerializeField]
+    private PickupUI pickupUI;
     [SerializeField]
     private GameObject[] maps;
     private GameObject currentMap;
+
+    private PickupsHandler pickupHandler;
 
     /// <summary>
     /// Randomizes what map the game uses.
     /// </summary>
     public void ChangeMap() {
-        var mapNumber = UnityEngine.Random.Range(0, maps.Length);
+        int mapNumber = UnityEngine.Random.Range(0, maps.Length);
+        maps[mapNumber].SetActive(true);
+
+        pickupHandler?.RemovePickUps();
+
         currentMap?.SetActive(false);
         maps[mapNumber].SetActive(true);
         currentMap = maps[mapNumber];
-        currentMap.GetComponentInChildren<PickupsHandler>().StartSpawningPickups();
+
+        pickupHandler = currentMap.GetComponentInChildren<PickupsHandler>();
+        pickupHandler?.StartSpawningPickups();
+        pickupUI.OnMapChange(pickupHandler);
     }
 
     public override void TriggerReset() {
