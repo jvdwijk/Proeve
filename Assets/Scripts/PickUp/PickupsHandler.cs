@@ -102,7 +102,7 @@ namespace PeppaSquad.Pickups {
         }
 
         private void ChangeDict(Dictionary<BoostType, int> dict, BoostType type, int amount = 1){
-            if(dict.ContainsKey(type)) dict[type] += 1;
+            if(dict.ContainsKey(type)) dict[type] += amount;
             else dict.Add(type, amount);
             OnDictChange?.Invoke();
         }
