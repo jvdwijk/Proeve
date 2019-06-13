@@ -130,7 +130,7 @@ namespace PeppaSquad.Pickups {
         }
 
         /// <summary>
-        /// Sets the pickup spawn delay 
+        /// /// Sets the pickup spawn delay 
         /// </summary>
         /// <param name="receiveDelay">Delay as number range</param>
         public void SetDelayValue(NumberRange receiveDelay) {
