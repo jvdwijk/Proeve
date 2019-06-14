@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Resetter : MonoBehaviour {
-    private Action OnReset;
+    private event Action OnReset;
 
     /// <summary>
     /// The base function for resetting a class. Usually happens after the game ended

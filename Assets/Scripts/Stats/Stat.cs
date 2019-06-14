@@ -32,6 +32,8 @@ namespace PeppaSquad.Stats {
             set { SetValue(value); }
         }
 
+        public float PreviousValue { get; private set; }
+
         /// <summary>
         /// Sets the type of the stat
         /// </summary>
@@ -45,6 +47,7 @@ namespace PeppaSquad.Stats {
         /// </summary>
         /// <param name="value">the new value</param>
         public void SetValue(float value) {
+            PreviousValue = value;
             this.value = value;
             StatChanged?.Invoke(this);
         }
