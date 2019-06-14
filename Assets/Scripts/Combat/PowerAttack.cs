@@ -19,9 +19,9 @@ namespace PeppaSquad.Combat {
         private Coroutine SpawnComboButtonsRoutine;
 
         [SerializeField]
-        private float buttonActiveTime = 2, buttonSpawnDelay = 8, comboDamageBoost = 1.2f;
+        private float buttonActiveTime, buttonSpawnDelay, comboDamageBoost;
         [SerializeField]
-        private float StartDamageBoost = 6;
+        private float StartDamageBoost;
 
         private Coroutine comboButtonSpawnRoutine;
 
