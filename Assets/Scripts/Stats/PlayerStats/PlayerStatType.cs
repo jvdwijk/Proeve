@@ -6,9 +6,8 @@
         Damage,
         Highscore,
         Currency,
-        Combo,
         Timer,
-        Speed,
         BoostRespawn,
+        PrestigePoints,
     }
 }
