@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PeppaSquad.Pickups.Stats;
 using PeppaSquad.Utils;
 
 namespace PeppaSquad.Stats.PlayerStats.Implementation {
@@ -9,17 +10,32 @@ namespace PeppaSquad.Stats.PlayerStats.Implementation {
         [SerializeField]
         private float startTime = 5, levelIncrease = 0.3f;
 
+        [SerializeField, Range(0, 100)]
+        private float boostProcentAmount;
+
         [Header("References"), SerializeField]
         private Timer timer;
 
         [SerializeField]
         private PlayerStatsHandler playerstats;
-        private Stat<PlayerStatType> stat;
+        private BoostStatHandler booststats;
+
+        private Stat<PlayerStatType> playerStat;
 
         private void Awake() {
-            stat = playerstats.GetOrCreateStat(PlayerStatType.Timer);
-            stat.StatChanged += (stat) => SetTimer();
+            playerStat = playerstats.GetOrCreateStat(PlayerStatType.Timer);
+            playerStat.StatChanged += (stat) => SetTimer();
             SetTimer();
+        }
+
+        private void Start() {
+            booststats = BoostStatHandler.Instance;
+            booststats.GetOrCreateStat(BoostType.Time).StatChanged += (stat) => {
+                if (stat.Value > stat.PreviousValue)
+                    return;
+
+                timer.AddTime(CalculateTime() / 100 * boostProcentAmount);
+            };
         }
 
         private void SetTimer() {
@@ -28,7 +44,7 @@ namespace PeppaSquad.Stats.PlayerStats.Implementation {
         }
 
         private float CalculateTime() {
-            return startTime + levelIncrease * stat.Value;
+            return startTime + levelIncrease * playerStat.Value;
         }
 
     }

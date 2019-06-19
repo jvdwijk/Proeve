@@ -3,18 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PeppaSquad.Pickups.Effects;
+using PeppaSquad.Utils.ObjectPool;
 
 namespace PeppaSquad.Pickups {
     /// <summary>
     /// Controlles the pickups (WWs)
     /// </summary>
-    public class PickupController : MonoBehaviour {
+    public class PickupController : MonoBehaviour, IPoolableObject<PickupController> {
 
         [SerializeField]
         private BoostEffect boostEffect;
-
-        [SerializeField]
-        private BoostEffectSpawner effectSpawner;
 
         [SerializeField]
         private PickupInput input;
@@ -22,14 +20,20 @@ namespace PeppaSquad.Pickups {
         [SerializeField]
         private Animator animator;
 
-         [SerializeField]
+        [SerializeField]
         private ParticleSystem edibleParticleSystem;
 
         private Coroutine pickupWaveTimer;
 
         private const string WaveAnimationKey = "IsWaving";
 
+        [SerializeField]
+        private BoostType boostStatType;
+
+        public BoostType BoostStatType { get{ return boostStatType;}}
+        
         public bool CanPickUp { get; private set; }
+        public ObjectPool<PickupController> ObjectPool { get; set; }
 
         /// <summary>
         /// Called when pickup becomes availible/unavailible for pickup
@@ -40,10 +44,6 @@ namespace PeppaSquad.Pickups {
         /// </summary>
         public event Action<PickupController> PickedUp;
 
-        private void Awake() {
-            boostEffect = effectSpawner.SpawnRandomBoost();
-        }
-
         /// <summary>
         /// Makes the WW availible for pickup.
         /// </summary>
@@ -53,7 +53,7 @@ namespace PeppaSquad.Pickups {
 
             input.OnClicked += OnPickedUp;
             CanPickUp = true;
-            edibleParticleSystem.gameObject.SetActive(true);
+            edibleParticleSystem?.gameObject.SetActive(true);
 
             animator.SetBool(WaveAnimationKey, true);
             OnCanPickUpChanged?.Invoke(this, true);
@@ -68,7 +68,7 @@ namespace PeppaSquad.Pickups {
 
             input.OnClicked -= OnPickedUp;
             CanPickUp = false;
-            edibleParticleSystem.gameObject.SetActive(false);
+            edibleParticleSystem?.gameObject.SetActive(false);
 
             animator.SetBool(WaveAnimationKey, false);
             OnCanPickUpChanged?.Invoke(this, false);
@@ -108,6 +108,10 @@ namespace PeppaSquad.Pickups {
             yield return new WaitForSeconds(time);
             StopPickupWave();
             stoppedWaving?.Invoke();
+        }
+
+        public void PoolObject() {
+            ObjectPool.PoolObject(this);
         }
     }
 }

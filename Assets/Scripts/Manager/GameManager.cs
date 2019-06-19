@@ -27,9 +27,6 @@ namespace PeppaSquad.GameFlow {
         private EnemyTracker enemyTracker;
 
         [SerializeField]
-        private PickupsHandler pickupHandler;
-
-        [SerializeField]
         private Timer timer;
 
         [SerializeField]
@@ -71,7 +68,6 @@ namespace PeppaSquad.GameFlow {
             mapChanger.ChangeMap();
             enemyTracker.StartSpawning();
             timer?.StartTimer();
-            pickupHandler?.StartSpawningPickups();
             comboAttack.StartSpawning();
         }
 
