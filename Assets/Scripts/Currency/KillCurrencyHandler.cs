@@ -5,6 +5,7 @@ using UnityEngine;
 using PeppaSquad.Enemies;
 using PeppaSquad.Pickups.Stats;
 using PeppaSquad.Stats;
+using PeppaSquad.Stats.PlayerStats;
 
 namespace PeppaSquad.Currency {
     public class KillCurrencyHandler : Resetter {
@@ -18,6 +19,8 @@ namespace PeppaSquad.Currency {
         [SerializeField, Range(0, 100)]
         private float BoostProcentAmount = 3;
 
+        [SerializeField] private PlayerStatsHandler playerStatsHandler;
+        [SerializeField] private PlayerStatType stat;
         private bool resetNextKill = false;
         private Stat<BoostType> currencyBoostStat;
 
@@ -37,7 +40,7 @@ namespace PeppaSquad.Currency {
 
         public void OnKill() {
             int killProfit = (int) ((enemyTracker.EnemyLevel * moneyLevelMultiplier));
-            killProfit += (int) (killProfit / 100f * (BoostProcentAmount * currencyBoostStat.Value));
+            killProfit += (int) (killProfit / 100f * (BoostProcentAmount * currencyBoostStat.Value)* (playerStatsHandler.GetOrCreateStat(stat).Value / 10));
             playerCurrency.UpdateCurrency(killProfit);
             CollectedCurrency += killProfit;
             CurrencyUpdated?.Invoke(CollectedCurrency);

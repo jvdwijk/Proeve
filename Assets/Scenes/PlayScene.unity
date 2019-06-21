@@ -3738,6 +3738,8 @@ MonoBehaviour:
   enemyTracker: {fileID: 2048289727}
   moneyLevelMultiplier: 3
   BoostProcentAmount: 100
+  playerStatsHandler: {fileID: 347061471}
+  stat: 5
 --- !u!4 &713256611
 Transform:
   m_ObjectHideFlags: 0
