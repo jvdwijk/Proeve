@@ -40,7 +40,7 @@ namespace PeppaSquad.Currency {
 
         public void OnKill() {
             int killProfit = (int) ((enemyTracker.EnemyLevel * moneyLevelMultiplier));
-            killProfit += (int) (killProfit / 100f * (BoostProcentAmount * currencyBoostStat.Value)* (playerStatsHandler.GetOrCreateStat(stat).Value / 10));
+            killProfit += (int) (killProfit / 100f * (BoostProcentAmount * currencyBoostStat.Value) * (1 + playerStatsHandler.GetOrCreateStat(stat).Value / 10));
             playerCurrency.UpdateCurrency(killProfit);
             CollectedCurrency += killProfit;
             CurrencyUpdated?.Invoke(CollectedCurrency);
