@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using PeppaSquad.Enemies;
 using PeppaSquad.Stats;
 using PeppaSquad.Stats.PlayerStats;
-using TMPro;
 
 namespace PeppaSquad.Currency {
     public class PlayerCurrency : MonoBehaviour {
-        [SerializeField] private int currency;
+        private int currency{
+            get=>(int) playerStatsHandler.GetOrCreateStat(PlayerStatType.Currency).Value;
+            set=> playerStatsHandler.SetStatValue(PlayerStatType.Currency, value);
+        }
         [SerializeField] private PlayerStatsHandler playerStatsHandler;
-        private Stat<PlayerStatType> statCurrency;
-
+        [SerializeField] private Stat<PlayerStatType> statCurrency;
         public int Currency => currency;
-
         public event Action<int> CurrencyChanged;
 
         /// <summary>

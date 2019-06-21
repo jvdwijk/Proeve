@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PeppaSquad.Stats.PlayerStats;
+using PeppaSquad.Prestige;
 using TMPro;
 
 namespace PeppaSquad.Currency {
     public class BuyUpgrade : MonoBehaviour {
         [SerializeField] private PlayerStatType stat;
+        [SerializeField] private LifePrestiger lifePrestiger;
         [SerializeField] private PlayerStatsHandler playerStatsHandler;
         [SerializeField] private PlayerCurrency playerCurrency;
         [SerializeField] private TMP_Text currentLevelText;
         [SerializeField] private TMP_Text upgradeCostText;
         private int upgradeCost;
-        private int currentLevel;
-        public int Currentlevel => currentLevel;
+        private int currentLevel{
+            get=>(int) playerStatsHandler.GetOrCreateStat(stat).Value;
+            set=> playerStatsHandler.SetStatValue(stat, value);
+            }
 
         /// <summary>
         /// This start makes sure that the stats taken from the playerprefs are shown visually.
@@ -22,9 +26,14 @@ namespace PeppaSquad.Currency {
         private void Start() {
 
             currentLevel = (int) playerStatsHandler.GetOrCreateStat(stat).Value;
+            playerStatsHandler.GetOrCreateStat(stat).StatChanged += (clear) => UpdateUI();
+            UpdateUI();
+        }
+        
+        private void UpdateUI()
+        {
             UpdateUpdrageCost();
             UpdateText();
-
         }
 
         /// <summary>
